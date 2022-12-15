@@ -4,7 +4,7 @@
 <head>
     <%- include ('partials/head') %>
 
-        <link rel="stylesheet" href="/css/singleproduct.css">
+    <link rel="stylesheet" href="/css/singleproduct.css">
 </head>
 
 <body>
@@ -19,14 +19,17 @@
                             <button class="left-arrow-btn"><i class='bx bx-chevron-left'></i></button>
                         </div>
                         <div class="single-product-img-container">
-                            <% deviceToFetch.images.forEach((img, i)=> { %>
-                                <% if(i==0) {%>
-                                    <img class="single-product-img active-img" src="/images/devices/<%= img.image %>"
-                                        alt="">
-                                    <% } else { %>
-                                        <img class="single-product-img" src="/images/devices/<%= img.image %>" alt="">
-                                        <% } %>
-                                            <% }) %>
+                            <% if(deviceToFetch && deviceToFetch.images) { %>
+                                <% deviceToFetch.images.forEach((img, i)=> { %>
+                                    <% if(i==0) {%>
+                                        <img class="single-product-img active-img"
+                                            src="/images/devices/<%= img.image %>" alt="">
+                                        <% } else { %>
+                                            <img class="single-product-img" src="/images/devices/<%= img.image %>"
+                                                alt="">
+                                            <% } %>
+                                                <% }) %>
+                            <% } %>
                         </div>
                         <div class="right-btn-container">
                             <button class="right-arrow-btn"><i class='bx bx-chevron-right'></i></button>
@@ -125,19 +128,22 @@
 
             <% if(locals.isLogged) { %>
                 <div class="delete-update-btns-container">
-                    <div class="update-btn-container">
-                        <button class="form-device-btn" type="submit"><a href="/products/update/<%= deviceToFetch.id %> ">Update device</a></button>
-                    </div>  
-                    <form action="/delete/<%= deviceToFetch.id %>?_method=DELETE" method="POST">
+                    <div class="update-delete-btn-container">
+                        <button class="form-device-btn" type="submit"><a
+                                href="/products/update/<%= deviceToFetch.id %> ">Update device</a></button>
+                    </div>
+                    <form class="update-delete-btn-container"
+                        action="/products/delete/<%= deviceToFetch.id %>?_method=DELETE" method="POST">
                         <button class="form-device-btn" type="submit">Delete device</button>
                     </form>
                 </div>
                 <% } %>
 
         </main>
+        <script src="/scripts/singleDevice.js"></script>
         <%- include ('partials/floatsocialmediabtn') %>
 
-            <%- include ('partials/footer') %>
+        <%- include ('partials/footer') %>
 
 
 </body>

@@ -164,10 +164,15 @@ main {
     border: 1px solid grey;
 }
 
+.update-delete-btn-container {
+    width: 85%;
+    margin: 0 auto;
+}
+
 .form-device-btn {
     border: 0;
     border: 1px solid orange;
-    width: 30%;
+    width: 100%;
     margin: 1.5rem auto;
     text-align: center;
     font-weight: 700;
@@ -217,11 +222,24 @@ main {
     .h-spec {
         font-size: 1.1rem;
     }
+
+    .update-delete-btn-container {
+        width: 55%;
+    }
 }
 
 @media (min-width: 1100px) {
     .single-product-img {
         width: 300px;
         bottom: -135px;
+    }
+
+    .delete-update-btns-container {
+        display: flex;
+        justify-content: space-between;
+    }
+
+    .update-delete-btn-container {
+        width: 40%;
     }
 }

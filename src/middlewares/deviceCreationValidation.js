@@ -56,7 +56,7 @@ const validations = [ //when it comes to do validations, those have to be inside
             const acceptedExtension = ['.jpg', '.jpeg', '.png'];
 
             if (!bodyImages) {
-                throw new Error("You have to select images")
+                throw new Error("Tenés que seleccionar las imagenes")
             }
 
             bodyImages.forEach(image => {
@@ -82,7 +82,7 @@ const validations = [ //when it comes to do validations, those have to be inside
             const bodyDeviceType = req.body.device_type;
 
             if (storages && bodyDeviceType != 1) {
-                throw new Error("This checkbox is only for Iphones")
+                throw new Error("Este campo es solo para iphones")
             }
 
             return true;
@@ -96,7 +96,7 @@ const validations = [ //when it comes to do validations, those have to be inside
             const bodyStorages = req.body.storages;
 
             if (bodyDeviceType == 1 && !bodyStorages) {
-                throw new Error("If you are creating an Iphone, you have to select this field")
+                throw new Error("Si estás creando un Iphone, debes seleccionar este campo")
             }
 
             return true;
@@ -113,7 +113,7 @@ const validations = [ //when it comes to do validations, those have to be inside
             const bodySsds = req.body.ssds;
 
             if (bodyDeviceType != 1 && (!(bodyCores || bodyRams || bodySsds))) {
-                throw new Error("If you are creating a Macbook, Imac or Mac Mini, you have to select this field")
+                throw new Error("Si estás creando una Macbook, Imac o Mac Mini, debes seleccionar este campo")
             }
 
             return true;
@@ -130,7 +130,7 @@ const validations = [ //when it comes to do validations, those have to be inside
             const bodySsds = req.body.ssds;
 
             if (bodyDeviceType == 1 && (bodyCores || bodyRams || bodySsds)) {
-                throw new Error("This checkbox is only for Macbooks, Macs Mini and Imacs")
+                throw new Error("Este checkbox es solo para Macbooks, Macs Mini y Imacs")
             }
 
             return true;

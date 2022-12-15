@@ -34,11 +34,12 @@ const controller = {
                 console.log('errors')
                 const oldBody = req.body;
 
-                bodyImages?.forEach(image =>
-                    fs.unlinkSync(path.join(__dirname, '../../public/images/devices/' + image.filename)) // borrar imagen en caso de que haya errors
-                );
-
-
+                const bodyImages = req.files;
+                if(bodyImages) {
+                    bodyImages.forEach(image =>
+                        fs.unlinkSync(path.join(__dirname, '../../public/images/devices/' + image.filename)) // borrar imagen en caso de que haya errors
+                    );
+                }                 
                 return res.render("createDevice", { errors: errors.mapped(), oldBody, dbStorages: await dbStorages(), dbColors: await dbColors(), dbRams: await dbRams(), dbSsds: await dbSsds(), dbCores: await dbCores(), dbDeviceTypes: await dbDeviceTypes()})
             }
 
@@ -54,32 +55,36 @@ const controller = {
             const { colors, storages, rams, cores, ssds } = req.body
 
 
-            const deviceImages = bodyImages?.map(obj => {
-                return {
-                    image: obj.filename,
-                    device_id: newDevice.id,
-                    device_type_id: newDevice.device_type_id,
-                }
-            })
-            await db.Image.bulkCreate(deviceImages);
-
-
-            const deviceColors = colors?.map(color => {
-                return {
-                    color_id: color,
-                    device_id: newDevice.id,
-                    device_type_id: newDevice.device_type_id
-                }
+            if(bodyImages) {
+                const deviceImages = bodyImages?.map(obj => {
+                    return {
+                        image: obj.filename,
+                        device_id: newDevice.id,
+                        device_type_id: newDevice.device_type_id,
+                    }
+                })
+                await db.Image.bulkCreate(deviceImages);
             }
-            )
-            await db.DeviceColor.bulkCreate(deviceColors);
+            
+            if(colors) {
+                const deviceColors = colors?.map(color => {
+                    return {
+                        color_id: color,
+                        device_id: newDevice.id,
+                        device_type_id: newDevice.device_type_id
+                    }
+                }
+                )
+                await db.DeviceColor.bulkCreate(deviceColors);
+            }
+
 
             if (newDevice.device_type_id == 1) {
                 const deviceStorages = storages?.map(storage => {
                     return {
                         storage_id: storage,
                         device_id: newDevice.id,
-                        device_type_id: device_type
+                        device_type_id: newDevice.device_type_id
                     }
                 }
                 )
@@ -127,9 +132,11 @@ const controller = {
         } catch (error) {
             console.log(`Error while processing the device creation: ${error}`)
             const bodyImages = req.files;
-            bodyImages?.forEach(image =>
-                fs.unlinkSync(path.join(__dirname, '../../public/images/devices/' + image.filename)) // borrar imagen en caso de que haya errors
-            );
+            if(bodyImages) {
+                bodyImages?.forEach(image =>
+                    fs.unlinkSync(path.join(__dirname, '../../public/images/devices/' + image.filename)) // borrar imagen en caso de que haya errors
+                );
+            }  
             return res.render('unexpectedError');
         }
 
@@ -237,6 +244,20 @@ const controller = {
             const deviceToUpdate = await db.Device.findByPk(idProduct, { include: ['images', 'colors', 'ssds', 'rams', 'cores'] })
             return res.render("updateDevice", { deviceToUpdate, dbDeviceTypes: await dbDeviceTypes(), dbAppleDevices: await dbAppleDevices(), dbIphones : await dbIphones(), dbMacbooks : await dbMacbooks(),  dbColors : await dbColors(), dbRams: await dbRams(), dbCores: await dbCores(), dbSsds: await dbSsds()})
         }
+    },
+    destroyOneDevice: async (req, res) => {
+        try {
+            const deviceToDelete = await db.Device.findByPk(req.params.idProduct);             
+            await db.Device.destroy({
+                   where: {
+                          id: deviceToDelete.id
+                   }
+            })
+            return res.redirect('/')
+     } catch (error) {
+            console.log(`Fallé en proceso de delete: ${error}`);
+            return res.redirect('/')  
+     }      
     }
 
 }

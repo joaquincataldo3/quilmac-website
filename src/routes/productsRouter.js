@@ -22,4 +22,6 @@ router.get('/category/:idCategory', productsController.fetchCategory);
 
 router.get('/:idProduct', productsController.fetchOneDevice);
 
+router.delete('/delete/:idProduct', productsController.destroyOneDevice);
+
 module.exports = router;
