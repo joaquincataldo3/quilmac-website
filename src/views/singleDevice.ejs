@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <%- include ('partials/head') %>
+
+        <link rel="stylesheet" href="/css/singleproduct.css">
+</head>
+
+<body>
+
+    <%- include ('partials/header') %>
+        <main>
+            <div class="single-product-container">
+
+                <div class="single-product-img-slider">
+                    <div class="single-product-img-buttons-wrapper">
+                        <div class="left-btn-container">
+                            <button class="left-arrow-btn"><i class='bx bx-chevron-left'></i></button>
+                        </div>
+                        <div class="single-product-img-container">
+                            <% deviceToFetch.images.forEach((img, i)=> { %>
+                                <% if(i==0) {%>
+                                    <img class="single-product-img active-img" src="/images/devices/<%= img.image %>"
+                                        alt="">
+                                    <% } else { %>
+                                        <img class="single-product-img" src="/images/devices/<%= img.image %>" alt="">
+                                        <% } %>
+                                            <% }) %>
+                        </div>
+                        <div class="right-btn-container">
+                            <button class="right-arrow-btn"><i class='bx bx-chevron-right'></i></button>
+                        </div>
+                    </div>
+
+                    <div class="single-product-dot-images-container">
+                        <% deviceToFetch.images.forEach((img, i)=> { %>
+                            <% if(i==0) {%>
+                                <div class="dot-img active-dot"></div>
+                                <% } else { %>
+                                    <div class="dot-img"></div>
+                                    <% } %>
+                                        <% }) %>
+                    </div>
+
+                </div>
+
+
+
+                <div class="single-product-info-wrapper">
+                    <div class="info-container">
+                        <h3 class="device-model">
+                            <%= deviceToFetch.model %>
+                        </h3>
+
+                        <p class="device-screen">
+                            <%= deviceToFetch.screen %>
+                        </p>
+
+
+                        <div class="single-product-spec-container">
+                            <div class="h-arrow-container">
+                                <h4 class="h-spec">Colores disponibles</h5>
+                            </div>
+                            <div class="single-product-colors-list">
+                                <% deviceToFetch.colors.forEach(color=> { %>
+                                    <div class="single-product-color" style="background-color:#<%= color.HEX %>;">
+                                    </div>
+                                    <% }) %>
+                            </div>
+                        </div>
+
+
+                        <% if(locals.deviceToFetch && deviceToFetch.device_type_id==1) { %>
+                            <div class="single-product-spec-container">
+                                <h4 class="h-spec">Capacidades disponibles</h5>
+                                    <ul class="single-product-spec-list" type="none">
+                                        <% deviceToFetch.storages.forEach(strg=> { %>
+                                            <li class="single-product-spec">
+                                                <%= strg.storage==1 ? `${strg.storage}TB` : `${strg.storage}GB` %>
+                                            </li>
+                                            <% }) %>
+                            </div>
+                            <% } else { %>
+                                <div class="single-product-spec-container">
+                                    <h4 class="h-spec">Ram</h5>
+                                        <ul class="single-product-spec-list" type="none">
+                                            <% deviceToFetch.rams.forEach(ram=> { %>
+                                                <li class="single-product-spec">
+                                                    <%= ram.ram %>
+                                                </li>
+                                                <% }) %>
+                                </div>
+
+                                <div class="single-product-spec-container">
+                                    <h4 class="h-spec">Cores</h5>
+                                        <ul class="single-product-spec-list" type="none">
+                                            <% deviceToFetch.cores.forEach(core=> { %>
+                                                <li class="single-product-spec">
+                                                    <%= core.core %>
+                                                </li>
+                                                <% }) %>
+                                </div>
+
+                                <div class="single-product-spec-container">
+                                    <h4 class="h-spec">Ssd</h5>
+                                        <ul class="single-product-spec-list" type="none">
+                                            <% deviceToFetch.ssds.forEach(ssd=> { %>
+                                                <li class="single-product-spec">
+                                                    <%= ssd.ssd %>
+                                                </li>
+                                                <% }) %>
+                                </div>
+                                <% } %>
+
+
+                                    <div class="technical-details-container">
+                                        <a href=""></a>
+                                    </div>
+
+                    </div>
+                </div>
+
+            </div>
+
+            <% if(locals.isLogged) { %>
+                <div class="delete-update-btns-container">
+                    <div class="update-btn-container">
+                        <button class="form-device-btn" type="submit"><a href="/products/update/<%= deviceToFetch.id %> ">Update device</a></button>
+                    </div>  
+                    <form action="/delete/<%= deviceToFetch.id %>?_method=DELETE" method="POST">
+                        <button class="form-device-btn" type="submit">Delete device</button>
+                    </form>
+                </div>
+                <% } %>
+
+        </main>
+        <%- include ('partials/floatsocialmediabtn') %>
+
+            <%- include ('partials/footer') %>
+
+
+</body>
+
+</html>

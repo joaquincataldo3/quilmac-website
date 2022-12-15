@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <%- include ('partials/head') %>
+        <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700;900&display=swap"
+            rel="stylesheet">
+        <link rel="stylesheet" href="/css/standard-form.css">
+</head>
+
+<body>
+
+    <main>
+
+            <form class="creation-form" id="login-form" action="/admin/login" method="POST">
+                
+                <div class="form-logo-container">
+                    <img src="/images/logo_quilmac2.png" alt="">
+                </div>
+
+                <h3>Login</h3>
+
+                <div class="label-input-container">
+                    <label for="model">Username</label>
+                    <input class='form-input' type="text" name="username"
+                        value="<%= locals.oldBody && oldBody.username ? oldBody.username : "" %>">
+                    <% if(locals.errors && locals.errors.username) { %>
+                        <p class="error-msg">
+                            <%= errors.username.msg %>
+                        </p> 
+                    <% } %>
+                </div>
+
+
+                <div class="label-input-container">
+                    <label for="iphone-form-input">Password</label>
+                    <input class='form-input' type="password" name="password">
+                    <% if(locals.errors && errors.password) { %>
+                        <p class="error-msg">
+                            <%= errors.password.msg %>
+                        </p>
+                        <% } %>
+                </div>
+
+                <div class="remember-me-container">
+                    <label for="iphone-form-input">Remember me</label>
+                    <input type="checkbox" name="remember_me">
+                </div>
+
+                <button class="form-device-btn" type="submit">Log in</button>
+            </form>
+
+
+    </main>
+
+</body>

@@ -1,0 +1,15 @@
+ <!--DESKTOP ADMIN DROPDOWN-->
+
+<% if(locals.isLogged) { %>
+    <div class="desktop-admin-username" id="desktop-admin-username">
+         <p>Bienvenido de nuevo, <span class="admin-span-dropdown">
+                   <%= locals.adminLogged %>
+              </span></p>
+         <div class="desktop-admin-logout-container">
+              <ul>
+                   <li><a href="products/device/create">CREAR PRODUCTO</a></li>
+                   <li><a href="admin/logout">LOGOUT</a></li>
+              </ul>
+         </div>
+    </div>
+<%} %>

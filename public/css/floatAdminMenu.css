@@ -1,0 +1,60 @@
+.desktop-admin-username {
+    display: none;
+}
+
+
+@media(min-width: 1000px) {
+    
+    .desktop-admin-username {
+        display: flex;
+        background-color: black;
+        justify-content: center;
+        font-size: 0.800rem;
+        position: fixed;
+        top:0;
+        right: 50%;
+        transform: translateX(50%);
+        cursor: pointer;
+        width: 25rem;
+        height: 50px;
+        z-index: 150;
+    }
+
+    .desktop-admin-username p {
+        color: white;
+    }
+    
+    .desktop-admin-username span {
+        color: white;
+        font-weight: 900;
+        transition: color 150ms;
+    }
+    
+    .desktop-admin-username:hover span {
+        color: #F47658;
+    }
+    
+    
+    .desktop-admin-logout-container {
+        opacity: 0;
+        background-color: black;
+        position: absolute;
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        top: 1rem;
+        transform: translateY(-10px);
+        transition: all 150ms;
+        pointer-events: none;
+    }
+    
+    .desktop-admin-logout-container-active {
+        opacity: 100%;
+        transform: translateY(0);
+    }
+    
+    .desktop-admin-logout-container a {
+        color: white;
+    }
+
+}

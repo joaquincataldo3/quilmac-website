@@ -1,0 +1,429 @@
+/* global properties */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Roboto', sans-serif;
+}
+
+button {
+    border: 0;
+    outline: 0;
+    background-color: transparent;
+}
+
+a {
+    text-decoration: none;
+}
+
+/* MOBILE STYLES */ 
+
+.main-header-container {
+    display: flex;
+    flex-flow: wrap column;
+    justify-content: center;
+    width: 100%;
+    position: relative;
+    padding-top: 2rem;
+    background-color: white;
+    border: 1px solid rgb(195, 195, 195);
+}
+
+.logo-container {
+    width: 99%;
+    min-width: 191px;
+    height: 80px;
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+}
+
+.search-bar-burger-menu-container {
+    display: flex;
+    width: 95%;
+    min-width: 269px;
+    justify-content: space-between;
+    align-items: center;
+    margin: 0 auto;
+    padding: 10px 0;
+}
+
+.search-bar-form {
+    width: 60%;
+    height: 35px;
+    display: flex;
+}
+
+.search-bar-input {
+    padding: 5px;
+    border: 1px solid #ced4da;
+    border-right: 0;
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+}
+
+
+.search-bar-form>button {
+    background-color: white;
+    border: 1px solid #ced4da;
+    border-left: 1px solid #ced4da;
+    border-top-right-radius: 0.375rem;
+    border-bottom-right-radius: 0.375rem;
+    padding: 7px;
+}
+
+.burger-menu-username-container {
+    display: flex;
+    justify-content: center;
+}
+
+.admin-username-dropdown {
+    opacity: 0;
+    width: 100%;
+    background-color: black;
+    z-index: 100;
+    position: absolute;
+    top: 170px;
+    border-top-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+    border-bottom-left-radius: 5px;
+    pointer-events: none;
+    /* the element cannot have any interaction when is invisible */
+    transform: translateY(-10px);
+    /* we give to dropdown an inicial position if -10px on y axis */
+    /* so then we can translate it to  0 with dropdown active */
+    /* transition: 150ms opacity ease-in-out, transform 150ms ease-in-out; */
+    transition: all 150ms;
+}
+
+.admin-username-dropdown-active {
+    transform: translateY(0px);
+    pointer-events: auto;
+    /* element goes back to normal state */
+    opacity: 100%;
+    padding: 0.500rem;
+}
+
+
+.admin-icon-container {
+    display: flex;
+    align-items: center;
+    color: black;
+    font-size: 2rem;
+}
+
+.admin-icon {
+    color: black;
+    font-size: 2rem;
+    transition: color 150ms;
+}
+
+.admin-icon-active {
+    color: #F47658;
+}
+
+.admin-username-dropdown {
+    padding: 1rem;
+} 
+
+.admin-username-dropdown-item {
+    color: white!important;
+    font-size: 1rem!important;
+    border-bottom: 1px solid white;
+    padding-bottom: 0.300rem;
+}
+
+.admin-span-dropdown {
+    font-weight: 700;
+}
+
+.burger-menu-container {
+    display: flex;
+    position: relative;
+    margin-right: 1rem;
+}
+
+.fa-bars,
+.fa-xmark {
+    font-size: 2rem;
+    color: #F47658;
+}
+
+
+.fa-bars {
+    display: block;
+}
+
+.x-close-menu-btn {
+    display: none;
+}
+
+.mobile-main-dropdown {
+    width: 100%;
+    margin: 0 auto;
+    padding: 1rem;
+    position: absolute;
+    z-index: 100;
+    top: 170px;
+    background-color: black;
+    border-top-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+    border-bottom-left-radius: 5px;
+    opacity: 0;
+    pointer-events: none;
+    /* the element cannot have any interaction when is invisible */
+    transform: translateY(-10px);
+    /* we give to dropdown an inicial position if -10px on y axis */
+    /* so then we can translate it to  0 with dropdown active */
+    transition: 150ms opacity ease-in-out, transform 150ms ease-in-out;
+}
+
+.mobile-main-dropdown-active {
+    transform: translateY(0px);
+    pointer-events: auto;
+    /* element goes back to normal state */
+    opacity: 100%;
+}
+
+.mobile-main-dropdown span,
+a, i {
+    font-weight: 700;
+    color: white;
+}
+
+.mobile-dropdown-li {
+    border-bottom: 1px solid white;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.mobile-dropdown-li:last-child {
+    border-bottom: 0;
+}
+
+.mobile-dropdown-item-name {
+    margin-bottom: 0.700rem;
+}
+
+
+.bx-chevron-down {
+    font-size: 1.3rem;
+    transition: transform 175ms;
+}
+
+.bx-chevron-down-active {
+    transform: rotate(180deg);
+    color: #F47658;
+}
+
+.dropdown-li a {
+    color: white;
+}
+
+.mobile-dropdown-li a:visited {
+    color: white;
+}
+
+.mobile-li-submenu {
+    display: none;
+    text-decoration: none;
+}
+
+
+.mobile-submenu-active {
+    display: block;
+    width: 90%;
+    margin-left: 2rem;
+    font-size: 14px;
+    text-transform: uppercase;
+}
+
+.mobile-submenu-dropdown-li {
+    text-decoration: none ;
+}
+
+.mobile-submenu-dropdown-li a{
+    text-decoration: none ;
+}
+
+
+.desktop-navbar-container {
+    display: none;
+}
+
+.desktop-admin-username {
+    display: none;
+}
+
+/* DESKTOP STYLES */ 
+
+@media (min-width: 1000px) {
+
+    body {
+        background-color: pink;
+        padding: 5rem 5rem;
+    }
+    
+    
+
+    .main-header-container {
+        flex-flow: wrap column;
+        max-width: 1080px;
+        margin: 0 auto;
+    }
+
+    .logo-searchbar-container {
+        display: flex;
+        flex-wrap: wrap;
+        width: 100%; 
+        margin: 0 auto;
+        max-width: 1000px; 
+    }
+
+    .logo-container {
+        width: 49%;
+        display: flex;
+        justify-content: flex-start;
+        padding-left: 3.7rem;
+    }
+
+
+    .search-bar-burger-menu-container {
+        width: 15%;
+        max-width: 1500px;
+        justify-content: flex-end;
+        margin-top: 12px;
+        
+    }
+
+    .mobile-main-dropdown {
+        display: none;
+    }
+
+    .burger-menu-container {
+        display: none;
+    }
+
+    .desktop-navbar-container {
+        display: flex;
+        align-items: flex-end;
+        width: 100%;
+        justify-content: center;
+        background-color: black;
+        margin: 1rem auto 0 auto;
+        
+    }
+
+    .navbar-span {
+        padding-bottom: 1rem;
+        color: white;
+    }
+
+    .desktop-main-navbar {
+        display: flex;
+        width: 85%;
+        max-width: 830px;
+        justify-content: space-between;
+        background-color: black;
+    }
+
+    .mobile-dropdown-li {
+        position: relative;
+        background-color: black;
+        text-decoration: none;
+    }
+
+    .desktop-navbar-li {
+        display: flex;
+        align-items: flex-end;
+        position: relative;
+        cursor: pointer;
+        transition: border 150ms;
+    }
+
+    .desktop-navbar-li a {
+        display: flex;
+        align-items: flex-end;
+    }
+
+    .desktop-main-navbar span {
+        font-size: 14px;     
+        font-weight: 700;
+    }
+
+    .bx-chevron-down {
+        margin-bottom: 0.8rem;
+        color: white;
+    }
+
+    .desktop-li-submenu {
+        position: absolute;
+        opacity: 0;
+        transition: opacity 150ms;
+        top: 2.1rem;
+        left: -1rem;
+        pointer-events: none;
+        background-color: black;
+        z-index: 100; 
+        padding: 0 0.7rem;
+        width: 130px;
+    }
+
+
+    .desktop-navbar-li:hover .desktop-li-submenu {
+        opacity: 100%;
+        pointer-events: auto;
+        border-bottom: 1px solid black;
+        border-right: 1px solid black;
+        border-left: 1px solid black;
+    } 
+
+    .bx-chevron-down {
+        font-size: 1.3rem;
+        transition: transform 175ms, color 175ms;
+    }
+    
+    .desktop-navbar-li:hover .bx-chevron-down {
+        transform: rotate(180deg);
+        color: #F47658;
+    }
+
+    .desktop-submenu-dropdown-li {
+        color: white;
+        font-size: 0.9rem;
+        transition: color 150ms;
+        padding-bottom: 0.500rem;
+        
+        text-transform: uppercase;
+        border-bottom: 1px solid white;
+    }
+
+    .desktop-submenu-dropdown-li:last-child {
+        border-bottom: 0;
+    }
+
+    .desktop-submenu-dropdown-li a:visited {
+        color: white;
+    }
+
+    .desktop-submenu-dropdown-li a:hover {
+        color: #F47658;
+    }
+
+
+    .burger-menu-username-container {
+        display: none;
+    }
+
+
+    .product-type-span {
+        font-size: 0.800rem;
+        font-weight: 700;
+        text-transform: uppercase;
+    }
+
+
+
+}

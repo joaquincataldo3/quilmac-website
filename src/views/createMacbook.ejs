@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <%- include ('partials/head') %>
+        <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700;900&display=swap"
+            rel="stylesheet">
+        <link rel="stylesheet" href="/css/header.css">
+        <link rel="stylesheet" href="/css/standard-form.css">
+        <link rel="stylesheet" href="/css/footer.css">
+
+</head>
+
+<body>
+    <%- include ('partials/header') %>
+
+        <div class="form-container">
+            <form class="creation-form" action="/admin/macbook-air" method="POST" enctype="multipart/form-data">
+
+                <div class="label-input-container">
+                    <label for="model">Model</label>
+                    <input class="form-input" type="text" name="model">
+                </div>
+
+                <div class="label-input-container">
+                    <label for="iphone-form-input">Screen</label>
+                    <input class="form-input" type="text" name="screen">
+                </div>
+
+                <div class='gb-checkbox-global-container'>
+                    <h4>SSD</h4>
+                    <% ssds.forEach(ssd=> { %>
+                        <div class='gb-checkbox-container'>
+                            <input type="checkbox" name="storage" value="<%= ssd.storage %>">
+                            <label for="<%= ssd.storage  %>">
+                                <%= ssd.storage==1 ? ssd.storage + 'TB' : ssd.storage %> ?
+                            </label><br>
+                        </div>
+                        <% }) %>
+                </div>
+
+                <div class='gb-checkbox-global-container'>
+                    <h4>RAM</h4>
+                    <% rams.forEach(ram=> { %>
+                        <div class='gb-checkbox-container'>
+                            <input type="checkbox" name="GB" value="<%= ram.GB %>">
+                            <label for="<%= ram.GB  %>">
+                                <%= ram.GB %> ?
+                            </label><br>
+                        </div>
+                        <% }) %>
+                </div>
+
+                <div class='gb-checkbox-global-container'>
+                    <h4>CORES</h4>
+                    <% cores.forEach(core=> { %>
+                        <div class='gb-checkbox-container'>
+                            <input type="checkbox" name="GB" value="<%= core.GB %>">
+                            <label for="<%= core.GB  %>">
+                                <%= core.GB %> ?
+                            </label><br>
+                        </div>
+                        <% }) %>
+                </div>
+
+
+                <div class="label-input-container">
+                    <label for="iphoneImages">Images</label>
+                    <input class="form-input" type="file" name="iphoneImages" multiple accept="image/jpeg, image/jpg, image/png">
+                </div>
+
+                <div class="label-input-container">
+                    <label for="technical_detail">Technical Detail</label>
+                    <input class="form-input" type="text" name="technical_detail">
+                </div>
+
+                <div class="label-input-container">
+                    <label for="release_date">Release Date (Only year matters)</label>
+                    <input class="form-input" type="date" name="release_date">
+                </div>
+
+                <button type = "submit">Crear</button>
+            </form>
+        </div>
+
+        <%- include ('partials/footer') %>
+</body>
+
+</html>

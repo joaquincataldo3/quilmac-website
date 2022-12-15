@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <%- include ('partials/head') %>
+        <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700;900&display=swap"
+            rel="stylesheet">     
+        <link rel="stylesheet" href="/css/standard-form.css">
+</head>
+
+<body>
+
+    <main>
+
+
+            <h3>Accesory form creation</h3>
+
+
+            <form class="creation-form" id="create-device-form" action="/admin/accesory" method="POST"
+                enctype="multipart/form-data">
+
+                <div class="label-input-container">
+                    <label for="model">NAME</label>
+                    <input class="form-input" type="text" name="name"
+                        value="<%= locals.oldBody && oldBody.name ? oldBody.name : "" %> ">
+                    <% if(locals.errors && errors.name) { %>
+                        <p class="error-msg">
+                            <%= errors.name.msg %>
+                        </p>
+                        <% } %>
+                </div>
+
+                <div class="label-input-container">
+                    <label for="iphoneImages">Image</label>
+                    <input class="form-input" type="file" name="accesory_image">
+                    <% if(locals.errors && errors.device_images) {  %> 
+                        <p class = "error-msg"> <%= errors.device_images  %>  </p>
+                    <% } %> 
+                </div>
+
+
+                <button type="submit">Crear</button>
+
+            </form>
+
+    </main>
+
+</body>
+
+</html>

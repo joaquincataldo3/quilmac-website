@@ -1,0 +1,143 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Roboto', sans-serif;
+}
+
+body {
+    background-color: #F47658;
+}
+
+main {
+    background-color: #F47658;
+    padding: 1rem;
+}
+
+.creation-form {
+    width: 80%;
+    margin: 5rem auto;
+    max-width: 1000px;
+    padding: 1rem;
+    background-color: white;
+}
+
+.label-input-container  {
+    display: flex;
+    flex-flow: wrap column;
+    margin: 1rem 0;
+}
+
+.form-input {
+    width: 75%!important;
+    margin: 1rem 0 0 1rem;
+}
+
+
+.remember-me-container {
+    display: flex;
+    margin-top: 1.5rem;
+    font-size: 0.875rem;
+}
+
+.remember-me-container label {
+    margin-right: 0.400rem;
+}
+
+.form-labels {
+    font-size: 1rem;
+    font-weight: 700;
+}
+
+.checkbox-labels {
+    font-size: 1rem;
+}
+
+.checkbox-labels:first-letter {
+    text-transform: uppercase;
+}
+
+.gb-checkbox-global-container {
+    width: 100%;
+    margin-top: 1.5rem;
+}
+
+.gb-checkbox-container {
+    height: 55px;
+    overflow: scroll;
+}
+
+.gb-checkbox-container {
+    margin: 1rem 0 0 1rem;
+}
+
+.single-checkbox-container {
+    margin-bottom: 0.500rem;
+}
+
+#rams-container, #cores-container, #ssds-container {
+    display: none;
+}
+
+.gb-checkbox-container label {
+    margin-left: 1rem;
+}
+
+.error-msg {
+    margin-top: 0.300rem;
+    font-size: 0.800rem;
+    font-weight: 700;
+    color: red;
+}
+
+.form-device-btn {
+    border: 0;
+    border: 1px solid orange;
+    width: 50%;
+    margin: 1.5rem auto;
+    text-align: center;
+    font-weight: 700;
+    font-size: 1.1rem;
+}
+
+h4 {
+    font-size: 1.1rem;
+}
+
+h5 {
+    font-size: 1rem;
+    font-weight: 700;
+    margin-top: 1rem;
+}
+
+
+
+@media (min-width: 800px) {
+
+    h3 {
+        font-size: 1.8rem;
+    }
+
+    label {
+        font-size: 1.1rem;
+    }
+
+    .form-input {
+        width: 40%!important;
+    }
+} 
+
+@media (min-width: 1200px) {
+
+    .creation-form {
+        width: 60%;
+    }
+
+    .form-input {
+        width: 30%!important;
+    }
+
+    .checkbox-labels {
+        font-size: 1rem;
+    }
+} 

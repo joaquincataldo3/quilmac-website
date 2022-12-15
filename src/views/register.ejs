@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <%- include ('partials/head') %>
+        <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700;900&display=swap"
+            rel="stylesheet">
+        <link rel="stylesheet" href="/css/standard-form.css">
+</head>
+
+<body>
+
+    <main>
+
+        <div class="form-container">
+
+            <h3>Register</h3>
+
+            <form class="creation-form" id="register-form" action="/admin" method="POST">
+
+                <div class="label-input-container">
+                    <label for="model">Username</label>
+                    <input class="form-input" type="text" name="username"
+                        value="<%= locals.oldBody && oldBody.username ? oldBody.username : "" %> ">
+                    <% if(locals.errors && locals.errors.username) { %>
+                        <p class="error-msg">
+                            <%= errors.username.msg %>
+                        </p>
+                        <% } %>
+                </div>
+
+
+                <div class="label-input-container">
+                    <label for="iphone-form-input">Password</label>
+                    <input class="form-input" type="password" name="password">
+                    <% if(locals.errors && errors.password) { %>
+                        <p class="error-msg">
+                            <%= errors.password.msg %>
+                        </p>
+                        <% } %>
+                </div>
+
+                <button type="submit">REGISTER</button>
+
+            </form>
+        </div>
+    </main>
+
+</body>
+
+</html>

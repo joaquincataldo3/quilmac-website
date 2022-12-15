@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <%- include ('partials/head') %>
+        <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700;900&display=swap"
+            rel="stylesheet">
+        <link rel="stylesheet" href="/css/standard-form.css">
+</head>
+
+<body>
+
+    <main>
+
+        <div class="form-container">
+
+            <form class="creation-form" id="create-device-form" action="/products/device" method="POST"
+                enctype="multipart/form-data">
+
+                <h3>Product form creation</h3>
+
+                <div class='label-input-container'>
+                    <label class="form-labels" for="device_type">Device type</label>
+                    <select class="form-input" name="device_type" id="select_device_type">
+                        <optgroup label="Model">
+                            <% deviceTypes.forEach(device=> { %>
+                                <option value="<%= device.id %>">
+                                    <%=device.type%>
+                                </option>
+                                <% }) %>
+                        </optgroup>
+                    </select>
+                    <% if(locals.errors && errors.device_type) { %>
+                        <p class="error-msg">
+                            <%= errors.device_type.msg %>
+                        </p>
+                        <% } %>
+                </div>
+
+
+                <div class="label-input-container">
+                    <label class="form-labels" for="model">Model</label>
+                    <input class="form-input" type="text" name="model"
+                        value="<%= locals.oldBody && oldBody.model ? oldBody.model : "" %>">
+                    <% if(locals.errors && errors.model) { %>
+                        <p class="error-msg">
+                            <%= errors.model.msg %>
+                        </p>
+                        <% } %>
+                </div>
+
+
+                <div class="label-input-container">
+                    <label class="form-labels" for="iphone-form-input">Screen</label>
+                    <input class="form-input" type="text" name="screen"
+                        value="<%= locals.oldBody && oldBody.screen ? oldBody.screen : ""%>">
+                    <% if(locals.errors && errors.screen) { %>
+                        <p class="error-msg">
+                            <%= errors.screen.msg %>
+                        </p>
+                        <% } %>
+                </div>
+
+                <div class="label-input-container">
+                    <label class="form-labels" for="technical_detail">Technical Detail</label>
+                    <input class="form-input" type="text" name="technical_detail"
+                        value="<%= locals.oldBody && oldBody.technical_detail ? oldBody.technical_detail : "" %>">
+                    <% if(locals.errors && errors.technical_detail) { %>
+                        <p class="error-msg">
+                            <%= errors.technical_detail.msg %>
+                        </p>
+                        <% } %>
+                </div>
+
+                <div class="label-input-container">
+                    <label class="form-labels" for="release_date">Release Date</label>
+                    <input class="form-input" type="date" name="release_date"
+                        value="<%= locals.oldBody && oldBody.release_date ? oldBody.release_date : "" %>">
+                    <% if(locals.errors && errors.release_date) { %>
+                        <p class="error-msg">
+                            <%= errors.release_date.msg %>
+                        </p>
+                        <% } %>
+                </div>
+
+                <div class="label-input-container">
+
+                    <label id='device-image' class="form-labels" for="device_images">Select images</label>
+                    <input class="form-input" type="file" name="device_images" multiple>
+
+                </div>
+                <% if(locals.errors) { %>
+                    <p class="error-msg"> Por favor, re-seleccioná las imagenes </p>
+                    <% } %>
+                        <% if(locals.errors && errors.device_images) { %>
+                            <p class="error-msg">
+                                <%= errors.device_images %>
+                            </p>
+                            <% } %>
+
+
+                                <div class='gb-checkbox-global-container'>
+                                    <h5>Colors</h5>
+                                    <div class='gb-checkbox-container'>
+                                        <% colors.forEach(color=> { %>
+                                            <div class="single-checkbox-container">
+                                                <input type="checkbox" name="colors" value="<%= color.id %>">
+                                                <label class="checkbox-labels" id="colors" for="<%= color.color %>">
+                                                    <%= color.color %>
+                                                </label><br>
+                                            </div>
+                                            <% }) %>
+                                    </div>
+                                </div>
+
+
+
+                                <div class='gb-checkbox-global-container' id="storages-for-iphone">
+
+                                    <h5>Storages</h5>
+                                    <div class='gb-checkbox-container'>
+                                        <% storages.forEach(strg=> { %>
+                                            <div class="single-checkbox-container">
+                                                <input type="checkbox" name="storages" value="<%= strg.id %>">
+                                                <label class="checkbox-labels" for="<%= strg.storage  %>">
+                                                    <%= strg.storage==1 ? `${strg.storage} TB` : `${strg.storage}GB` %>
+                                                </label><br>
+                                            </div>
+                                            <% }) %>
+                                    </div>
+                                </div>
+
+                                <div class='gb-checkbox-global-container' id="rams-container">
+
+                                    <h5>Rams</h5>
+                                    <div class='gb-checkbox-container'>
+                                        <% rams.forEach(ram=> { %>
+                                            <div class="single-checkbox-container">
+                                                <input type="checkbox" name="rams" value="<%= ram.id %>">
+                                                <label class="checkbox-labels" for="<%= ram.ram %>">
+                                                    <%= ram.ram==1 ? `${ram.ram}TB`: `${ram.ram}GB` %>
+                                                </label><br>
+                                            </div>
+                                            <% }) %>
+                                    </div>
+                                    <% if(locals.errors && errors.rams) { %>
+                                        <p class="error-msg">
+                                            <%= errors.rams.msg %>
+                                        </p>
+                                        <% } %>
+                                </div>
+
+                                <div class='gb-checkbox-global-container' id="cores-container">
+                                    <h5>Cores</h5>
+                                    <div class='gb-checkbox-container'>
+                                        <% cores.forEach(core=> { %>
+                                            <div class="single-checkbox-container">
+                                                <input type="checkbox" name="cores" value="<%= core.id %>">
+                                                <label class="checkbox-labels" for="<%= core.core %>">
+                                                    <%= core.core==1 ? `${core.core}TB`: `${core.core}GB` %>
+                                                </label><br>
+                                            </div>
+                                            <% }) %>
+                                    </div>
+                                    <% if(locals.errors && errors.rams) { %>
+                                        <p class="error-msg">
+                                            <%= errors.rams.msg %>
+                                        </p>
+                                        <% } %>
+                                </div>
+
+                                <div class='gb-checkbox-global-container' id="ssds-container">
+                                    <h5>Ssds</h5>
+                                    <div class='gb-checkbox-container'>
+                                        <% ssds.forEach(ssd=> { %>
+                                            <div class="single-checkbox-container">
+                                                <input type="checkbox" name="ssds" value="<%= ssd.id %>">
+                                                <label class="checkbox-labels" for="<%= ssd.ssd %>">
+                                                    <%= ssd.ssd==1 ? `${ssd.ssd}TB`: `${ssd.ssd}GB` %>
+                                                </label><br>
+                                            </div>
+                                        <% }) %>
+
+                                    </div>
+                                    <% if(locals.errors && errors.ssds) { %>
+                                        <p class="error-msg">
+                                            <%= errors.ssds.msg %>
+                                        </p>
+                                        <% } %>
+                                </div>
+
+                                <button class="form-device-btn" type="submit">Crear</button>
+
+            </form>
+        </div>
+    </main>
+
+
+
+</body>
+
+</html>
