@@ -5,7 +5,7 @@ window.onload = function(){
   const dotsContainer = document.querySelector('.dots-container');
  
 
-  let actualImage = 0;
+  let currentImage = 0;
   let slidesLength = slides.length;
 
 
@@ -15,7 +15,7 @@ window.onload = function(){
 
   function handleCarouselImgClasses() {
     slides.forEach((img, i) => { // function that adds or removes the class of an image
-        if (i == actualImage) {
+        if (i == currentImage) {
             img.classList.add('active');
             
         } else {
@@ -25,13 +25,13 @@ window.onload = function(){
   }
 
   function handleCarouselActualImage() {
-    if(actualImage < slidesLength - 1) { // function that handles the maths of the actual image. 
+    if(currentImage < slidesLength - 1) { // function that handles the maths of the actual image. 
       // this function just redeclares the image based on the condition
       // whether is the last dot or not
-      actualImage += 1;
+      currentImage += 1;
       handleCarouselImgClasses()
     } else {
-      actualImage = 0
+      currentImage = 0
       handleCarouselImgClasses()
     }
   }
@@ -70,7 +70,7 @@ window.onload = function(){
           const activeDot = document.querySelector('.dot-active')
           activeDot.classList.remove('dot-active')
           dot.classList.add('dot-active')
-          actualImage = i;
+          currentImage = i;
           handleCarouselImgClasses()
           clearInterval(carouselInterval)
           clearInterval(dotsInterval)

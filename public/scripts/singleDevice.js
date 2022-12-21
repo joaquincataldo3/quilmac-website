@@ -7,12 +7,12 @@ window.addEventListener('load', () => {
 
     // NEXT AND PREV SLIDE ARROWS FUNC
 
-    let actualImage = 0;
+    let currentImage = 0;
     let slidesLength = slides.length; // 3 
 
     function handleCarouselFn() {
         slides.forEach((img, i) => {
-            if (i == actualImage) {
+            if (i == currentImage) {
                 img.classList.add('active-img')
             } else {
                 img.classList.remove('active-img');
@@ -21,26 +21,26 @@ window.addEventListener('load', () => {
     }
 
     rightArrowBtn.addEventListener('click', () => {
-        if (actualImage < slidesLength - 1) {
-            actualImage += 1
+        if (currentImage < slidesLength - 1) {
+            currentImage += 1
             handleCarouselFn()
             dotsNextSlide()
 
         } else {
-            actualImage = 0
+            currentImage = 0
             handleCarouselFn()
             dotsNextSlide()
         }
     })
 
     leftArrowBtn.addEventListener('click', () => {
-        if (actualImage != 0) {
-            actualImage -= 1
+        if (currentImage != 0) {
+            currentImage -= 1
             handleCarouselFn()
             dotsPrevSlide()
 
         } else {
-            actualImage = slidesLength - 1;
+            currentImage = slidesLength - 1;
             handleCarouselFn()
             dotsPrevSlide()
 
@@ -80,7 +80,7 @@ window.addEventListener('load', () => {
                     const activeDot = document.querySelector('.active-dot');
                     activeDot.classList.remove('active-dot')
                     dot.classList.add('active-dot')
-                    actualImage = i;
+                    currentImage = i;
                     handleCarouselFn()
                 }
             })

@@ -115,14 +115,18 @@
                                 <div class='gb-checkbox-global-container'>
                                     <h5>Colors</h5>
                                     <div class='gb-checkbox-container'>
+                                    <% if(locals.deviceToUpdate && deviceToUpdate.colors) { %>
                                         <% dbColors.forEach(color=> { %>
+                                            
                                             <div class="single-checkbox-container">
-                                                <input type="checkbox" name="colors" value="<%= color.id %>">
+                                                <input type="checkbox" name="colors" value="<%= color.id %>"
+                                                 <%= deviceToUpdate.colors.find(deviceToUpdateColor => deviceToUpdateColor.id == color.id) && 'checked' %>>
                                                 <label class="checkbox-labels" id="colors" for="<%= color.color %>">
                                                     <%= color.color %>
                                                 </label><br>
                                             </div>
                                             <% }) %>
+                                    <% } %>
                                     </div>
                                 </div>
 
@@ -134,7 +138,7 @@
                                             <% dbStorages.forEach(strg=> { %>
                                                 <div class="single-checkbox-container">
                                                     <input type="checkbox" name="storages" value="<%= strg.id %>"
-                                                     <%= deviceToUpdate.storages.forEach(devToUpStor => devToUpStor.id == strg.id ? 'checked' : '');%>>
+                                                    <%= deviceToUpdate.storages.find(deviceToUpdateStorage => deviceToUpdateStorage.id == strg.id) && 'checked' %>>
                                                     <label class="checkbox-labels" for="<%= strg.storage  %>">
                                                         <%= strg.storage==1 ? `${strg.storage} TB` : `${strg.storage}GB`
                                                             %>
@@ -151,7 +155,8 @@
                                         <div class='gb-checkbox-container'>
                                             <% dbRams.forEach(ram=> { %>
                                                 <div class="single-checkbox-container">
-                                                    <input type="checkbox" name="rams" value="<%= ram.id %>">
+                                                    <input type="checkbox" name="rams" value="<%= ram.id %>"
+                                                    <%= deviceToUpdate.rams.find(deviceToUpdateRam => deviceToUpdateRam.id == ram.id) && 'checked' %>>
                                                     <label class="checkbox-labels" for="<%= ram.ram %>">
                                                         <%= ram.ram==1 ? `${ram.ram}TB`: `${ram.ram}GB` %>
                                                      </label><br>
@@ -172,8 +177,8 @@
                                             <div class='gb-checkbox-container'>
                                                         <% dbCores.forEach(core=> { %>
                                                             <div class="single-checkbox-container">
-                                                                <input type="checkbox" name="cores"
-                                                                    value="<%= core.id %>">
+                                                                <input type="checkbox" name="cores" value="<%= core.id %>" 
+                                                                <%= deviceToUpdate.cores.find(deviceToUpdateCore => deviceToUpdateCore.id == core.id) && 'checked' %>>
                                                                 <label class="checkbox-labels" for="<%= core.core %>">
                                                                     <%= core.core==1 ? `${core.core}TB`:
                                                                         `${core.core}GB` %>
@@ -196,7 +201,7 @@
                                                         <% dbSsds.forEach(ssd=> { %>
                                                             <div class="single-checkbox-container">
                                                                 <input type="checkbox" name="ssds"
-                                                                    value="<%= ssd.id %>">
+                                                                    value="<%= ssd.id %>"  <%= deviceToUpdate.rams.find(deviceToUpdateRam => deviceToUpdateRam.id == ram.id) && 'checked' %>>
                                                                 <label class="checkbox-labels" for="<%= ssd.ssd %>">
                                                                     <%= ssd.ssd==1 ? `${ssd.ssd}TB`: `${ssd.ssd}GB` %>
                                                                 </label><br>

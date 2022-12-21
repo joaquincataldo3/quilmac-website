@@ -5,5 +5,7 @@ const router = express.Router();
 
 router.get('/', mainController.home);
 
+router.get('/apple-devices-suport', mainController.appleSupport);
+
 
 module.exports = router;

@@ -161,7 +161,6 @@ a {
 
 .mobile-main-dropdown {
     width: 100%;
-    margin: 0 auto;
     padding: 1rem;
     position: absolute;
     z-index: 100;
@@ -172,10 +171,7 @@ a {
     border-bottom-left-radius: 5px;
     opacity: 0;
     pointer-events: none;
-    /* the element cannot have any interaction when is invisible */
     transform: translateY(-10px);
-    /* we give to dropdown an inicial position if -10px on y axis */
-    /* so then we can translate it to  0 with dropdown active */
     transition: 150ms opacity ease-in-out, transform 150ms ease-in-out;
 }
 
@@ -186,10 +182,10 @@ a {
     opacity: 100%;
 }
 
-.mobile-main-dropdown span,
-a, i {
+.mobile-dropdown-item-name ,.bx-chevron-down{
     font-weight: 700;
     color: white;
+    font-size: 0.875rem;
 }
 
 .mobile-dropdown-li {
@@ -197,6 +193,7 @@ a, i {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
+    margin: 1rem 0;
 }
 
 .mobile-dropdown-li:last-child {
@@ -242,10 +239,14 @@ a, i {
 
 .mobile-submenu-dropdown-li {
     text-decoration: none ;
+    margin: 0.400rem 0;
+    font-weight: 700;
+    color: white;
 }
 
 .mobile-submenu-dropdown-li a{
     text-decoration: none ;
+    color: white;
 }
 
 
@@ -310,6 +311,7 @@ a, i {
         display: flex;
         align-items: flex-end;
         width: 100%;
+        height: 50px;
         justify-content: center;
         background-color: black;
         margin: 1rem auto 0 auto;
@@ -383,6 +385,7 @@ a, i {
     .bx-chevron-down {
         font-size: 1.3rem;
         transition: transform 175ms, color 175ms;
+        font-weight: 400;
     }
     
     .desktop-navbar-li:hover .bx-chevron-down {
@@ -395,9 +398,16 @@ a, i {
         font-size: 0.9rem;
         transition: color 150ms;
         padding-bottom: 0.500rem;
-        
+        font-size: 0.875rem;
+        font-weight: 700;
         text-transform: uppercase;
         border-bottom: 1px solid white;
+        font-weight: 700;
+        margin: 0.400rem 0;
+    }
+
+    .desktop-submenu-dropdown-li a {
+        color: white;
     }
 
     .desktop-submenu-dropdown-li:last-child {

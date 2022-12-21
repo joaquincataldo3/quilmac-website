@@ -1,0 +1,39 @@
+
+main {
+    border: 1px solid white;
+    background-color: white;
+}
+
+.support-page-intro-container {
+    margin-top: 3rem;
+}
+
+
+.support-img-container img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+.support-h1-intro, .support-p-intro {
+    padding: 1rem;
+    text-align: center;
+}
+
+.apple-product-support-article {
+    padding: 1rem;
+    max-width: 670px;
+}
+
+.apple-product-support-article h2 ~ p {
+    margin-top: 0.400rem;
+}
+
+
+
+@media (min-width: 1000px) {
+    main {
+        max-width: 1080px;
+        margin: 0 auto;
+    }
+}

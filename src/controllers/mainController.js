@@ -1,19 +1,15 @@
 const db = require("../database/models");
-const dbColors =  require('../../public/utils/getColors');
-const dbCores =  require('../../public/utils/getCores');
-const dbDeviceTypes =  require('../../public/utils/getDeviceTypes');
-const dbMacbooks =  require('../../public/utils/getMacbooks');
-const dbIphones =  require('../../public/utils/getIphones');
-const dbStorages =  require('../../public/utils/getStorages');
-const dbRams =  require('../../public/utils/getRams');
-const dbSsds =  require('../../public/utils/getSsds');
-const dbAppleDevices = require('../../public/utils/getAppleDevices.js');
+const getInDb =  require('../utils/getInDb');
+
 
 
 const controller = {
     // just rendering the home
     home: async (req, res) => { 
-        return res.render('home', {dbMacbooks: await dbMacbooks(), dbIphones: await dbIphones(), dbAppleDevices: await dbAppleDevices(), dbStorages: await dbStorages(), dbColors: await dbColors(), dbRams: await dbRams(), dbSsds: await dbSsds(), dbCores: await dbCores(), dbDeviceTypes: await dbDeviceTypes()})
+        return res.render('home', {dbStorages: await getInDb.dbStorages(), dbColors: await getInDb.dbColors(), dbRams: await getInDb.dbRams(), dbSsds: await getInDb.dbSsds(), dbCores: await getInDb.dbCores(), dbDeviceTypes: await getInDb.dbDeviceTypes(), dbAppleDevices: await getInDb.dbAppleDevices(), dbIphones: await getInDb.dbIphones(), dbMacbooks: await getInDb.dbMacbooks()})
+    },
+    appleSupport: async (req, res) => {
+        return res.render('appleDevicesSupport', {dbStorages: await getInDb.dbStorages(), dbColors: await getInDb.dbColors(), dbRams: await getInDb.dbRams(), dbSsds: await getInDb.dbSsds(), dbCores: await getInDb.dbCores(), dbDeviceTypes: await getInDb.dbDeviceTypes(), dbAppleDevices: await getInDb.dbAppleDevices(), dbIphones: await getInDb.dbIphones(), dbMacbooks: await getInDb.dbMacbooks()})
     }
 }
 

@@ -3,22 +3,15 @@ const { validationResult } = require('express-validator');
 const fs = require("fs");
 const path = require("path");
 const { Op } = require('sequelize');
-const dbColors =  require('../../public/utils/getColors');
-const dbCores =  require('../../public/utils/getCores');
-const dbDeviceTypes =  require('../../public/utils/getDeviceTypes');
-const dbMacbooks =  require('../../public/utils/getMacbooks');
-const dbIphones =  require('../../public/utils/getIphones');
-const dbStorages =  require('../../public/utils/getStorages');
-const dbRams =  require('../../public/utils/getRams');
-const dbSsds =  require('../../public/utils/getSsds');
-const dbAppleDevices = require('../../public/utils/getAppleDevices.js');
+const getInDb =  require('../utils/getInDb');
+
 
 
 const controller = {
     // device form creation view
     createDevice: async (req, res) => {
         try {
-            return res.render("createDevice", { dbStorages: await dbStorages(), dbColors: await dbColors(), dbRams: await dbRams(), dbSsds: await dbSsds(), dbCores: await dbCores(), dbDeviceTypes: await dbDeviceTypes()});
+            return res.render("createDevice", {dbStorages: await getInDb.dbStorages(), dbColors: await getInDb.dbColors(), dbRams: await getInDb.dbRams(), dbSsds: await getInDb.dbSsds(), dbCores: await getInDb.dbCores(), dbDeviceTypes: await getInDb.dbDeviceTypes(), dbIphones: await getInDb.dbIphones(), dbMacbooks: await getInDb.dbMacbooks()});
         } catch (error) {
             console.log(error);
             return res.render('unexpectedError');
@@ -40,7 +33,7 @@ const controller = {
                         fs.unlinkSync(path.join(__dirname, '../../public/images/devices/' + image.filename)) // borrar imagen en caso de que haya errors
                     );
                 }                 
-                return res.render("createDevice", { errors: errors.mapped(), oldBody, dbStorages: await dbStorages(), dbColors: await dbColors(), dbRams: await dbRams(), dbSsds: await dbSsds(), dbCores: await dbCores(), dbDeviceTypes: await dbDeviceTypes()})
+                return res.render("createDevice", { errors: errors.mapped(), oldBody, dbStorages: await getInDb.dbStorages(), dbColors: await getInDb.dbColors(), dbRams: await getInDb.dbRams(), dbSsds: await getInDb.dbSsds(), dbCores: await getInDb.dbCores(), dbDeviceTypes: await getInDb.dbDeviceTypes(), dbIphones: await getInDb.dbIphones(), dbMacbooks: await getInDb.dbMacbooks()})
             }
 
             const newDevice = await db.Device.create({
@@ -182,21 +175,21 @@ const controller = {
                 }
             })
 
-            if (!(devices && accesories)) {
-                return res.render('productNotFound')
+            if (!(devices && accesories)) { // todo: ask in searchProducts view if search.length is > 0
+                return res.render('searchProducts', {search: []})
             }
 
             if (devices && !accesories) {
-                return res.render('searchProducts', { devices, dbStorages: await dbStorages(), dbColors: await dbColors(), dbRams: await dbRams(), dbSsds: await dbSsds(), dbCores: await dbCores(), dbDeviceTypes: await dbDeviceTypes()})
+                return res.render('searchProducts', { search: devices, dbStorages: await getInDb.dbStorages(), dbColors: await getInDb.dbColors(), dbRams: await getInDb.dbRams(), dbSsds: await getInDb.dbSsds(), dbCores: await getInDb.dbCores(), dbDeviceTypes: await getInDb.dbDeviceTypes(), dbIphones: await getInDb.dbIphones(), dbMacbooks: await getInDb.dbMacbooks()})
             }
 
             if (!devices && accesories) {
-                return res.render('searchProducts', { accesories, dbStorages: await dbStorages(), dbColors: await dbColors(), dbRams: await dbRams(), dbSsds: await dbSsds(), dbCores: await dbCores(), dbDeviceTypes: await dbDeviceTypes()})
+                return res.render('searchProducts', { search: accesories, dbStorages: await getInDb.dbStorages(), dbColors: await getInDb.dbColors(), dbRams: await getInDb.dbRams(), dbSsds: await getInDb.dbSsds(), dbCores: await getInDb.dbCores(), dbDeviceTypes: await getInDb.dbDeviceTypes(), dbIphones: await getInDb.dbIphones(), dbMacbooks: await getInDb.dbMacbooks()})
             }
 
 
         } catch (error) {
-            console.log(error);
+            console.log(`Fallé en accesory creation: ${error}`);
             return res.render('unexpectedError')
         }
 
@@ -214,36 +207,27 @@ const controller = {
             ]
         })
 
-        return res.render('category', { selectedCategory, dbStorages: await dbStorages(), dbColors: await dbColors(), dbRams: await dbRams(), dbSsds: await dbSsds(), dbCores: await dbCores(), dbDeviceTypes: await dbDeviceTypes(), dbAppleDevices: await dbAppleDevices(), dbIphones: await dbIphones(), dbMacbooks: await dbMacbooks() })
+        return res.render('category', { selectedCategory, dbStorages: await getInDb.dbStorages(), dbColors: await getInDb.dbColors(), dbRams: await getInDb.dbRams(), dbSsds: await getInDb.dbSsds(), dbCores: await getInDb.dbCores(), dbDeviceTypes: await getInDb.dbDeviceTypes(), dbIphones: await getInDb.dbIphones(), dbMacbooks: await getInDb.dbMacbooks(), dbAppleDevices: await getInDb.dbAppleDevices() })
 
     },
     fetchOneDevice: async (req, res) => {
         const idProduct = req.params.idProduct;
-        const deviceToFetch = await db.Device.findByPk(idProduct);
+        const deviceToFetch = await db.Device.findByPk(idProduct, { include: ['images', 'colors', 'storages', 'rams', 'ssds', 'cores']});
+        return res.render('singleDevice', {deviceToFetch, dbDeviceTypes: await getInDb.dbDeviceTypes(), dbAppleDevices: await getInDb.dbAppleDevices(), dbIphones : await getInDb.dbIphones(), dbMacbooks : await getInDb.dbMacbooks(), dbStorages: await getInDb.dbStorages()})
        
-        if (deviceToFetch && deviceToFetch.device_type_id == 1) {
+        /* if (deviceToFetch && deviceToFetch.device_type_id == 1) {
             const deviceToFetch = await db.Device.findByPk(idProduct, { include: ['images', 'colors', 'storages'] })
-            return res.render("singleDevice", {deviceToFetch, dbDeviceTypes: await dbDeviceTypes(), dbAppleDevices: await dbAppleDevices(), dbIphones : await dbIphones(), dbMacbooks : await dbMacbooks(), dbColors : await dbColors(), dbStorages: await dbStorages() })  
+            return res.render("singleDevice", {deviceToFetch, dbDeviceTypes: await getInDb.dbDeviceTypes(), dbAppleDevices: await getInDb.dbAppleDevices(), dbIphones : await getInDb.dbIphones(), dbMacbooks : await getInDb.dbMacbooks(), dbStorages: await getInDb.dbStorages() })  
         } else {
-           
             const deviceToFetch = await db.Device.findByPk(idProduct, { include: ['images', 'colors', 'ssds', 'rams', 'cores'] })
-            return res.render("singleDevice", { deviceToFetch, dbDeviceTypes: await dbDeviceTypes(), dbAppleDevices: await dbAppleDevices(), dbIphones : await dbIphones(), dbMacbooks : await dbMacbooks(),  dbColors : await dbColors(), dbRams: await dbRams(), dbCores: await dbCores(), dbSsds: await dbSsds()})
-        }
+            return res.render("singleDevice", { deviceToFetch, dbDeviceTypes: await getInDb.dbDeviceTypes(), dbAppleDevices: await getInDb.dbAppleDevices(), dbIphones : await getInDb.dbIphones(), dbMacbooks : await getInDb.dbMacbooks(),  dbColors : await getInDb.dbColors(), dbRams: await getInDb.dbRams(), dbCores: await getInDb.dbCores(), dbSsds: await getInDb.dbSsds()})
+        } */
     },
     updateOneDevice: async (req, res) => {
 
         const idProduct = req.params.idProduct;
-        const deviceToUpdate = await db.Device.findByPk(idProduct);
-       
-        if (deviceToUpdate && deviceToUpdate.device_type_id == 1) {
-           
-            const deviceToUpdate = await db.Device.findByPk(idProduct, { include: ['images', 'colors', 'storages'] })
-            return res.render("updateDevice", {deviceToUpdate, dbDeviceTypes: await dbDeviceTypes(), dbAppleDevices: await dbAppleDevices(), dbIphones : await dbIphones(), dbMacbooks : await dbMacbooks(), dbColors : await dbColors(), dbStorages: await dbStorages() })  
-        } else {
-           
-            const deviceToUpdate = await db.Device.findByPk(idProduct, { include: ['images', 'colors', 'ssds', 'rams', 'cores'] })
-            return res.render("updateDevice", { deviceToUpdate, dbDeviceTypes: await dbDeviceTypes(), dbAppleDevices: await dbAppleDevices(), dbIphones : await dbIphones(), dbMacbooks : await dbMacbooks(),  dbColors : await dbColors(), dbRams: await dbRams(), dbCores: await dbCores(), dbSsds: await dbSsds()})
-        }
+        const deviceToUpdate = await db.Device.findByPk(idProduct, { include: ['images', 'colors', 'storages', 'rams', 'ssds', 'cores']});
+        return res.render('updateDevice', {deviceToUpdate, dbDeviceTypes: await getInDb.dbDeviceTypes(), dbAppleDevices: await getInDb.dbAppleDevices(), dbIphones : await getInDb.dbIphones(), dbMacbooks : await getInDb.dbMacbooks(), dbStorages: await getInDb.dbStorages(), dbColors: await getInDb.dbColors()})
     },
     destroyOneDevice: async (req, res) => {
         try {
