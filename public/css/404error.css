@@ -1,0 +1,117 @@
+main {
+    width: 100%;
+    background-color: white;
+    max-width: 1080px;
+    margin: 0 auto;
+}
+
+.content-global-container {
+    padding: 3rem 0;
+    max-width: 445px;
+    width: 90%;
+    margin: 0 auto;
+}
+
+.error-container * {
+    margin: 1rem 0;
+}
+
+.error-container h2 {
+    font-size: 1.2rem;
+    text-align: center;
+    padding: 0 0.700rem;
+}
+
+.error-p-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.error-container p {
+    font-size: 0.875rem;
+    width: 70%;
+    text-align: center;
+}
+
+.back-home-btn-container {
+    display: flex;
+    justify-content: center;
+}
+
+.go-back-home-btn {
+    width: 50%;
+    padding: 0.300rem;
+    border-radius: 10px;
+    background-color: #F47658;
+}
+
+.go-back-home-btn-anchor {
+    font-weight: 700;
+}
+
+.go-back-home-btn-anchor:visited {
+    color: black;
+}
+
+
+.icons-container {
+    width: 80%;
+    margin: 3rem auto;
+}
+
+
+.devices-sell-container, .technical-service-container {
+    display: flex;
+    justify-content: space-between;
+    margin: 1rem 0;
+    padding: 1rem;
+    border: 1px solid rgb(195, 195, 195);
+    border-radius: 10px;
+}
+
+.self-prom-title {
+    width: 80%;
+    font-size: 0.975rem;
+}
+
+.bx-devices, .bx-wrench {
+    font-size: 2rem;
+    color: rgb(138, 138, 138);
+}
+
+@media (min-width: 576px) {
+    .content-global-container {
+        padding: 3rem 0;
+        max-width: 545px;
+    }
+}
+
+@media (min-width: 768px) {
+    .error-container h2 {
+        font-size: 1.5rem;
+    }
+
+    .error-container p {
+        font-size: 1rem;
+    }
+
+    .go-back-home-btn-anchor {
+        font-size: 1rem;
+    }
+
+    .self-prom-title {
+        font-size: 1rem;
+    } 
+}
+
+@media (min-width: 1000px) {
+    .content-global-container {
+        padding: 3rem 0;
+        max-width: 645px;
+    }
+
+    .self-prom-title {
+        font-size: 1.1rem;
+    } 
+}

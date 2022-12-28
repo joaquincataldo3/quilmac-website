@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <%- include ('partials/head') %>
+
+        <link rel="stylesheet" href="/css/404error.css">
+</head>
+
+<body>
+    <%- include ('partials/header') %>
+
+        <main>
+            <div class="content-global-container">
+                <div class="error-container">
+                    <h2>Lo sentimos, no pudimos encontrar la página que solicitaste !</h2>
+                    <div class="error-p-container">
+                        <p>Probaste usando la barra de busqueda en la parte superior?</p>
+                        <p>También podes usar el botón debajo para volver al inicio</p>
+                    </div>
+                </div>
+                <div class="back-home-btn-container">
+                    <button class="go-back-home-btn"><a href="" class="go-back-home-btn-anchor">Volver al
+                            inicio</a></button>
+                </div>
+                <div class="icons-container">
+                    <div class="devices-sell-container">
+                        <i class='bx bx-devices'></i>
+                        <h4 class="self-prom-title">Venta de equipos nuevos y usados</h4>
+
+                    </div>
+                    <div class="technical-service-container">
+                        <i class='bx bx-wrench'></i>
+                        <h4 class="self-prom-title">Soporte para equipos Apple, Notebooks y PC</h4>
+
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <%- include ('partials/footer') %>
+</body>
+
+</html>
