@@ -17,10 +17,10 @@
             <form class="creation-form" id="create-device-form" action="/products/device" method="POST"
                 enctype="multipart/form-data">
 
-                <h3>Product form creation</h3>
+                <h3>Formulario de creación de producto</h3>
 
                 <div class='label-input-container'>
-                    <label class="form-labels" for="device_type">Device type</label>
+                    <label class="form-labels" for="device_type">Tipo de dispositivo</label>
                     <select class="form-input" name="device_type" id="select_device_type">
                         <optgroup label="Model">
                             <% dbDeviceTypes.forEach(device=> { %>
@@ -39,7 +39,7 @@
 
 
                 <div class="label-input-container">
-                    <label class="form-labels" for="model">Model</label>
+                    <label class="form-labels" for="model">Modelo</label>
                     <input class="form-input" type="text" name="model"
                         value="<%= locals.oldBody && oldBody.model ? oldBody.model : "" %>">
                     <% if(locals.errors && errors.model) { %>
@@ -51,7 +51,7 @@
 
 
                 <div class="label-input-container">
-                    <label class="form-labels" for="iphone-form-input">Screen</label>
+                    <label class="form-labels" for="iphone-form-input">Pantalla</label>
                     <input class="form-input" type="text" name="screen"
                         value="<%= locals.oldBody && oldBody.screen ? oldBody.screen : ""%>">
                     <% if(locals.errors && errors.screen) { %>
@@ -62,7 +62,7 @@
                 </div>
 
                 <div class="label-input-container">
-                    <label class="form-labels" for="technical_detail">Technical Detail</label>
+                    <label class="form-labels" for="technical_detail">Detalle técnico</label>
                     <input class="form-input" type="text" name="technical_detail"
                         value="<%= locals.oldBody && oldBody.technical_detail ? oldBody.technical_detail : "" %>">
                     <% if(locals.errors && errors.technical_detail) { %>
@@ -73,7 +73,7 @@
                 </div>
 
                 <div class="label-input-container">
-                    <label class="form-labels" for="release_date">Release Date</label>
+                    <label class="form-labels" for="release_date">Fecha de lanzamiento</label>
                     <input class="form-input" type="date" name="release_date"
                         value="<%= locals.oldBody && oldBody.release_date ? oldBody.release_date : "" %>">
                     <% if(locals.errors && errors.release_date) { %>
@@ -85,7 +85,7 @@
 
                 <div class="label-input-container">
 
-                    <label id='device-image' class="form-labels" for="device_images">Select images</label>
+                    <label id='device-image' class="form-labels" for="device_images">Seleccionar imagenes</label>
                     <input class="form-input" type="file" name="device_images" multiple>
 
                 </div>
@@ -100,7 +100,7 @@
 
 
                                 <div class='gb-checkbox-global-container'>
-                                    <h5>Colors</h5>
+                                    <h5>Colores</h5>
                                     <div class='gb-checkbox-container'>
                                         <% dbColors.forEach(color=> { %>
                                             <div class="single-checkbox-container">
@@ -117,7 +117,7 @@
 
                                 <div class='gb-checkbox-global-container' id="storages-for-iphone">
 
-                                    <h5>Storages</h5>
+                                    <h5>Capacidades</h5>
                                     <div class='gb-checkbox-container'>
                                         <% dbStorages.forEach(strg=> { %>
                                             <div class="single-checkbox-container">

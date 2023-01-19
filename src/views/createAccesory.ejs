@@ -13,16 +13,33 @@
     <main>
 
 
-            <h3>Accesory form creation</h3>
-
-
-            <form class="creation-form" id="create-device-form" action="/admin/accesory" method="POST"
+            <form class="creation-form" id="create-device-form" action="/products/accessory" method="POST"
                 enctype="multipart/form-data">
 
+                <h3>Formulario de creación de accesorio</h3>
+
+                <div class='label-input-container'>
+                    <label class="form-labels" for="accessory_type">Tipo</label>
+                    <select class="form-input" name="accessory_type">
+                        <optgroup label="Tipo de accesorio">
+                            <% accessoryTypes.forEach(accessory=> { %>
+                                <option value="<%= accessory.id %>">
+                                    <%=accessory.type%>
+                                </option>
+                                <% }) %>
+                        </optgroup>
+                    </select>
+                    <% if(locals.errors && errors.accessory_type) { %>
+                        <p class="error-msg">
+                            <%= errors.accessory_type.msg %>
+                        </p>
+                        <% } %>
+                </div>
+
                 <div class="label-input-container">
-                    <label for="model">NAME</label>
-                    <input class="form-input" type="text" name="name"
-                        value="<%= locals.oldBody && oldBody.name ? oldBody.name : "" %> ">
+                    <label class="form-labels" for="model">Accesorio</label>
+                    <input class="form-input" type="text" name="accessory"
+                        value="<%= locals.oldBody && oldBody.accessory ? oldBody.accessory : "" %> ">
                     <% if(locals.errors && errors.name) { %>
                         <p class="error-msg">
                             <%= errors.name.msg %>
@@ -31,15 +48,23 @@
                 </div>
 
                 <div class="label-input-container">
-                    <label for="iphoneImages">Image</label>
+                    <label class="form-labels" for="iphoneImages">Imagen</label>
                     <input class="form-input" type="file" name="accesory_image">
                     <% if(locals.errors && errors.device_images) {  %> 
                         <p class = "error-msg"> <%= errors.device_images  %>  </p>
                     <% } %> 
                 </div>
 
+                <div class="label-input-container">
+                    <label class="form-labels" for="iphoneImages">Precio</label>
+                    <input class="form-input" type="text" name="price">
+                    <% if(locals.errors && errors.device_images) {  %> 
+                        <p class = "error-msg"> <%= errors.device_images  %>  </p>
+                    <% } %> 
+                </div>
 
-                <button type="submit">Crear</button>
+
+                <button class="form-device-btn" type="submit">Crear</button>
 
             </form>
 

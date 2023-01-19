@@ -1,17 +1,13 @@
 module.exports = (sequelize, dataTypes) => {
-    const alias = "Accesory";
+    const alias = "AccessoryType";
 
     const cols = {
-        id : {
+        id: {
             type: dataTypes.INTEGER,
             primaryKey: true,
             autoIncrement: true
         },
-        name: {
-            type: dataTypes.STRING(45),
-            allowNull: false
-        },
-        image: {
+        type: {
             type: dataTypes.STRING(45),
             allowNull: false
         }
@@ -19,14 +15,23 @@ module.exports = (sequelize, dataTypes) => {
 
 
     const config = {
-        tableName :"accesories",
+        tableName: "accessory_types",
         timestamps: true,
         paranoid: true,
         createdAt: false,
         updatedAt: false,
     }
 
-    const Accesory = sequelize.define(alias, cols, config);
+    const AccessoryType = sequelize.define(alias, cols, config);
 
-    return Accesory;
+    AccessoryType.associate = (models) => {
+
+        AccessoryType.hasMany(models.Accessory, {
+            as: "accessories",
+            foreignKey: "accessory_type_id"
+        })
+
+    }
+
+    return AccessoryType;
 }
