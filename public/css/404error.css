@@ -68,6 +68,7 @@ main {
     padding: 1rem;
     border: 1px solid rgb(195, 195, 195);
     border-radius: 10px;
+    align-items: center;
 }
 
 .self-prom-title {

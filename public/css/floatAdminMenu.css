@@ -6,55 +6,61 @@
 @media(min-width: 1000px) {
     
     .desktop-admin-username {
+        position: fixed;
         display: flex;
+        flex-direction: column;
         background-color: black;
         justify-content: center;
         font-size: 0.800rem;
-        position: fixed;
         top:0;
         right: 50%;
         transform: translateX(50%);
         cursor: pointer;
         width: 25rem;
-        height: 50px;
+        height: auto;
+        padding: 0.500rem 0;
         z-index: 150;
     }
 
-    .desktop-admin-username p {
+    .desktop-admin-welcome-container {
+        text-align: center;
+        margin-bottom: 1rem;
+    }
+
+    .desktop-admin-welcome-container p {
         color: white;
     }
     
-    .desktop-admin-username span {
+    .desktop-admin-welcome-container span {
         color: white;
         font-weight: 900;
         transition: color 150ms;
     }
     
-    .desktop-admin-username:hover span {
+    .desktop-admin-welcome-container:hover span {
         color: #F47658;
     }
     
     
-    .desktop-admin-logout-container {
-        opacity: 0;
+    .desktop-admin-functions-container ul {
         background-color: black;
-        position: absolute;
         width: 100%;
+        padding: 0 1rem;
         display: flex;
-        justify-content: center;
-        top: 1rem;
-        transform: translateY(-10px);
-        transition: all 150ms;
-        pointer-events: none;
+        justify-content: space-between;
     }
     
-    .desktop-admin-logout-container-active {
-        opacity: 100%;
-        transform: translateY(0);
-    }
-    
-    .desktop-admin-logout-container a {
+    .desktop-admin-functions-container a {
         color: white;
+    }
+
+    .admin-functions-anchor {
+        color: white;
+        transition: color 150ms;
+    }
+
+    .admin-functions-anchor:hover {
+        color: #F47658
     }
 
 }

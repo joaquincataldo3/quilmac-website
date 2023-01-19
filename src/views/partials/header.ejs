@@ -1,182 +1,191 @@
 <%- include ('./floatAdminMenu') %>
 
 
-<div class="main-header-container">
+     <div class="main-header-container">
 
-     <div class='logo-searchbar-container'>
-          <div class="logo-container">
-               <img id="logo-desktop" src="/images/logo_quilmac2.png" alt="">
-          </div>
-
-
-          <div class='search-bar-burger-menu-container'>
-               <form class="search-bar-form" action="/search" method="GET">
-                    <input class="search-bar-input" type="search" name="home-q"
-                         placeholder="Buscá cualquier producto...">
-                    <button type='submit'><i class="fa-solid fa-magnifying-glass"></i></button>
-               </form>
+          <div class='logo-searchbar-container'>
+               <div class="logo-container">
+                    <a class="logo-anchor" href="/">
+                         <img id="logo-desktop" src="/images/logo_quilmac2.png" alt="">
+                    </a>
+               </div>
 
 
+               <div class='search-bar-burger-menu-container'>
+                    <form class="search-bar-form" action="/search" method="GET">
+                         <input class="search-bar-input" type="search" name="home-q"
+                              placeholder="Buscá cualquier producto...">
+                         <button type='submit'><i class="fa-solid fa-magnifying-glass"></i></button>
+                    </form>
 
 
-               <div class="burger-menu-username-container">
-                    <div class="burger-menu-container">
-                         <button class='burger-menu-btn'><i class="fa-solid fa-bars"></i></button>
-                         <button class='x-close-menu-btn'><i class="fa-solid fa-xmark"></i></button>
+
+
+                    <div class="burger-menu-username-container">
+                         <div class="burger-menu-container">
+                              <button class='burger-menu-btn'><i class="fa-solid fa-bars"></i></button>
+                              <button class='x-close-menu-btn'><i class="fa-solid fa-xmark"></i></button>
+                         </div>
+
+                         <% if(locals.isLogged) { %>
+                              <div class='admin-icon-container' id='admin-icon-container'>
+                                   <i class='bx bxs-user admin-icon'></i>
+                              </div>
+                              <% } %>
                     </div>
 
-                    <% if(locals.isLogged) { %>
-                         <div class='admin-icon-container' id='admin-icon-container'>
-                              <i class='bx bxs-user admin-icon'></i>
-                         </div>
-                         <% } %>
                </div>
 
+               <!--MOBILE ADMIN DROPDOWN-->
+
+               <% if(locals.isLogged) { %>
+                    <div class="admin-username-dropdown">
+                         <ul type='none'>
+                              <li class="admin-username-dropdown-item">Bienvenido de nuevo, <span
+                                        class="admin-span-dropdown">
+                                        <%= locals.adminLogged %>
+                                   </span>
+                              </li>
+                              <li class="admin-username-dropdown-item"><a class='admin-username-dropdown-item'
+                                        href="/admin/device/create">CREAR PRODUCTO</a></li>
+                              <li class="admin-username-dropdown-item"><a class='admin-username-dropdown-item'
+                                        href="/logout">LOGOUT</a></li>
+                         </ul>
+                    </div>
+                    <% } %>
           </div>
 
-          <!--MOBILE ADMIN DROPDOWN-->
+          <!-- MOBILE NAVBAR -->
 
-          <% if(locals.isLogged) { %>
-               <div class="admin-username-dropdown">
-                    <ul type='none'>
-                         <li class="admin-username-dropdown-item">Bienvenido de nuevo, <span
-                                   class="admin-span-dropdown">
-                                   <%= locals.adminLogged %>
-                              </span>
-                         </li>
-                         <li class="admin-username-dropdown-item"><a class='admin-username-dropdown-item'
-                                   href="/admin/device/create">CREAR PRODUCTO</a></li>
-                         <li class="admin-username-dropdown-item"><a class='admin-username-dropdown-item'
-                                   href="/logout">LOGOUT</a></li>
-                    </ul>
-               </div>
-               <% } %>
+          <nav class='mobile-main-dropdown'>
+               <ul type='none'>
+                    <li class='mobile-dropdown-li' id='apple-products-li'>
+                         <span class="mobile-dropdown-item-name">EQUIPOS APPLE</span>
+                         <i class='bx bx-chevron-down'></i>
+
+                         <div class='mobile-li-submenu apple-products-dropdown'>
+                              <ul type='none'>
+                                   <% dbAppleDevices.forEach(type=> { %>
+                                        <li class='mobile-submenu-dropdown-li'><a
+                                                  href="/products/category/<%= type.id %>">
+                                                  <%= type.type %>
+                                             </a></li>
+                                        <% })%>
+                              </ul>
+                         </div>
+
+                    </li>
+
+                    <li class='mobile-dropdown-li'><a class="mobile-dropdown-item-name" href="">NOTEBOOKS</a></li>
+
+                    <li class='mobile-dropdown-li' id='technical-service-li'>
+                         <span class="mobile-dropdown-item-name">SOPORTE</span>
+                         <i class='bx bx-chevron-down'></i>
+
+                         <div class='mobile-li-submenu technical-service-dropdown'>
+                              <ul type='none'>
+                                   <li class='mobile-submenu-dropdown-li'><a href="/apple-devices-suport">EQUIPOS
+                                             APPLE</a></li>
+                                   <li class='mobile-submenu-dropdown-li'><a href="">OTROS</a></li>
+                              </ul>
+                         </div>
+
+                    </li>
+                    <li class='mobile-dropdown-li'><a class="mobile-dropdown-item-name" href="">ACCESORIOS APPLE</a>
+                    </li>
+                    <li class='mobile-dropdown-li'><a class="mobile-dropdown-item-name" href="">NOSOTROS</a></li>
+               </ul>
+          </nav>
+
+          <!-- DESKTOP NAVBAR -->
+
+          <nav class="desktop-navbar-container">
+               <ul type="none" class="desktop-main-navbar">
+                    <li class='desktop-navbar-li' id='iphones-li'>
+                         <a href="/products/category/1">
+                              <span class="navbar-span">IPHONES</span>
+                              <i class='bx bx-chevron-down'></i>
+
+                              <div class='desktop-li-submenu' id='iphones-dropdown'>
+                                   <ul type='none'>
+                                        <% dbIphones.forEach(iphone=> { %>
+                                             <li class='desktop-submenu-dropdown-li'><a class='desktop-submenu-anchor'
+                                                       href="/products/<%= iphone.id %>">
+                                                       <%= iphone.model %>
+                                                  </a></li>
+                                             <% }) %>
+                                   </ul>
+                              </div>
+                         </a>
+                    </li>
+
+                    <li class='desktop-navbar-li' id='macbooks-li'>
+                         <a href="/products/category/2">
+                              <span class="navbar-span">MACBOOKS</span>
+                              <i class='bx bx-chevron-down'></i>
+
+                              <div class='desktop-li-submenu' id='macbooks-dropdown'>
+                                   <ul type='none'>
+                                        <% dbMacbooks.forEach(macbook=> { %>
+                                             <li class='desktop-submenu-dropdown-li'><a class='desktop-submenu-anchor'
+                                                       href="/products/<%= macbook.id %>">
+                                                       <%= macbook.model %>
+                                                  </a></li>
+                                             <% }) %>
+                                   </ul>
+                              </div>
+                         </a>
+                    </li>
+
+                    <li class='desktop-navbar-li'>
+                         <a href="#">
+                              <span class="navbar-span">IMACS</span>
+                         </a>
+                    </li>
+
+
+                    <li class='desktop-navbar-li' id='technical-service-desktop-li'>
+                         <a href="#">
+                              <span class="navbar-span">SOPORTE</span>
+                              <i class='bx bx-chevron-down'></i>
+                              <div class='desktop-li-submenu' id='technical-service-desktop-dropdown'>
+                                   <ul type='none'>
+                                        <li class='desktop-submenu-dropdown-li'><a class='desktop-submenu-anchor'
+                                                  href="/apple-devices-suport">EQUIPOS APPLE</a></li>
+                                        <li class='desktop-submenu-dropdown-li'><a class='desktop-submenu-anchor'
+                                                  href="">OTROS</a></li>
+                                   </ul>
+                              </div>
+                         </a>
+                    </li>
+
+                    <li class='desktop-navbar-li' id='accesories-li'>
+                         <a href="#">
+                              <span class="navbar-span">ACCESORIOS</span>
+                              <i class='bx bx-chevron-down'></i>
+                              <div class='desktop-li-submenu' id='accesories-dropdown'>
+                                   <ul type='none'>
+                                        <li class='desktop-submenu-dropdown-li'><a class="desktop-submenu-anchor"
+                                                  href="">LOREM IPSUM</a></li>
+                                        <li class='desktop-submenu-dropdown-li'><a class="desktop-submenu-anchor"
+                                                  href="">LOREM IPSUM</a></li>
+                                        <li class='desktop-submenu-dropdown-li'><a class="desktop-submenu-anchor"
+                                                  href="">LOREM IPSUM</a></li>
+                                        <li class='desktop-submenu-dropdown-li'><a class="desktop-submenu-anchor"
+                                                  href="">LOREM IPSUM</a></li>
+                                   </ul>
+                              </div>
+                         </a>
+                    </li>
+
+                    <li class='desktop-navbar-li'>
+                         <a href="#">
+                              <span class="navbar-span">CONTACTO</span>
+                              <i class='bx bx-chevron-down'></i>
+                         </a>
+                    </li>
+
+               </ul>
+          </nav>
+
      </div>
-
-     <!-- MOBILE NAVBAR -->
-
-     <nav class='mobile-main-dropdown'>
-          <ul type='none'>
-               <li class='mobile-dropdown-li' id='apple-products-li'>
-                    <span class="mobile-dropdown-item-name">EQUIPOS APPLE</span>
-                    <i class='bx bx-chevron-down'></i>
-
-                    <div class='mobile-li-submenu apple-products-dropdown'>
-                         <ul type='none'>
-                              <% dbAppleDevices.forEach(type=> { %>
-                                   <li class='mobile-submenu-dropdown-li'><a href="/products/category/<%= type.id %>">
-                                             <%= type.type %>
-                                        </a></li>
-                                   <% })%>
-                         </ul>
-                    </div>
-
-               </li>
-
-               <li class='mobile-dropdown-li'><a class="mobile-dropdown-item-name" href="">NOTEBOOKS</a></li>
-
-               <li class='mobile-dropdown-li' id='technical-service-li'>
-                    <span class="mobile-dropdown-item-name">SOPORTE</span>
-                    <i class='bx bx-chevron-down'></i>
-
-                    <div class='mobile-li-submenu technical-service-dropdown'>
-                         <ul type='none'>
-                              <li class='mobile-submenu-dropdown-li'><a href="/apple-devices-suport">EQUIPOS APPLE</a></li>
-                              <li class='mobile-submenu-dropdown-li'><a href="">OTROS</a></li>                
-                         </ul>
-                    </div>
-
-               </li>
-               <li class='mobile-dropdown-li'><a class="mobile-dropdown-item-name" href="">ACCESORIOS APPLE</a></li>
-               <li class='mobile-dropdown-li'><a class="mobile-dropdown-item-name" href="">NOSOTROS</a></li>
-          </ul>
-     </nav>
-
-     <!-- DESKTOP NAVBAR -->
-
-     <nav class="desktop-navbar-container">
-          <ul type="none" class="desktop-main-navbar">
-               <li class='desktop-navbar-li' id='iphones-li'>
-                    <a href="/products/category/1">
-                         <span class="navbar-span">IPHONES</span>
-                         <i class='bx bx-chevron-down'></i>
-
-                         <div class='desktop-li-submenu' id='iphones-dropdown'>
-                              <ul type='none'>
-                                   <% dbIphones.forEach(iphone=> { %>
-                                        <li class='desktop-submenu-dropdown-li'><a class='desktop-submenu-anchor'
-                                                  href="/products/<%= iphone.id %>">
-                                                  <%= iphone.model %>
-                                             </a></li>
-                                   <% }) %>
-                              </ul>
-                         </div>
-                    </a>
-               </li>
-
-               <li class='desktop-navbar-li' id='macbooks-li'>
-                    <a href="/products/category/2">
-                         <span class="navbar-span">MACBOOKS</span>
-                         <i class='bx bx-chevron-down'></i>
-
-                         <div class='desktop-li-submenu' id='macbooks-dropdown'>
-                              <ul type='none'>
-                                   <% dbMacbooks.forEach(macbook=> { %>
-                                        <li class='desktop-submenu-dropdown-li'><a class='desktop-submenu-anchor'
-                                                  href="/products/<%= macbook.id %>">
-                                                  <%= macbook.model %>
-                                             </a></li>
-                                   <% }) %>
-                              </ul>
-                         </div>
-                    </a>
-               </li>
-
-               <li class='desktop-navbar-li'>
-                    <a href="#">
-                         <span class="navbar-span">IMACS</span>
-                    </a>
-               </li>
-            
-
-               <li class='desktop-navbar-li' id='technical-service-desktop-li'>
-                    <a href="#">
-                         <span class="navbar-span">SOPORTE</span>
-                         <i class='bx bx-chevron-down'></i>
-                         <div class='desktop-li-submenu' id='technical-service-desktop-dropdown'>
-                              <ul type='none'>
-                                   <li class='desktop-submenu-dropdown-li'><a class='desktop-submenu-anchor'
-                                             href="/apple-devices-suport">EQUIPOS APPLE</a></li>
-                                   <li class='desktop-submenu-dropdown-li'><a class='desktop-submenu-anchor'
-                                             href="">OTROS</a></li>
-                              </ul>
-                         </div>
-                    </a>
-               </li>
-
-               <li class='desktop-navbar-li' id='accesories-li'>
-                    <a href="#">
-                         <span class="navbar-span">ACCESORIOS</span>
-                         <i class='bx bx-chevron-down'></i>
-                         <div class='desktop-li-submenu' id='accesories-dropdown'>
-                              <ul type='none'>
-                                   <li class='desktop-submenu-dropdown-li'><a href="">LOREM IPSUM</a></li>
-                                   <li class='desktop-submenu-dropdown-li'><a href="">LOREM IPSUM</a></li>
-                                   <li class='desktop-submenu-dropdown-li'><a href="">LOREM IPSUM</a></li>
-                                   <li class='desktop-submenu-dropdown-li'><a href="">LOREM IPSUM</a></li>
-                              </ul>
-                         </div>
-                    </a>
-               </li>
-
-               <li class='desktop-navbar-li'>
-                    <a href="#">
-                         <span class="navbar-span">CONTACTO</span>
-                         <i class='bx bx-chevron-down'></i>
-                    </a>
-               </li>
-
-          </ul>
-     </nav>
-
-</div>

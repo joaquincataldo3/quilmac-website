@@ -170,18 +170,31 @@ main {
 
 .form-device-btn {
     border: 0;
-    border: 1px solid orange;
+    border: 1px solid #F47658;
     width: 100%;
+    padding: 0.500rem;
     margin: 1.5rem auto;
     text-align: center;
     font-weight: 700;
     font-size: 1.1rem;
     color: black;
+    transition: color 150ms;
+    cursor: pointer;
 }
+
+.form-device-btn:hover {
+    color: #F47658;
+}
+
 
 .form-device-btn a {
     color: black;
 }
+
+.form-device-btn a:hover {
+    color: #F47658;
+}
+
 
 
 @media (min-width: 530px) {

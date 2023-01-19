@@ -131,7 +131,7 @@
                                 </div>
 
 
-                                <% if(locals.deviceToUpdate && deviceToUpdate.device_type_id == 1) { %>
+                                <% if(locals.deviceToUpdate && deviceToUpdate.device_type_id === 1) { %>
                                     <div class='gb-checkbox-global-container' id="storages-for-iphone">
                                         <h5>Storages</h5>
                                         <div class='gb-checkbox-container'>
@@ -149,7 +149,7 @@
                                     </div>
                                     <% } %>
 
-                                <% if(locals.deviceToUpdate && deviceToUpdate.device_type_id != 1) { %>
+                                <% if(locals.deviceToUpdate && deviceToUpdate.device_type_id !== 1) { %>
                                     <div class='gb-checkbox-global-container' id="rams-container">
                                         <h5>Rams</h5>
                                         <div class='gb-checkbox-container'>
@@ -169,9 +169,9 @@
                                                     </p>
                                                 <% } %>
                                         </div>
-                                        <% } %>
+                                        
 
-                                        <% if(locals.deviceToUpdate && deviceToUpdate.device_type_id != 1) { %> 
+                                         
                                         <div class='gb-checkbox-global-container' id="cores-container">
                                             <h5>Cores</h5>
                                             <div class='gb-checkbox-container'>
@@ -192,16 +192,16 @@
                                                         </p>
                                                         <% } %>
                                         </div>
-                                        <% } %>
+                                   
                                         
-                                        <% if(locals.deviceToUpdate && deviceToUpdate.device_type_id != 1) { %> 
+                                     
                                         <div class='gb-checkbox-global-container' id="ssds-container">
                                                     <h5>Ssds</h5>
                                                     <div class='gb-checkbox-container'>
                                                         <% dbSsds.forEach(ssd=> { %>
                                                             <div class="single-checkbox-container">
                                                                 <input type="checkbox" name="ssds"
-                                                                    value="<%= ssd.id %>"  <%= deviceToUpdate.rams.find(deviceToUpdateRam => deviceToUpdateRam.id == ram.id) && 'checked' %>>
+                                                                    value="<%= ssd.id %>"  <%= deviceToUpdate.ssds.find(deviceToUpdateSsd => deviceToUpdateSsd.id == ssd.id) && 'checked' %>>
                                                                 <label class="checkbox-labels" for="<%= ssd.ssd %>">
                                                                     <%= ssd.ssd==1 ? `${ssd.ssd}TB`: `${ssd.ssd}GB` %>
                                                                 </label><br>
@@ -221,9 +221,12 @@
 
             </form>
         </div>
+
+        <button class="form-device-btn" type="submit">Actualizar</button>
+
     </main>
 
-    <script src="/js/createDeviceForm.js"></script>
+    <script src="/scripts/createAndUpdateDeviceForm.js"></script>
 
 </body>
 

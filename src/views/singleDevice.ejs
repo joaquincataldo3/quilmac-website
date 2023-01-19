@@ -130,11 +130,11 @@
                 <div class="delete-update-btns-container">
                     <div class="update-delete-btn-container">
                         <button class="form-device-btn" type="submit"><a
-                                href="/products/update/<%= deviceToFetch.id %> ">Update device</a></button>
+                                href="/products/update/<%= deviceToFetch.id %> ">Actualizar producto</a></button>
                     </div>
                     <form class="update-delete-btn-container"
                         action="/products/delete/<%= deviceToFetch.id %>?_method=DELETE" method="POST">
-                        <button class="form-device-btn" type="submit">Delete device</button>
+                        <button class="form-device-btn" type="submit">Eliminar producto</button>
                     </form>
                 </div>
                 <% } %>
