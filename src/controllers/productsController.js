@@ -212,9 +212,13 @@ const controller = {
             return res.redirect('/')
         }
     },
-    processHomeSearchBar: async (req, res) => {
+    processHomeSearchbar: async (req, res) => {
         try {
-            const userSearch = req.query.q;
+
+           /*  const userSearch = req.query.s;
+            console.log(userSearch) */
+
+            return res.render('userSearch', { search: devices, dbStorages: await getInDb.dbStorages(), dbColors: await getInDb.dbColors(), dbRams: await getInDb.dbRams(), dbSsds: await getInDb.dbSsds(), dbCores: await getInDb.dbCores(), dbDeviceTypes: await getInDb.dbDeviceTypes(), dbIphones: await getInDb.dbIphones(), dbMacbooks: await getInDb.dbMacbooks() })
 
             const devices = db.Device.findAll({
                 where: {
@@ -242,7 +246,7 @@ const controller = {
 
 
         } catch (error) {
-            console.log(`Fallé en accesory creation: ${error}`);
+            console.log(`Fail while processing home searchbar: ${error}`);
             return res.render('unexpectedError')
         }
 

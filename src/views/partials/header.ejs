@@ -12,8 +12,8 @@
 
 
                <div class='search-bar-burger-menu-container'>
-                    <form class="search-bar-form" action="/search" method="GET">
-                         <input class="search-bar-input" type="search" name="home-q"
+                    <form class="search-bar-form" action="/busqueda" method="GET">
+                         <input class="search-bar-input" type="search" name="s"
                               placeholder="Buscá cualquier producto...">
                          <button type='submit'><i class="fa-solid fa-magnifying-glass"></i></button>
                     </form>
@@ -84,7 +84,7 @@
 
                          <div class='mobile-li-submenu technical-service-dropdown'>
                               <ul type='none'>
-                                   <li class='mobile-submenu-dropdown-li'><a href="/apple-devices-suport">EQUIPOS
+                                   <li class='mobile-submenu-dropdown-li'><a href="/equipos-apple-soporte">EQUIPOS
                                              APPLE</a></li>
                                    <li class='mobile-submenu-dropdown-li'><a href="">OTROS</a></li>
                               </ul>
@@ -102,7 +102,7 @@
           <nav class="desktop-navbar-container">
                <ul type="none" class="desktop-main-navbar">
                     <li class='desktop-navbar-li' id='iphones-li'>
-                         <a href="/products/category/1">
+                         <a href="/productos/category/1">
                               <span class="navbar-span">IPHONES</span>
                               <i class='bx bx-chevron-down'></i>
 
@@ -110,7 +110,7 @@
                                    <ul type='none'>
                                         <% dbIphones.forEach(iphone=> { %>
                                              <li class='desktop-submenu-dropdown-li'><a class='desktop-submenu-anchor'
-                                                       href="/products/<%= iphone.id %>">
+                                                       href="/productos/<%= iphone.id %>">
                                                        <%= iphone.model %>
                                                   </a></li>
                                              <% }) %>
@@ -120,7 +120,7 @@
                     </li>
 
                     <li class='desktop-navbar-li' id='macbooks-li'>
-                         <a href="/products/category/2">
+                         <a href="/productos/category/2">
                               <span class="navbar-span">MACBOOKS</span>
                               <i class='bx bx-chevron-down'></i>
 
@@ -128,7 +128,7 @@
                                    <ul type='none'>
                                         <% dbMacbooks.forEach(macbook=> { %>
                                              <li class='desktop-submenu-dropdown-li'><a class='desktop-submenu-anchor'
-                                                       href="/products/<%= macbook.id %>">
+                                                       href="/productos/<%= macbook.id %>">
                                                        <%= macbook.model %>
                                                   </a></li>
                                              <% }) %>
@@ -151,9 +151,9 @@
                               <div class='desktop-li-submenu' id='technical-service-desktop-dropdown'>
                                    <ul type='none'>
                                         <li class='desktop-submenu-dropdown-li'><a class='desktop-submenu-anchor'
-                                                  href="/apple-devices-suport">EQUIPOS APPLE</a></li>
+                                                  href="/equipos-apple-soporte">EQUIPOS APPLE</a></li>
                                         <li class='desktop-submenu-dropdown-li'><a class='desktop-submenu-anchor'
-                                                  href="">OTROS</a></li>
+                                                  href="/otros-equipos-soporte">OTROS</a></li>
                                    </ul>
                               </div>
                          </a>

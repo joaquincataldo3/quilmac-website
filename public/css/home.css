@@ -4,6 +4,7 @@
     box-sizing: border-box;
 }
 
+
 main {
     width: 100%;
     background-color: white;
@@ -64,7 +65,7 @@ main {
     height: 100%;
 }
 
-.repair-grid-container {
+.home-grid-container {
     height: auto;
     width: 90%;
     border: 1px dashed orange;
@@ -72,21 +73,79 @@ main {
     grid-template-columns: repeat(2, 1fr);
 }
 
-.repair-copy {
-    width: 80%;
-    height: 350px;
-    border: 1px solid pink;
+.home-copy-container {
+    width: 95%;
+    height: 500px;
     margin: 1rem auto;
+    border: 1px solid pink;
+    max-width: 400px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
 }
 
-.repair-copy h3 {
-    font-size: 1rem;
+.home-copy-desktop-banner {
+    display: none;
 }
+
+.dark {
+    background-color: black;
+    color: white;
+}
+
+
+.home-copy h2 {
+    font-size: 1.2rem;
+}
+
+.home-copy-img-container {
+    height: 250px;
+}
+
+.home-copy-img-container img {
+    width: 100%;
+    height: 100%;
+    object-fit: fill;
+}
+
+.home-copy-info-container {
+    padding: 1rem;
+}
+
+.home-copy-info-container * {
+    margin: 1rem 0;
+}
+
+.home-copy-info-container p {
+    font-size: 0.875rem;
+}
+.home-second-banner-container {
+    display: flex;
+    align-items: flex-end;
+}
+
 
 .home-second-banner-container img {
     width: 100%;
     height: 100%;
     object-fit: contain;
+}
+
+.home-copy-btn-container {
+    display: flex;
+    align-items: flex-end;
+    padding-left: 1rem;
+    padding-bottom: 1.5rem;
+}
+
+.see-more-info-btn {
+    color: #F47658;
+    font-weight: 700;
+    font-size: 1rem;
+}
+
+.home-copy-anchor:visited {
+    color: #F47658;
 }
 
 @media (min-width: 468px) {
@@ -121,5 +180,28 @@ main {
     main {
         max-width: 1080px;
         margin: 0 auto;
+
+        border-bottom: 0;
     }
+
+    .home-grid-container {
+        display: flex;
+        flex-wrap: wrap;
+    }
+
+    .home-copy-container {
+        width: 44%;
+        height: 500px;
+        border: 1px solid pink;
+        margin: 1rem auto;
+        max-width: 390px;
+    }
+
+    .home-copy-desktop-banner {
+        display: block;
+        width: 100%;
+        border: 1px dashed black;
+        height: 200px;
+    }
+
 }

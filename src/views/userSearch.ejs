@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <head>
+        <%- include ('partials/head') %>
+    
+        <link rel="stylesheet" href="/css/category.css">
+    </head>
+    
+</head>
+<body>
+
+    <%- include ('partials/header') %>
+
+    <div>
+        <div>
+            <% if(locals.search && search.length == 0) { %> 
+                <div>
+                    <h2>Empty....</h2>
+                </div>
+            <% } else if (locals.devices){ %>
+                <main>
+                    <div class="user-search-container">
+                        <h1 class="user-search-title">Resultados encontrados para <%= search %> </h1>
+                    </div>
+                    <div class="cards-container">
+                        <% devices.forEach(device=> { %>
+                            <a href="/products/<%= device.id %>" class="product-card-anchor">
+                                <article class="product-card">
+                                    <div class="img-card-container">
+                                        <img class="main-image"
+                                            src="/images/devices/<%= device.images[Math.floor(Math.random() * device.images.length)].image %>"
+                                            alt="">
+                                    </div>
+                                    <div class="info-container">
+                                        <div class="device-model-container">
+                                            <h3 class="device-model">
+                                                <%= device.model %>
+                                            </h3>
+                                        </div>
+                                        <h5 class="available-colors-text">Colores disponibles</h5>
+                                        <div class="colors-container">
+                                            <% device.colors.forEach(color=> { %>
+                                                <div class="color" style="background-color:#<%= color.HEX %>;">
+                                                </div>
+                                                <% }) %>
+                                        </div>
+                                    </div>
+                                    <form class="more-info-form" action="http://localhost:3095/products/<%= device.id %>">
+                                        <input class="more-info-input" type="submit" value="Conocer más" />
+                                    </form>
+                                </article>
+                            </a>
+        
+                            <% }) %>
+        
+        
+                    </div>
+                </main>
+            <% } %> 
+        </div>
+    </div>
+
+    <%- include ('partials/floatsocialmediabtn') %>
+
+        <%- include ('partials/footer') %>
+</body>
+</html>

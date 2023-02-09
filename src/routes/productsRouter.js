@@ -10,21 +10,32 @@ const router = express.Router();
 
 
 router.get('/device/create', adminRoutesMiddleware, productsController.createDevice);
+
 router.get("/accessory/create", adminRoutesMiddleware, productsController.accessoryCreation);
-router.get("/accessory", productsController.processAccessoryCreation);
+
+router.get("/accesorio", productsController.processAccessoryCreation);
+
 router.get('/update/:idProduct', productsController.updateOneDevice);
-router.get("/search", productsController.processHomeSearchBar);
-router.get('/category/:idCategory', productsController.fetchCategory);
+
+router.get("/busqueda", productsController.processHomeSearchbar);
+
+router.get('/categoria/:idCategory', productsController.fetchCategory);
+
 router.get('/:idProduct', productsController.fetchOneDevice);
 
 
+
 router.post("/device", uploadDeviceImages.array("device_images"), deviceCreationValidation, productsController.processDeviceCreation);
+
 router.post("/accessory", uploadAccessoryImages.single("accessory_images"), accessoryCreationValidation, productsController.processAccessoryCreation);
+
 
 /* router.put('/update', productsController.processOneDeviceUpdate); */
 
 router.delete('/delete/:idProduct', productsController.destroyOneDevice);
+
 router.delete('/delete/:idProduct', productsController.destroyOneAccessory);
+
 router.delete('/delete/:idProduct', productsController.destroyOneAccessory);
 
 module.exports = router;

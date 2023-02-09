@@ -6,6 +6,7 @@ const cookies = require('cookie-parser');
 const mainRouter = require('./routes/mainRouter');
 const adminRouter = require("./routes/adminRouter");
 const productsRouter = require("./routes/productsRouter");
+const homeSearchbarRouter = require("./routes/homeSearchbarRouter");
 const methodOverride = require("method-override");
 const getInDb =  require('./utils/getInDb');
 
@@ -42,7 +43,8 @@ app.use(express.static(path.join(__dirname, '../public')));
 
 app.use('/', mainRouter);
 app.use("/admin", adminRouter);
-app.use("/products", productsRouter);
+app.use("/productos", productsRouter);
+app.use("/", homeSearchbarRouter);
 app.use(async (req, res, next) => {
     res.status(404).render('404error', {dbAppleDevices: await getInDb.dbAppleDevices(), dbStorages: await getInDb.dbStorages(), dbColors: await getInDb.dbColors(), dbRams: await getInDb.dbRams(), dbSsds: await getInDb.dbSsds(), dbCores: await getInDb.dbCores(), dbDeviceTypes: await getInDb.dbDeviceTypes(), dbIphones: await getInDb.dbIphones(), dbMacbooks: await getInDb.dbMacbooks()})
   })

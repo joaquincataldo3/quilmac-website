@@ -18,6 +18,13 @@ main {
 .support-h1-intro, .support-p-intro {
     padding: 1rem;
     text-align: center;
+    font-size: 1.2rem;
+}
+
+.support-p-intro {
+    padding: 1rem;
+    text-align: center;
+    font-size: 1rem;
 }
 
 .apple-product-support-article {
@@ -29,11 +36,75 @@ main {
     margin-top: 0.400rem;
 }
 
+.support-title {
+    font-size: 1rem;
+}
+
+.support-description {
+    font-size: 0.875rem;
+    padding: 0.500rem 1rem;
+}
+
+.icons-description-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin: 2.5rem 0;
+}
+
+.icon-container {
+    width: 45%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.bx-medal, .bxs-user-check,  .bx-bell {
+    font-size: 2.8rem;
+    color: rgb(177, 177, 177);
+} 
+
+.icon-container h3 {
+    font-size: 1rem;
+}
+
+.icon-container h4 {
+    font-size: 0.875rem;
+}
+
+
+@media (min-width: 768px) {
+    .support-h1-intro, .support-p-intro {
+        
+        font-size: 1.7rem;
+    }
+    
+    .support-p-intro {
+        
+        font-size: 1.5rem;
+    }
+
+    .support-title {
+        font-size: 1.2rem;
+    }
+    
+    .support-description {
+        font-size: 1rem;
+    }
+
+}
+
+
 
 
 @media (min-width: 1000px) {
     main {
         max-width: 1080px;
         margin: 0 auto;
+    }
+
+    .icon-container {
+        width: 33%;
+        text-align: center;
     }
 }

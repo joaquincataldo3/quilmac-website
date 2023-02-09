@@ -8,6 +8,15 @@ main {
     margin: 0;
 }
 
+.user-search-container {
+   padding-top: 1.5rem;
+   padding-left: 1rem;
+}
+
+.user-search-title {
+    font-size: 1rem;
+}
+
 .cards-container {
     padding-top: 3rem;
 }
@@ -110,6 +119,11 @@ main {
         width: 45%;
     }
 
+    .user-search-title {
+        font-size: 1.2rem;
+    }
+    
+
 }
 
 
@@ -126,10 +140,16 @@ main {
         margin: 0 auto;
     }
 
+    .user-search-title {
+        font-size: 1.5rem;
+    }
+
     .product-card-anchor {
         margin: 0 2rem;
         width: 25%;
     }
+
+
 
 
 }
