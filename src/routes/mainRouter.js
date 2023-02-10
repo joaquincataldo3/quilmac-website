@@ -9,4 +9,6 @@ router.get('/equipos-apple-soporte', mainController.appleSupport);
 
 router.get('/otros-equipos-soporte', mainController.otherDevicesSupport);
 
+router.get('/contacto', mainController.contactUs);
+
 module.exports = router;
