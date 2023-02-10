@@ -1,12 +1,77 @@
-.bxs-phone, .bxl-whatsapp, .bxl-instagram, .bxs-navigation {
+.contact-us-info-container {
+    padding: 1rem;
+}
+
+.intro-container {
+    width: 90%;
+    margin: 1.8rem 0;
+}
+
+.intro-container h2 {
+    font-size: 1.2rem;
+    margin: 0.500rem 0;
+}
+
+.intro-container p {
+    font-size: 0.875rem;
+    margin: 0.500rem 0;
+}
+
+.icon-container {
+    display: flex;
+    align-items: center;
+    margin: 1.5rem 0;
+}
+
+.icon-container p {
+    font-size: 0.875rem;
+    font-weight: 700;
+    margin-left: 0.300rem;
+}
+
+
+.contact-us-more-info-container {
+    padding: 1rem;
+    width: 90%;
+}
+
+.contact-us-more-info-container p {
+    font-size: 0.875rem;
+}
+
+
+.bxs-been-here, .bxs-phone, .bxl-whatsapp, .bxl-instagram, .bxs-navigation, .bx-time-five {
     font-size: 1.5rem;
     color: rgb(177, 177, 177);
 }
+
+@media (min-width: 768px) {
+    .intro-container h2 {
+        font-size: 1.5rem;
+    }
+    
+    .intro-container p {
+        font-size: 1rem;
+    }
+    .icon-container p {
+        font-size: 1rem;
+    }
+
+    .bxs-been-here, .bxs-phone, .bxl-whatsapp, .bxl-instagram, .bx-time-five {
+        font-size: 1.8rem;
+    }
+    .contact-us-more-info-container p {
+        font-size: 1rem;
+    }
+
+}
+
 
 @media (min-width: 1000px) {
     main {
         max-width: 1080px;
         margin: 0 auto;
+        background-color: white;
     }
 
 }

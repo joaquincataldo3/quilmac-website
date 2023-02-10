@@ -11,53 +11,41 @@ ul {
 
 footer {
     background-color: white;
-    padding: 1.5rem 1rem ;
+    padding: 3rem 1rem ;
     border-top: 1px solid rgb(195, 195, 195);
 }
 
-.footer-box {
+.footer-icons-wrapper {
     margin: 2rem 0;
 }
 
-
-.title-container {
-    height: 50px;
-}
-
 .footer-title {
-    font-size: 1.8rem;
+    font-size: 1.5rem;
 }
 
-.footer-li-arrow-container {
+.footer-icon-container {
     display: flex;
-    margin: 0.700rem 0;
-}
-
-.footer-li-arrow-container li {
-    margin-top: 0.150rem;
+    align-items: center;
 }
 
 
 .bx-phone, .bxs-been-here {
-    font-size: 1.2rem;
-    color: grey;
+    font-size: 1.5rem;
+    color: rgb(177, 177, 177);
     margin-right: 0.300rem;
     padding-top: 0.100rem;
+    color: rgb(177, 177, 177);
 }
 
 
 .footer-copy-item {
-    font-size: 1rem;
+    font-size: 0.875rem;
     font-weight: 500;
     color: black; 
 }
 
-#our-story {
-    transition: color 250ms;
-}
-
-#our-story:hover {
-     color: grey;
+.footer-gmaps-container {
+    margin: 1rem 0;
 }
 
 .g-maps {
@@ -65,8 +53,17 @@ footer {
     height: 100%;
 }
 
+@media (min-width: 768px) {
 
+    .footer-title {
+        font-size: 1.8rem;
+    }
 
+    .footer-copy-item {
+        font-size: 1rem
+    }
+
+}
 
 
 
