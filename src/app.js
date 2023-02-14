@@ -50,7 +50,7 @@ app.use(async (req, res, next) => {
   })
 
 
-const port = 3095;
-app.listen(port, (req, res) => {
-    console.log(`Server opened on port ${port}`)
+const PORT = process.env.PORT || 3095
+app.listen(PORT, (req, res) => {
+    console.log(`Server opened on PORT ${PORT}`)
 })
