@@ -11,7 +11,7 @@ const methodOverride = require("method-override");
 const getInDb =  require('./utils/getInDb');
 require("dotenv").config({path:"src/.env"})
 
-const PORT = process.env.PORT;
+const PORT = 3095;
 
 const app = express();
  
@@ -52,7 +52,8 @@ app.use(async (req, res, next) => {
     res.status(404).render('404error', {dbAppleDevices: await getInDb.dbAppleDevices(), dbStorages: await getInDb.dbStorages(), dbColors: await getInDb.dbColors(), dbRams: await getInDb.dbRams(), dbSsds: await getInDb.dbSsds(), dbCores: await getInDb.dbCores(), dbDeviceTypes: await getInDb.dbDeviceTypes(), dbIphones: await getInDb.dbIphones(), dbMacbooks: await getInDb.dbMacbooks()})
   })
 
+const listeningPort = PORT || process.env.PORT
 
-app.listen(PORT, (req, res) => {
-    console.log(`Server opened on PORT ${PORT}`)
+app.listen(listeningPort, (req, res) => {
+    console.log(`Server opened on PORT ${listeningPort}`)
 })
