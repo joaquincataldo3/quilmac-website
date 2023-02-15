@@ -9,7 +9,9 @@ const productsRouter = require("./routes/productsRouter");
 const homeSearchbarRouter = require("./routes/homeSearchbarRouter");
 const methodOverride = require("method-override");
 const getInDb =  require('./utils/getInDb');
-const {PORT} = require('./config.js')
+require("dotenv").config({path:"src/.env"})
+
+const PORT = process.env.PORT;
 
 const app = express();
  
