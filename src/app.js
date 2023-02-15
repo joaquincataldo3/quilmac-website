@@ -9,6 +9,7 @@ const productsRouter = require("./routes/productsRouter");
 const homeSearchbarRouter = require("./routes/homeSearchbarRouter");
 const methodOverride = require("method-override");
 const getInDb =  require('./utils/getInDb');
+const {PORT} = require('./config.js')
 
 const app = express();
  
@@ -50,7 +51,6 @@ app.use(async (req, res, next) => {
   })
 
 
-const PORT = process.env.PORT || 3095
 app.listen(PORT, (req, res) => {
     console.log(`Server opened on PORT ${PORT}`)
 })
