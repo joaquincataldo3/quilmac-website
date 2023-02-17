@@ -1,11 +1,5 @@
 const db = require("../database/models");
-const { validationResult } = require('express-validator');
-const fs = require("fs");
-const path = require("path");
-const { Op } = require('sequelize');
-const getInDb = require('../utils/getInDb');
-
-
+const getInDb = require('../utils/getInDb')
 
 const controller = {
     fetchCategory: async (req, res) => {
