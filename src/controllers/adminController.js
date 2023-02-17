@@ -6,14 +6,6 @@ const fs = require("fs");
 const path = require("path");
 const db = require("../database/models");
 const getInDb = require('../utils/getInDb')
-const adminRoutesMiddleware = require('../middlewares/rejectRoute');
-const deviceCreationValidation = require("../middlewares/deviceCreationValidation");
-const accessoryCreationValidation = require("../middlewares/accessoryCreationValidation");
-const uploadDeviceImages = require("../middlewares/multerForDeviceCreation");
-const uploadAccessoryImages = require("../middlewares/multerForAccessoryCreation");
-
-
-
 
 
 const controller = {
