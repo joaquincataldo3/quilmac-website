@@ -1,6 +1,18 @@
 const db = require("../database/models");
 const { validationResult } = require('express-validator');
 const bcryptjs = require("bcryptjs");
+const { validationResult } = require('express-validator');
+const fs = require("fs");
+const path = require("path");
+const db = require("../database/models");
+const getInDb = require('../utils/getInDb')
+const adminRoutesMiddleware = require('../middlewares/rejectRoute');
+const deviceCreationValidation = require("../middlewares/deviceCreationValidation");
+const accessoryCreationValidation = require("../middlewares/accessoryCreationValidation");
+const uploadDeviceImages = require("../middlewares/multerForDeviceCreation");
+const uploadAccessoryImages = require("../middlewares/multerForAccessoryCreation");
+
+
 
 
 
