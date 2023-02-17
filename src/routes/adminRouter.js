@@ -5,7 +5,6 @@ const loginValidations = require("../middlewares/loginValidation");
 const accessoryCreationValidation = require("../middlewares/accessoryCreationValidation");
 const deviceCreationValidation = require('../middlewares/deviceCreationValidation');
 const adminRoutesMiddleware = require('../middlewares/rejectRoute');
-const accessoryCreationValidation = require("../middlewares/accessoryCreationValidation");
 const uploadDeviceImages = require("../middlewares/multerForDeviceCreation");
 const uploadAccessoryImages = require("../middlewares/multerForAccessoryCreation");
 
