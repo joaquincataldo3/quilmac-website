@@ -14,7 +14,7 @@
         <main>
             <div class="cards-container">
                 <% selectedCategory.forEach(device=> { %>
-                    <a href="/products/<%= device.id %>" class="product-card-anchor">
+                    <a href="/productos/<%= device.id %>" class="product-card-anchor">
                         <article class="product-card">
                             <div class="img-card-container">
                                 <img class="main-image"
@@ -35,7 +35,7 @@
                                         <% }) %>
                                 </div>
                             </div>
-                            <form class="more-info-form" action="http://localhost:3095/products/<%= device.id %>">
+                            <form class="more-info-form" action="http://localhost:3095/productos/<%= device.id %>">
                                 <input class="more-info-input" type="submit" value="Conocer más" />
                             </form>
                         </article>
