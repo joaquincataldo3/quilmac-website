@@ -5,5 +5,4 @@ const router = express.Router();
 
 router.get('/busqueda', homeSearchbarController.processHomeSearchbar);
 
-
 module.exports = router;
