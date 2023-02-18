@@ -95,13 +95,26 @@
                 </div>
 
                 <div class="label-input-container">
-
-                    <label id='device-image' class="form-labels" for="device_images">Select images one more time,
-                        please</label>
+                    
+                    <label id='device-image' class="form-labels" for="device_images">Add images
                     <input class="form-input" type="file" name="device_images" multiple>
 
-
                 </div>
+                <div class="label-input-container">
+                    <div class="current-img-container">
+                        <label class="form-labels">Current images</label>
+                        <% deviceToUpdate.images.map((img, i) => { %>
+                            <div class="current-img-subcontainer">
+                                <input type="checkbox" id="<%= i %>" name="imgs" checked value="<%= img.filename %>">
+                                <label for="<%= i %>">
+                                    <img class="product-to-update-img"
+                                    src="/images/devices/<%= img.image %>" alt="">
+                                </label>                        
+                            </div>
+                        <% }) %>
+                    </div>
+                </div>
+                   
                 <% if(locals.errors) { %>
                     <p class="error-msg"> Por favor, re-seleccioná las imagenes </p>
                     <% } %>

@@ -222,6 +222,9 @@ const controller = {
         /* return res.send(deviceToUpdate) */
         return res.render('updateDevice', { deviceToUpdate, dbDeviceTypes: await getInDb.dbDeviceTypes(), dbAppleDevices: await getInDb.dbAppleDevices(), dbIphones: await getInDb.dbIphones(), dbMacbooks: await getInDb.dbMacbooks(), dbStorages: await getInDb.dbStorages(), dbColors: await getInDb.dbColors(),  dbRams: await getInDb.dbRams(), dbCores: await getInDb.dbCores(), dbSsds: await getInDb.dbSsds()})
     },
+    processDeviceUpdate: async (req, res) => {
+        return res.send(req.body)
+    },
     destroyOneDevice: async (req, res) => {
         try {
             const deviceToDelete = await db.Device.findByPk(req.params.idProduct);

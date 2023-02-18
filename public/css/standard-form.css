@@ -75,6 +75,17 @@ main {
     margin-bottom: 0.500rem;
 }
 
+.current-img-subcontainer {
+    display: flex;
+    align-items: center;
+}
+
+.current-img-subcontainer img {
+    width: 30%;
+    height: 100%;
+    margin-left: 1rem;
+}
+
 #rams-container, #cores-container, #ssds-container {
     display: none;
 }
