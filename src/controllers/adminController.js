@@ -8,7 +8,7 @@ const getInDb = require('../utils/getInDb')
 
 const controller = {
     register: (req, res) => {
-        return res.render("register", {admin: req.session.adminLogged})
+        return res.render("register", { admin: req.session.adminLogged })
     },
     processAdminRegister: async (req, res) => {
 
@@ -70,12 +70,12 @@ const controller = {
             return res.render("login", { errors: { password: { msg: "Please enter a valid password" } }, oldBody });
 
         }
-        
+
         const adminAuthenticated = adminInDb.username;
-          
+
 
         if (req.body.remember_me) {
-            res.cookie('adminCookie', adminAuthenticated, { maxAge: (60 * 1000) *  1000 })
+            res.cookie('adminCookie', adminAuthenticated, { maxAge: (60 * 1000) * 1000 })
         }
 
         req.session.adminLogged = adminAuthenticated;
@@ -85,12 +85,12 @@ const controller = {
 
     },
     logout: (req, res) => {
-        req.session.destroy(); 
-        res.clearCookie("adminCookie"); 
+        req.session.destroy();
+        res.clearCookie("adminCookie");
         return res.redirect("/")
     },
-     // device form creation view
-     createDevice: async (req, res) => {
+    // device form creation view
+    createDevice: async (req, res) => {
         try {
             return res.render("createDevice", { dbStorages: await getInDb.dbStorages(), dbColors: await getInDb.dbColors(), dbRams: await getInDb.dbRams(), dbSsds: await getInDb.dbSsds(), dbCores: await getInDb.dbCores(), dbDeviceTypes: await getInDb.dbDeviceTypes(), dbIphones: await getInDb.dbIphones(), dbMacbooks: await getInDb.dbMacbooks() });
         } catch (error) {
@@ -220,7 +220,7 @@ const controller = {
         const idProduct = req.params.idProduct;
         const deviceToUpdate = await db.Device.findByPk(idProduct, { include: ['images', 'colors', 'storages', 'rams', 'ssds', 'cores'] });
         /* return res.send(deviceToUpdate) */
-        return res.render('updateDevice', { deviceToUpdate, dbDeviceTypes: await getInDb.dbDeviceTypes(), dbAppleDevices: await getInDb.dbAppleDevices(), dbIphones: await getInDb.dbIphones(), dbMacbooks: await getInDb.dbMacbooks(), dbStorages: await getInDb.dbStorages(), dbColors: await getInDb.dbColors(),  dbRams: await getInDb.dbRams(), dbCores: await getInDb.dbCores(), dbSsds: await getInDb.dbSsds()})
+        return res.render('updateDevice', { deviceToUpdate, dbDeviceTypes: await getInDb.dbDeviceTypes(), dbAppleDevices: await getInDb.dbAppleDevices(), dbIphones: await getInDb.dbIphones(), dbMacbooks: await getInDb.dbMacbooks(), dbStorages: await getInDb.dbStorages(), dbColors: await getInDb.dbColors(), dbRams: await getInDb.dbRams(), dbCores: await getInDb.dbCores(), dbSsds: await getInDb.dbSsds() })
     },
     processDeviceUpdate: async (req, res) => {
 
@@ -242,16 +242,93 @@ const controller = {
         const imgsToDelete = []
 
         const imgsToDeleteFilter = deviceToUpdate.images.filter(image => { //FILTER TO DELETE IMAGES 
-            if(!req.body.current_imgs.includes(image.image)){
+            if (!req.body.current_imgs.includes(image.image)) {
                 return imgsToDelete.push(image.image)
-            }      
+            }
         })
 
-        imgsToDelete.forEach(image =>
-            fs.unlinkSync(path.join(__dirname, '../../public/images/devices/' + image.filename)) // DELETE IMGS IN LOCAL FOLDER
-        );
+        if (imgsToDelete.length > 0) {
 
-        return res.send(imgsToDelete)
+            imgsToDelete.forEach(image =>
+                fs.unlinkSync(path.join(__dirname, '../../public/images/devices/' + image.filename)) // DELETE IMGS IN LOCAL FOLDER    
+            );
+
+
+            await db.Image.destroy({
+                where: {
+                    device_id: deviceToUpdate.id,
+                    image: imgsToDelete.map(img => img.image)
+                }
+            }) // DELETE IMGS IN LOCAL FOLDER    
+
+        }
+        const bodyImages = req.files;
+        const { colors, storages, rams, cores, ssds } = req.body
+
+
+        if (bodyImages.length > 0) {
+            const deviceImages = bodyImages.map(obj => {
+                return {
+                    image: obj.filename,
+                    device_id: updatedDevice.id,
+                    device_type_id: updatedDevice.device_type_id,
+                }
+            })
+            await db.Image.bulkCreate(deviceImages);
+        }
+
+        if (updatedDevice.device_type_id == 1) {
+            const deviceStorages = storages?.map(storage => {
+                return {
+                    storage_id: storage,
+                    device_id: updatedDevice.id,
+                    device_type_id: updatedDevice.device_type_id
+                }
+            }
+            )
+            await db.DeviceStorage.bulkCreate(deviceStorages);
+        }
+
+        if (updatedDevice.device_type_id != 1) {
+            const deviceRams = rams?.map(ram => {
+                return {
+                    ram_id: ram,
+                    device_id: updatedDevice.id,
+                    device_type_id: updatedDevice.device_type_id
+                }
+            }
+            )
+            await db.DeviceRam.bulkCreate(deviceRams);
+        }
+
+        if (updatedDevice.device_type_id != 1) {
+            const deviceCores = cores?.map(core => {
+                return {
+                    core_id: core,
+                    device_id: updatedDevice.id,
+                    device_type_id: updatedDevice.device_type_id
+                }
+            }
+            )
+            await db.DeviceCore.bulkCreate(deviceCores);
+        }
+
+        if (updatedDevice.device_type_id != 1) {
+            const deviceSsds = ssds?.map(ssd => {
+                return {
+                    ssd_id: ssd,
+                    device_id: updatedDevice.id,
+                    device_type_id: updatedDevice.device_type_id
+                }
+            }
+            )
+            await db.DeviceSsd.bulkCreate(deviceSsds);
+        }
+
+
+
+
+        return res.redirect('/')
     },
     destroyOneDevice: async (req, res) => {
         try {
