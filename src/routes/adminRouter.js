@@ -22,7 +22,7 @@ router.post("/login", loginValidations, adminController.processLogin);
 router.post("/accessory", uploadAccessoryImages.single("accessory_images"), accessoryCreationValidation,adminController.processAccessoryCreation);
 router.post("/device", uploadDeviceImages.array("device_images"), deviceCreationValidation,adminController.processDeviceCreation);
 
-/* router.put('/update',adminController.processOneDeviceUpdate); */
+router.put('/device/update/:idProduct', uploadDeviceImages.array("device_images"), adminController.processDeviceUpdate);
 
 router.delete('/delete/:idProduct',adminController.destroyOneDevice);
 router.delete('/delete/:idProduct',adminController.destroyOneAccessory);

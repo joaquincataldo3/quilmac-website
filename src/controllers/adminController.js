@@ -223,7 +223,35 @@ const controller = {
         return res.render('updateDevice', { deviceToUpdate, dbDeviceTypes: await getInDb.dbDeviceTypes(), dbAppleDevices: await getInDb.dbAppleDevices(), dbIphones: await getInDb.dbIphones(), dbMacbooks: await getInDb.dbMacbooks(), dbStorages: await getInDb.dbStorages(), dbColors: await getInDb.dbColors(),  dbRams: await getInDb.dbRams(), dbCores: await getInDb.dbCores(), dbSsds: await getInDb.dbSsds()})
     },
     processDeviceUpdate: async (req, res) => {
-        return res.send(req.body)
+
+        const idProduct = req.params.idProduct;
+        const deviceToUpdate = await db.Device.findByPk(idProduct, { include: ['images', 'colors', 'storages', 'rams', 'ssds', 'cores'] })
+
+        const updatedDevice = await db.Device.update({
+            model: req.body.model,
+            screen: req.body.screen,
+            technical_detail: req.body.technical_detail,
+            release_date: req.body.release_date,
+            device_type_id: req.body.device_type
+        }, {
+            where: {
+                id: deviceToUpdate.id
+            }
+        })
+
+        const imgsToDelete = []
+
+        const imgsToDeleteFilter = deviceToUpdate.images.filter(image => { //FILTER TO DELETE IMAGES 
+            if(!req.body.current_imgs.includes(image.image)){
+                return imgsToDelete.push(image.image)
+            }      
+        })
+
+        imgsToDelete.forEach(image =>
+            fs.unlinkSync(path.join(__dirname, '../../public/images/devices/' + image.filename)) // DELETE IMGS IN LOCAL FOLDER
+        );
+
+        return res.send(imgsToDelete)
     },
     destroyOneDevice: async (req, res) => {
         try {
