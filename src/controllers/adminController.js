@@ -4,6 +4,7 @@ const bcryptjs = require("bcryptjs");
 const fs = require("fs");
 const path = require("path");
 const getInDb = require('../utils/getInDb')
+const { Op } = require('sequelize')
 
 
 const controller = {
@@ -227,7 +228,7 @@ const controller = {
         const idProduct = req.params.idProduct;
         const deviceToUpdate = await db.Device.findByPk(idProduct, { include: ['images', 'colors', 'storages', 'rams', 'ssds', 'cores'] })
 
-        const updatedDevice = await db.Device.update({
+        await db.Device.update({
             model: req.body.model,
             screen: req.body.screen,
             technical_detail: req.body.technical_detail,
@@ -238,6 +239,8 @@ const controller = {
                 id: deviceToUpdate.id
             }
         })
+
+        const deviceUpdated = await db.Device.findByPk(idProduct)
 
         const imgsToDelete = []
 
@@ -250,16 +253,18 @@ const controller = {
         if (imgsToDelete.length > 0) {
 
             imgsToDelete.forEach(image =>
-                fs.unlinkSync(path.join(__dirname, '../../public/images/devices/' + image.filename)) // DELETE IMGS IN LOCAL FOLDER    
+                fs.unlinkSync(path.join(__dirname, '../../public/images/devices/' + image)) // DELETE IMGS IN LOCAL FOLDER    
             );
 
 
             await db.Image.destroy({
                 where: {
-                    device_id: deviceToUpdate.id,
-                    image: imgsToDelete.map(img => img.image)
-                }
-            }) // DELETE IMGS IN LOCAL FOLDER    
+                    image: {
+                        [Op.in]: imgsToDelete
+                    }
+                },
+                force: true
+            }) // DELETE IMGS IN DATABASE     
 
         }
         const bodyImages = req.files;
@@ -270,63 +275,109 @@ const controller = {
             const deviceImages = bodyImages.map(obj => {
                 return {
                     image: obj.filename,
-                    device_id: updatedDevice.id,
-                    device_type_id: updatedDevice.device_type_id,
+                    device_id: deviceUpdated.id,
+                    device_type_id: deviceUpdated.device_type_id,
                 }
             })
             await db.Image.bulkCreate(deviceImages);
         }
 
-        if (updatedDevice.device_type_id == 1) {
-            const deviceStorages = storages?.map(storage => {
+        if (colors.length > 0) {
+
+            await db.DeviceColor.destroy({
+                where: {
+                    device_id: deviceUpdated.id
+                }
+            }) // cleaning up storages before creating new data
+
+            const deviceColors = colors.map(color => {
+                return {
+                    color_id: color,
+                    device_id: deviceUpdated.id,
+                    device_type_id: deviceUpdated.device_type_id
+                }
+            }
+            )
+            await db.DeviceColor.bulkCreate(deviceColors);
+        }
+
+        if (deviceUpdated.device_type_id == 1) {
+
+
+            await db.DeviceStorage.destroy({
+                where: {
+                    device_id: deviceUpdated.id
+                }
+            }) // cleaning up storages before creating new data
+
+
+            const deviceStorages = storages.map(storage => {
                 return {
                     storage_id: storage,
-                    device_id: updatedDevice.id,
-                    device_type_id: updatedDevice.device_type_id
+                    device_id: deviceUpdated.id,
+                    device_type_id: deviceUpdated.device_type_id
                 }
             }
             )
             await db.DeviceStorage.bulkCreate(deviceStorages);
         }
 
-        if (updatedDevice.device_type_id != 1) {
-            const deviceRams = rams?.map(ram => {
+        if (deviceUpdated.device_type_id != 1) {
+
+            await db.DeviceRam.destroy({
+                where: {
+                    device_id: deviceUpdated.id
+                }
+            })
+
+            const deviceRams = rams.map(ram => {
                 return {
                     ram_id: ram,
-                    device_id: updatedDevice.id,
-                    device_type_id: updatedDevice.device_type_id
+                    device_id: deviceUpdated.id,
+                    device_type_id: deviceUpdated.device_type_id
                 }
             }
             )
             await db.DeviceRam.bulkCreate(deviceRams);
         }
 
-        if (updatedDevice.device_type_id != 1) {
-            const deviceCores = cores?.map(core => {
+        if (deviceUpdated.device_type_id != 1) {
+
+            await db.DeviceCore.destroy({
+                where: {
+                    device_id: deviceUpdated.id
+                }
+            })
+
+            const deviceCores = cores.map(core => {
                 return {
                     core_id: core,
-                    device_id: updatedDevice.id,
-                    device_type_id: updatedDevice.device_type_id
+                    device_id: deviceUpdated.id,
+                    device_type_id: deviceUpdated.device_type_id
                 }
             }
             )
             await db.DeviceCore.bulkCreate(deviceCores);
         }
 
-        if (updatedDevice.device_type_id != 1) {
-            const deviceSsds = ssds?.map(ssd => {
+        if (deviceUpdated.device_type_id != 1) {
+
+            await db.DeviceSsd.destroy({
+                where: {
+                    device_id: deviceUpdated.id
+                }
+            })
+
+            const deviceSsds = ssds.map(ssd => {
                 return {
                     ssd_id: ssd,
-                    device_id: updatedDevice.id,
-                    device_type_id: updatedDevice.device_type_id
+                    device_id: deviceUpdated.id,
+                    device_type_id: deviceUpdated.device_type_id
                 }
             }
             )
             await db.DeviceSsd.bulkCreate(deviceSsds);
         }
-
-
-
 
         return res.redirect('/')
     },
