@@ -58,31 +58,71 @@
           <!-- MOBILE NAVBAR -->
 
           <nav class='mobile-main-dropdown'>
-               <ul type='none'>
-                    <li class='mobile-dropdown-li' id='apple-products-li'>
-                         <span class="mobile-dropdown-item-name">EQUIPOS APPLE</span>
-                         <i class='bx bx-chevron-down'></i>
 
-                         <div class='mobile-li-submenu apple-products-dropdown'>
-                              <ul type='none'>
-                                   <% dbAppleDevices.forEach(type=> { %>
-                                        <li class='mobile-submenu-dropdown-li'><a
-                                                  href="/productos/categoria/<%= type.id %>">
-                                                  <%= type.type %>
-                                             </a></li>
-                                        <% })%>
-                              </ul>
+               <div class='mobile-dropdown-box'>
+                    <div class="mobile-dropdown-box-name" id='iphones-box'>
+                         <span class="mobile-dropdown-item-name">IPHONES</span>
+                         <i class='bx bx-chevron-down'></i>
+                    </div>
+
+                    <div class='mobile-box-submenu iphones-dropdown'>
+                         <ul type='none'>
+                              <% dbIphones.forEach(iphone=> { %>
+                                   <li class='mobile-submenu-dropdown-li'><a href="/productos/<%= iphone.id %>">
+                                             <%= iphone.model %>
+                                        </a></li>
+                                   <% }) %>
+                         </ul>
+                    </div>
+
+               </div>
+
+                    <div class='mobile-dropdown-box' >
+                         <div class="mobile-dropdown-box-name" id='macbooks-box'>
+                              <span class="mobile-dropdown-item-name">MACBOOKS</span>
+                              <i class='bx bx-chevron-down'></i>
                          </div>
 
-                    </li>
+                         <div class='mobile-box-submenu macbooks-dropdown'>
+                              <ul type='none'>
+                                   <% dbMacbooks.forEach(macbook=> { %>
+                                        <li class='mobile-submenu-dropdown-li'><a href="/productos/<%= macbook.id %>">
+                                                  <%= macbook.model %>
+                                             </a></li>
+                                        <% }) %>
+                              </ul>
+                         </div>
+                    </div>
+                    
+                    <div class='mobile-dropdown-box'>
+                         <div class="mobile-dropdown-box-name">
+                              <span class="mobile-dropdown-item-name">IMACS</span>
+                              <i class='bx bx-chevron-down'></i>
+                         </div>  
+                    </div>
+                    
+                    <div class='mobile-dropdown-box'>
+                         <div class="mobile-dropdown-box-name">
+                              <span class="mobile-dropdown-item-name">IPADS</span>
+                              <i class='bx bx-chevron-down'></i>
+                         </div>  
+                    </div>
 
-                    <li class='mobile-dropdown-li'><a class="mobile-dropdown-item-name" href="">NOTEBOOKS</a></li>
+                    <div class='mobile-dropdown-box'>
+                         <div class="mobile-dropdown-box-name">
+                              <span class="mobile-dropdown-item-name">ACCESORIOS APPLE</span>
+                              <i class='bx bx-chevron-down'></i>
+                         </div>  
+                    </div>
 
-                    <li class='mobile-dropdown-li' id='technical-service-li'>
-                         <span class="mobile-dropdown-item-name">SOPORTE</span>
-                         <i class='bx bx-chevron-down'></i>
+                    <div class='mobile-dropdown-box'>
+                         <div class="mobile-dropdown-box-name" id='technical-service-box'>
+                              <span class="mobile-dropdown-item-name">SOPORTE</span>
+                              <i class='bx bx-chevron-down'></i>
+                         </div>
 
-                         <div class='mobile-li-submenu technical-service-dropdown'>
+
+                         <div class='mobile-box-submenu technical-service-dropdown'>
                               <ul type='none'>
                                    <li class='mobile-submenu-dropdown-li'><a href="/equipos-apple-soporte">EQUIPOS
                                              APPLE</a></li>
@@ -90,11 +130,14 @@
                               </ul>
                          </div>
 
-                    </li>
-                    <li class='mobile-dropdown-li'><a class="mobile-dropdown-item-name" href="">ACCESORIOS APPLE</a>
-                    </li>
-                    <li class='mobile-dropdown-li'><a class="mobile-dropdown-item-name" href="">NOSOTROS</a></li>
-               </ul>
+                    </div>
+                   
+                    <div class='mobile-dropdown-box'>
+                         <div class="mobile-dropdown-box-name">
+                              <a class="mobile-dropdown-item-name" href="#">NOSOTROS</a>
+                         </div>  
+                    </div>
+
           </nav>
 
           <!-- DESKTOP NAVBAR -->

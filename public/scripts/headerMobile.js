@@ -6,14 +6,19 @@ window.addEventListener('load', () => {
     const mainDropdownMenu = document.querySelector('.mobile-main-dropdown');
 
     // selecting elements for apple products
-    const appleProductsLi = document.getElementById('apple-products-li');
-    const appleProductsDropDown = document.querySelector('.apple-products-dropdown');
-    const arrowForAppleProductsDropdown = document.querySelector('#apple-products-li i');
+    const iphonesLi = document.getElementById('iphones-box');
+    const iphonesDropdown = document.querySelector('.iphones-dropdown');
+    const arrowForIphonesDropdown = document.querySelector('#iphones-box i');
+
+    // selecting elements for macbooks
+    const macbooksLi = document.getElementById('macbooks-box');
+    const macbooksDropdown = document.querySelector('.macbooks-dropdown');
+    const arrowForMacbooksDropdown = document.querySelector('#macbooks-box i');
 
     // selecting elements for technical service
-    const technicalServiceLi = document.getElementById('technical-service-li');
+    const technicalServiceLi = document.getElementById('technical-service-box');
     const technicalServiceDropdown = document.querySelector('.technical-service-dropdown');
-    const arrowForTechnicalService = document.querySelector('#technical-service-li i');
+    const arrowForTechnicalService = document.querySelector('#technical-service-box i');
 
     //selecting elements for admindropdown 
 
@@ -29,8 +34,13 @@ window.addEventListener('load', () => {
 
 
     // when clicking the apple products li dropdown
-    appleProductsLi.addEventListener('click', () => {
-        appleProductsDropdownInteraction();
+    iphonesLi.addEventListener('click', () => {
+        iphonesDropdownInteraction();
+    })
+
+    // when clicking the apple products li dropdown
+    macbooksLi.addEventListener('click', () => {
+        macbooksDropdownInteraction();
     })
 
     // when interacting with the apple products li dropdownmenu
@@ -56,10 +66,15 @@ window.addEventListener('load', () => {
     })
 
 
-    function appleProductsDropdownInteraction() {
-        appleProductsDropDown.classList.toggle('mobile-li-submenu');
-        appleProductsDropDown.classList.toggle('mobile-submenu-active');
-        arrowForAppleProductsDropdown.classList.toggle('bx-chevron-down-active');
+    function iphonesDropdownInteraction() {
+        iphonesDropdown.classList.toggle('mobile-submenu-active');
+        arrowForIphonesDropdown.classList.toggle('bx-chevron-down-active');
+    }
+
+    function macbooksDropdownInteraction() {
+        macbooksDropdown.classList.toggle('mobile-li-submenu');
+        macbooksDropdown.classList.toggle('mobile-submenu-active');
+        arrowForMacbooksDropdown.classList.toggle('bx-chevron-down-active');
     }
 
     function technicalServiceDropdownInteraction() {
@@ -76,8 +91,8 @@ window.addEventListener('load', () => {
 
 
     function adminIconInteraction() {
-       adminUsernameDropdown.classList.toggle('admin-username-dropdown-active');
-       adminIcon.classList.toggle('admin-icon-active')
+        adminUsernameDropdown.classList.toggle('admin-username-dropdown-active');
+        adminIcon.classList.toggle('admin-icon-active')
     }
 
 
