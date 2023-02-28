@@ -9,7 +9,6 @@ This project was built with HTML, CSS and Javascript for the front, and MySQl wi
 ## Other tools used used
 
 Npm, NodeJS, Photoshop
--------
 
 Joaquín Cataldo
 Full Stack Developer
