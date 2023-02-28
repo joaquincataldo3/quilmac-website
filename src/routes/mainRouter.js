@@ -5,7 +5,9 @@ const router = express.Router();
 
 router.get('/', mainController.home);
 
-router.get('/equipos-apple-soporte', mainController.appleSupport);
+router.get('/iphones-ipad-serviciotecnico', mainController.iphonesIpadsSupport);
+
+router.get('/macbooks-imacs-serviciotecnico', mainController.macbooksIpadsSupport);
 
 router.get('/otros-equipos-soporte', mainController.otherDevicesSupport);
 

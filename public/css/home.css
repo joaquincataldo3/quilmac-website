@@ -67,35 +67,21 @@ main {
 
 .home-grid-container {
     height: auto;
-    width: 90%;
-    border: 1px dashed orange;
-    margin: 3rem auto;
-    grid-template-columns: repeat(2, 1fr);
+    margin: 2rem 0;
+}
+
+.home-copy-row-container {
+    margin: 0 auto;
 }
 
 .home-copy-container {
-    width: 95%;
-    height: 500px;
+    width: 80%;
     margin: 1rem auto;
-    border: 1px solid pink;
+    border: 1px solid rgb(166,166,166);
     max-width: 400px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-}
-
-.home-copy-desktop-banner {
-    display: none;
-}
-
-.dark {
-    background-color: black;
-    color: white;
-}
-
-
-.home-copy h2 {
-    font-size: 1.2rem;
 }
 
 .home-copy-img-container {
@@ -108,6 +94,10 @@ main {
     object-fit: fill;
 }
 
+.copy-title {
+    font-size: 1rem;
+}
+
 .home-copy-info-container {
     padding: 1rem;
 }
@@ -116,14 +106,23 @@ main {
     margin: 1rem 0;
 }
 
-.home-copy-info-container p {
+.copy-desc {
     font-size: 0.875rem;
 }
-.home-second-banner-container {
-    display: flex;
-    align-items: flex-end;
+
+.home-first-banner-container {
+    margin: 2rem 0;
 }
 
+.home-first-banner-container img {
+    width: 100%;
+    height: 110px;
+}
+
+.dark {
+    background-color: black;
+    color: white;
+}
 
 .home-second-banner-container img {
     width: 100%;
@@ -144,8 +143,9 @@ main {
     font-size: 1rem;
 }
 
-.home-copy-anchor:visited {
-    color: #F47658;
+.home-copy-anchor {
+    font-size: 1rem;
+    color: #F47658!important
 }
 
 @media (min-width: 468px) {
@@ -185,23 +185,24 @@ main {
     }
 
     .home-grid-container {
+        margin: 3.5rem 0;
+    }
+
+    .home-copy-row-container {
         display: flex;
         flex-wrap: wrap;
     }
 
     .home-copy-container {
         width: 44%;
-        height: 500px;
-        border: 1px solid pink;
         margin: 1rem auto;
         max-width: 390px;
     }
 
-    .home-copy-desktop-banner {
-        display: block;
-        width: 100%;
-        border: 1px dashed black;
-        height: 200px;
+   
+
+    .home-first-banner-container img {
+        height: 120px;
     }
 
 }

@@ -1,5 +1,5 @@
 
-main {
+.support-main {
     border: 1px solid white;
     background-color: white;
 }
@@ -7,7 +7,6 @@ main {
 .support-page-intro-container {
     margin-top: 3rem;
 }
-
 
 .support-img-container img {
     width: 100%;
@@ -21,28 +20,43 @@ main {
     font-size: 1.2rem;
 }
 
-.support-p-intro {
-    padding: 1rem;
-    text-align: center;
-    font-size: 1rem;
-}
-
-.apple-product-support-article {
+.support-info-container {
     padding: 1rem;
     max-width: 670px;
 }
 
-.apple-product-support-article h2 ~ p {
-    margin-top: 0.400rem;
+.support-info-subcontainer {
+    margin: 2rem 0;
+    padding: 1rem;
+}
+
+.support-info-subcontainer:first-child {
+    margin: 0;
 }
 
 .support-title {
-    font-size: 1rem;
+    font-size: 1.2rem;
+    margin-bottom: 0.500rem;
 }
 
-.support-description {
+.support-info-subtitle {
     font-size: 0.875rem;
-    padding: 0.500rem 1rem;
+    font-weight: 700;
+    margin-bottom: 0.500rem;
+}
+
+.support-intro-description, .support-disclaimer {
+    font-size: 0.875rem
+}
+
+.support-disclaimer {
+    margin-left: 1rem;
+}
+
+.support-li {
+    margin-left: 1rem;
+    margin-top: 0.800rem;
+    font-size: 0.875rem;
 }
 
 .icons-description-container {
@@ -57,40 +71,46 @@ main {
     display: flex;
     flex-direction: column;
     align-items: center;
+    text-align: center;
 }
 
 .bx-medal, .bxs-user-check,  .bx-bell {
-    font-size: 2.8rem;
+    font-size: 2.3rem;
     color: rgb(177, 177, 177);
 } 
 
-.icon-container h3 {
-    font-size: 1rem;
-}
-
-.icon-container h4 {
+.icon-container h3, p {
     font-size: 0.875rem;
 }
 
 
+
+
 @media (min-width: 768px) {
     .support-h1-intro, .support-p-intro {
-        
-        font-size: 1.7rem;
+        font-size: 1.5rem;
     }
     
-    .support-p-intro {
-        
+    .support-title {
         font-size: 1.5rem;
     }
 
-    .support-title {
-        font-size: 1.2rem;
-    }
-    
-    .support-description {
+    .support-info-subtitle {
         font-size: 1rem;
     }
+    
+    .support-intro-description, .support-disclaimer {
+        font-size: 1rem
+    }
+
+    .support-li {
+        font-size: 1rem;
+    }
+
+    .bx-medal, .bxs-user-check,  .bx-bell {
+        font-size: 2.7rem;
+    }    
+    
 
 }
 
@@ -107,4 +127,12 @@ main {
         width: 33%;
         text-align: center;
     }
+
+
+    .icon-container h3, p {
+        font-size: 1rem;
+    }
+    
+    
+
 }

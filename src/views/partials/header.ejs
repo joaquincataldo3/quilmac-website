@@ -77,66 +77,68 @@
 
                </div>
 
-                    <div class='mobile-dropdown-box' >
-                         <div class="mobile-dropdown-box-name" id='macbooks-box'>
-                              <span class="mobile-dropdown-item-name">MACBOOKS</span>
-                              <i class='bx bx-chevron-down'></i>
-                         </div>
-
-                         <div class='mobile-box-submenu macbooks-dropdown'>
-                              <ul type='none'>
-                                   <% dbMacbooks.forEach(macbook=> { %>
-                                        <li class='mobile-submenu-dropdown-li'><a href="/productos/<%= macbook.id %>">
-                                                  <%= macbook.model %>
-                                             </a></li>
-                                        <% }) %>
-                              </ul>
-                         </div>
-                    </div>
-                    
-                    <div class='mobile-dropdown-box'>
-                         <div class="mobile-dropdown-box-name">
-                              <span class="mobile-dropdown-item-name">IMACS</span>
-                              <i class='bx bx-chevron-down'></i>
-                         </div>  
-                    </div>
-                    
-                    <div class='mobile-dropdown-box'>
-                         <div class="mobile-dropdown-box-name">
-                              <span class="mobile-dropdown-item-name">IPADS</span>
-                              <i class='bx bx-chevron-down'></i>
-                         </div>  
+               <div class='mobile-dropdown-box'>
+                    <div class="mobile-dropdown-box-name" id='macbooks-box'>
+                         <span class="mobile-dropdown-item-name">MACBOOKS</span>
+                         <i class='bx bx-chevron-down'></i>
                     </div>
 
-                    <div class='mobile-dropdown-box'>
-                         <div class="mobile-dropdown-box-name">
-                              <span class="mobile-dropdown-item-name">ACCESORIOS APPLE</span>
-                              <i class='bx bx-chevron-down'></i>
-                         </div>  
+                    <div class='mobile-box-submenu macbooks-dropdown'>
+                         <ul type='none'>
+                              <% dbMacbooks.forEach(macbook=> { %>
+                                   <li class='mobile-submenu-dropdown-li'><a href="/productos/<%= macbook.id %>">
+                                             <%= macbook.model %>
+                                        </a></li>
+                                   <% }) %>
+                         </ul>
+                    </div>
+               </div>
+
+               <div class='mobile-dropdown-box'>
+                    <div class="mobile-dropdown-box-name">
+                         <span class="mobile-dropdown-item-name">IMACS</span>
+                         <i class='bx bx-chevron-down'></i>
+                    </div>
+               </div>
+
+               <div class='mobile-dropdown-box'>
+                    <div class="mobile-dropdown-box-name">
+                         <span class="mobile-dropdown-item-name">IPADS</span>
+                         <i class='bx bx-chevron-down'></i>
+                    </div>
+               </div>
+
+               <div class='mobile-dropdown-box'>
+                    <div class="mobile-dropdown-box-name">
+                         <span class="mobile-dropdown-item-name">ACCESORIOS APPLE</span>
+                         <i class='bx bx-chevron-down'></i>
+                    </div>
+               </div>
+
+               <div class='mobile-dropdown-box'>
+                    <div class="mobile-dropdown-box-name" id='technical-service-box'>
+                         <span class="mobile-dropdown-item-name">SERVICIO TÉCNICO</span>
+                         <i class='bx bx-chevron-down'></i>
                     </div>
 
-                    <div class='mobile-dropdown-box'>
-                         <div class="mobile-dropdown-box-name" id='technical-service-box'>
-                              <span class="mobile-dropdown-item-name">SOPORTE</span>
-                              <i class='bx bx-chevron-down'></i>
-                         </div>
 
-
-                         <div class='mobile-box-submenu technical-service-dropdown'>
-                              <ul type='none'>
-                                   <li class='mobile-submenu-dropdown-li'><a href="/equipos-apple-soporte">EQUIPOS
-                                             APPLE</a></li>
-                                   <li class='mobile-submenu-dropdown-li'><a href="">OTROS</a></li>
-                              </ul>
-                         </div>
-
+                    <div class='mobile-box-submenu technical-service-dropdown'>
+                         <ul type='none'>
+                              <li class='mobile-submenu-dropdown-li'><a href="/iphones-ipad-serviciotecnico">IPHONES -
+                                        IPADS</a></li>
+                              <li class='mobile-submenu-dropdown-li'><a href="/macbooks-imacs-serviciotecnico">OTROS</a>
+                              </li>
+                              <li class='mobile-submenu-dropdown-li'><a href="">NOTEBOOKS-OTROS</a></li>
+                         </ul>
                     </div>
-                   
-                    <div class='mobile-dropdown-box'>
-                         <div class="mobile-dropdown-box-name">
-                              <a class="mobile-dropdown-item-name" href="#">NOSOTROS</a>
-                         </div>  
+
+               </div>
+
+               <div class='mobile-dropdown-box'>
+                    <div class="mobile-dropdown-box-name">
+                         <a class="mobile-dropdown-item-name" href="#">NOSOTROS</a>
                     </div>
+               </div>
 
           </nav>
 
@@ -189,14 +191,16 @@
 
                     <li class='desktop-navbar-li' id='technical-service-desktop-li'>
                          <a href="#">
-                              <span class="navbar-span">SOPORTE</span>
+                              <span class="navbar-span">SERVICIO TÉCNICO</span>
                               <i class='bx bx-chevron-down'></i>
                               <div class='desktop-li-submenu' id='technical-service-desktop-dropdown'>
                                    <ul type='none'>
                                         <li class='desktop-submenu-dropdown-li'><a class='desktop-submenu-anchor'
-                                                  href="/equipos-apple-soporte">EQUIPOS APPLE</a></li>
+                                                  href="/iphones-ipad-serviciotecnico">IPHONES IPADS</a></li>
                                         <li class='desktop-submenu-dropdown-li'><a class='desktop-submenu-anchor'
-                                                  href="/otros-equipos-soporte">OTROS</a></li>
+                                                  href="/macbooks-imacs-serviciotecnico">MACBOOKS IMACS</a></li>
+                                        <li class='desktop-submenu-dropdown-li'><a class='desktop-submenu-anchor'
+                                                  href="/otros-equipos-soporte">NOTEBOOKS OTROS</a></li>
                                    </ul>
                               </div>
                          </a>

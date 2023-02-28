@@ -368,16 +368,16 @@ a {
     }
 
     .desktop-li-submenu {
+        right: 0;
+        left: -20px;
         position: absolute;
         opacity: 0;
         transition: opacity 150ms;
         top: 2.1rem;
-        left: -1rem;
         pointer-events: none;
         background-color: white;
         z-index: 100; 
         padding: 0 0.7rem;
-        width: 130px;
     }
 
 
@@ -401,7 +401,6 @@ a {
     }
 
     .desktop-submenu-dropdown-li {
-
         font-size: 0.9rem;
         transition: color 150ms;
         padding-bottom: 0.500rem;
