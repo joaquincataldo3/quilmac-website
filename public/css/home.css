@@ -199,6 +199,15 @@ main {
         max-width: 390px;
     }
 
+    .copy-title {
+        font-size: 1.2rem;
+    }
+    
+    
+    .copy-desc {
+        font-size:1rem;
+    }
+
    
 
     .home-first-banner-container img {
