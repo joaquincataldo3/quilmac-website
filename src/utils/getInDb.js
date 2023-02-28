@@ -33,7 +33,10 @@ const getInDb = {
             const iphones = await db.Device.findAll({
                 where: {
                     device_type_id: 1
-                }
+                },
+                order: [
+                    ['release_date', 'DESC'],
+                ],
             });
             return iphones;
         } catch (error) {
@@ -48,7 +51,10 @@ const getInDb = {
             const iphones = await db.Device.findAll({
                 where: {
                     device_type_id: 2
-                }
+                },
+                order: [
+                    ['release_date', 'DESC'],
+                ],
             });
             return iphones;
         } catch (error) {

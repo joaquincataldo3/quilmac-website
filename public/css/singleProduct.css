@@ -128,7 +128,8 @@ main {
     border-top: 0;
     min-width: 180px;
     margin: 0 auto;
-    padding: 0.500rem 1rem;
+    padding-left: 1rem;
+    padding-bottom: 1.5rem;
 }
 
 .info-container {
@@ -137,9 +138,17 @@ main {
     max-width: 525px;
 }
 
+.device-model-screen-container {
+    text-align: center;
+}
+
 .single-product-spec-container {
     margin-top: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
+
 
 .single-product-colors-list {
     display: flex;
@@ -159,6 +168,7 @@ main {
 
 .single-product-spec {
     padding: 0.400rem;
+    margin-top: 0.300rem;
     margin-right: 0.300rem;
     border: 1px solid grey;
 }
@@ -241,7 +251,21 @@ main {
     }
 }
 
+@media(min-width: 1000px) {
+    .single-product-spec-container {
+        margin-top: 1.5rem;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .device-model-screen-container {
+        text-align: left;
+    } 
+}
+
 @media (min-width: 1100px) {
+
     .single-product-img {
         width: 300px;
         bottom: -135px;

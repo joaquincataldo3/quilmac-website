@@ -4,7 +4,7 @@
 <head>
     <%- include ('partials/head') %>
 
-    <link rel="stylesheet" href="/css/singleProduct.css">
+        <link rel="stylesheet" href="/css/singleProduct.css">
 </head>
 
 <body>
@@ -29,7 +29,7 @@
                                                 alt="">
                                             <% } %>
                                                 <% }) %>
-                            <% } %>
+                                                    <% } %>
                         </div>
                         <div class="right-btn-container">
                             <button class="right-arrow-btn"><i class='bx bx-chevron-right'></i></button>
@@ -52,14 +52,15 @@
 
                 <div class="single-product-info-wrapper">
                     <div class="info-container">
-                        <h3 class="device-model">
-                            <%= deviceToFetch.model %>
-                        </h3>
+                        <div class="device-model-screen-container">
+                            <h3 class="device-model">
+                                <%= deviceToFetch.model %>
+                            </h3>
 
-                        <p class="device-screen">
-                            <%= deviceToFetch.screen %>
-                        </p>
-
+                            <p class="device-screen">
+                                <%= deviceToFetch.screen %>
+                            </p>
+                        </div>
 
                         <div class="single-product-spec-container">
                             <div class="h-arrow-container">
@@ -143,7 +144,7 @@
         <script src="/scripts/singleDevice.js"></script>
         <%- include ('partials/floatsocialmediabtn') %>
 
-        <%- include ('partials/footer') %>
+            <%- include ('partials/footer') %>
 
 
 </body>

@@ -9,7 +9,12 @@ const { Op } = require('sequelize')
 
 const controller = {
     register: (req, res) => {
-        return res.render("register", { admin: req.session.adminLogged })
+        try {
+            return res.render("register", { admin: req.session.adminLogged })
+        } catch (error) {
+            console.log(`Fail while rendering register device page ${error}`)
+            return res.render('unexpectedError')
+        }
     },
     processAdminRegister: async (req, res) => {
 
@@ -31,59 +36,67 @@ const controller = {
             return res.redirect("/admin/login")
 
         } catch (error) {
-            console.log("error");
+            console.log(`Fail while processing admin register : ${error}`);
             return res.render('unexpectedError');
         }
     },
     loginForm: (req, res) => {
-        res.clearCookie('adminCookie');
-        return res.render("login");
+
+        try {
+            res.clearCookie('adminCookie');
+            return res.render("login");
+        } catch (error) {
+            console.log(`Fail while rendering login page ${error}`)
+            return res.render('unexpectedError')
+        }
 
     },
     processLogin: async (req, res) => {
+    try {
+            const errors = validationResult(req);
 
-        const errors = validationResult(req);
-
-        if (!errors.isEmpty()) {
-            const oldBody = req.body;
-            console.log(req.body);
-            return res.render("login", { errors: errors.mapped(), oldBody });
-        }
-
-
-        const adminInDb = await db.Admin.findOne({
-            where: {
-                username: req.body.username
+            if (!errors.isEmpty()) {
+                const oldBody = req.body;
+                console.log(req.body);
+                return res.render("login", { errors: errors.mapped(), oldBody });
             }
-        })
 
-        if (!adminInDb) {
-            console.log('Admin notFound');
-            const oldBody = req.body;
-            return res.render("login", { errors: { username: { msg: "There is no admin found with that username" } }, oldBody });
+
+            const adminInDb = await db.Admin.findOne({
+                where: {
+                    username: req.body.username
+                }
+            })
+
+            if (!adminInDb) {
+                console.log('Admin notFound');
+                const oldBody = req.body;
+                return res.render("login", { errors: { username: { msg: "There is no admin found with that username" } }, oldBody });
+            }
+
+            const verifyPassword = bcryptjs.compareSync(req.body.password, adminInDb.password)
+
+            if (!verifyPassword) {
+                console.log('Please enter a valid password');
+                const oldBody = req.body;
+                return res.render("login", { errors: { password: { msg: "Please enter a valid password" } }, oldBody });
+
+            }
+
+            const adminAuthenticated = adminInDb.username;
+
+
+            if (req.body.remember_me) {
+                res.cookie('adminCookie', adminAuthenticated, { maxAge: (60 * 1000) * 1000 })
+            }
+
+            req.session.adminLogged = adminAuthenticated;
+
+            return res.redirect('/')
+        } catch (error) {
+            console.log(`Fail while processing admin login : ${error}`);
+            return res.render('unexpectedError');
         }
-
-        const verifyPassword = bcryptjs.compareSync(req.body.password, adminInDb.password)
-
-        if (!verifyPassword) {
-            console.log('Please enter a valid password');
-            const oldBody = req.body;
-            return res.render("login", { errors: { password: { msg: "Please enter a valid password" } }, oldBody });
-
-        }
-
-        const adminAuthenticated = adminInDb.username;
-
-
-        if (req.body.remember_me) {
-            res.cookie('adminCookie', adminAuthenticated, { maxAge: (60 * 1000) * 1000 })
-        }
-
-        req.session.adminLogged = adminAuthenticated;
-
-        return res.redirect('/')
-
-
     },
     logout: (req, res) => {
         req.session.destroy();
@@ -95,8 +108,8 @@ const controller = {
         try {
             return res.render("createDevice", { dbStorages: await getInDb.dbStorages(), dbColors: await getInDb.dbColors(), dbRams: await getInDb.dbRams(), dbSsds: await getInDb.dbSsds(), dbCores: await getInDb.dbCores(), dbDeviceTypes: await getInDb.dbDeviceTypes(), dbIphones: await getInDb.dbIphones(), dbMacbooks: await getInDb.dbMacbooks() });
         } catch (error) {
-            console.log(error);
-            return res.render('unexpectedError');
+            console.log(`Fail while rendering creation device page ${error}`)
+            return res.render('unexpectedError')
         }
     },
     // process the creation of a device
@@ -218,14 +231,21 @@ const controller = {
     },
     updateOneDevice: async (req, res) => {
 
-        const idProduct = req.params.idProduct;
-        const deviceToUpdate = await db.Device.findByPk(idProduct, { include: ['images', 'colors', 'storages', 'rams', 'ssds', 'cores'] });
-        /* return res.send(deviceToUpdate) */
-        return res.render('updateDevice', { deviceToUpdate, dbDeviceTypes: await getInDb.dbDeviceTypes(), dbAppleDevices: await getInDb.dbAppleDevices(), dbIphones: await getInDb.dbIphones(), dbMacbooks: await getInDb.dbMacbooks(), dbStorages: await getInDb.dbStorages(), dbColors: await getInDb.dbColors(), dbRams: await getInDb.dbRams(), dbCores: await getInDb.dbCores(), dbSsds: await getInDb.dbSsds() })
+        try {
+            const idProduct = req.params.idProduct;
+            const deviceToUpdate = await db.Device.findByPk(idProduct, { include: ['images', 'colors', 'storages', 'rams', 'ssds', 'cores'] });
+            return res.render('updateDevice', { deviceToUpdate, dbDeviceTypes: await getInDb.dbDeviceTypes(), dbAppleDevices: await getInDb.dbAppleDevices(), dbIphones: await getInDb.dbIphones(), dbMacbooks: await getInDb.dbMacbooks(), dbStorages: await getInDb.dbStorages(), dbColors: await getInDb.dbColors(), dbRams: await getInDb.dbRams(), dbCores: await getInDb.dbCores(), dbSsds: await getInDb.dbSsds() })
+        } catch (error) {
+            console.log(`Fail while rendering update device page ${error}`)
+            return res.render('unexpectedError')
+        }
+
+
     },
     processDeviceUpdate: async (req, res) => {
 
-        const idProduct = req.params.idProduct;
+        try {
+            const idProduct = req.params.idProduct;
         const deviceToUpdate = await db.Device.findByPk(idProduct, { include: ['images', 'colors', 'storages', 'rams', 'ssds', 'cores'] })
 
         await db.Device.update({
@@ -380,6 +400,12 @@ const controller = {
         }
 
         return res.redirect('/')
+        } catch (error) {
+            console.log(`Fail while processing device creation ${error}`)
+            return res.render('unexpectedError')
+        }
+
+        
     },
     destroyOneDevice: async (req, res) => {
         try {
@@ -392,7 +418,7 @@ const controller = {
             return res.redirect('/')
         } catch (error) {
             console.log(`Failed while trying to delete a device: ${error}`);
-            return res.redirect('/')
+            return res.render('unexpectedError')
         }
     },
     accessoryCreation: async (req, res) => {
