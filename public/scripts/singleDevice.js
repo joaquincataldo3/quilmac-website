@@ -13,9 +13,24 @@ window.addEventListener('load', () => {
     function handleCarouselFn() {
         slides.forEach((img, i) => {
             if (i == currentImage) {
+                img.classList.remove('prev-slide')
+                img.classList.remove('next-slide')
                 img.classList.add('active-img')
-            } else {
-                img.classList.remove('active-img');
+            }
+            else if(i == currentImage - 1) {
+                img.classList.remove('active-img')
+                img.classList.remove('next-slide')
+                img.classList.add('prev-slide')
+            }
+            else if((i == 0 && currentImage == slidesLength - 1)) {
+                img.classList.remove('active-img')
+                img.classList.remove('prev-slide')
+                img.classList.add('next-slide');
+            }
+            else {
+                img.classList.remove('active-img')
+                img.classList.remove('prev-slide')
+                img.classList.add('next-slide');
             }
         })
     }
