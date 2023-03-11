@@ -121,13 +121,14 @@ main {
 .dot-img {
     width: 10px;
     height: 10px;
-    border: 1px solid grey;
+    border: 1px solid black;
     margin: 0 0.400rem;
     cursor: pointer;
+    border-radius: 50%;
 }
 
 .active-dot {
-    background-color: rgb(168, 167, 167);
+    background-color: black
 }
 
 .single-product-info-wrapper {
@@ -178,7 +179,13 @@ main {
     padding: 0.400rem;
     margin-top: 0.300rem;
     margin-right: 0.300rem;
-    border: 1px solid grey;
+    background-color: black;
+    border-radius: 10px;
+    color: white;
+    width: 150px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .update-delete-btn-container {

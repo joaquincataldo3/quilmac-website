@@ -51,13 +51,15 @@ main {
 .home-slider-dot {
     width: 10px;
     height: 10px;
-    border: 1px solid grey;
+    border: 1px solid black;
+    
     margin: 0 0.400rem;
     cursor: pointer;
+    border-radius: 50%;
 }
 
 .dot-active {
-    background-color: rgb(168, 167, 167);
+    background-color: black;
 }
 
 .slider-img-container img {
@@ -196,7 +198,7 @@ main {
     .home-copy-container {
         width: 44%;
         margin: 1rem auto;
-        max-width: 390px;
+        max-width: 480px;
     }
 
     .copy-title {
