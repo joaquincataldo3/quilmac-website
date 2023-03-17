@@ -30,14 +30,14 @@ main {
     width: 100%;
     height: 100%;
     position: absolute;
-    right: 100%;
-    opacity: 0;
-    transition: right 500ms, opacity 150ms;
+    transform: translateX(100%);
+
+    transition: transform 500ms, opacity 150ms;
 }
 
 .active {
-    opacity: 1;
-    right: 0;
+  
+    transform: translateX(0);
 }
 
 .dots-container {
