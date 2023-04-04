@@ -521,6 +521,12 @@ const controller = {
 
         } catch (error) {
             console.log(`Error while trying to process the device creation: ${error}`);
+            const bodyImages = req.files;
+            if (bodyImages) {
+                bodyImages?.forEach(image =>
+                    fs.unlinkSync(path.join(__dirname, '../../public/images/devices/' + image.filename)) // borrar imagen en caso de que haya errors
+                );
+            }
             return res.render("unexpectedError.ejs")
         }
     },
