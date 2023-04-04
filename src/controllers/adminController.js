@@ -142,7 +142,7 @@ const controller = {
             const bodyImages = req.files;
             const { colors, storages, rams, cores, ssds } = req.body
 
-            
+
 
             if (bodyImages) {
                 const deviceImages = bodyImages.map(obj => {
@@ -157,7 +157,7 @@ const controller = {
 
             if (colors) {
                 if (colors.length === 1) {
-                    
+
                     const color = colors
                     const deviceColors = {
                         color_id: color,
@@ -166,7 +166,7 @@ const controller = {
                     }
                     await db.DeviceColor.create(deviceColors);
                 } else {
-                    
+
                     const deviceColors = colors.map(color => {
                         return {
                             color_id: color,
@@ -183,7 +183,7 @@ const controller = {
 
             if (newDevice.device_type_id == 1) {
                 if (storages.length === 1) {
-                 
+
                     const storage = storages
                     const deviceStorages = {
                         storage_id: storage,
@@ -192,7 +192,7 @@ const controller = {
                     }
                     await db.DeviceStorage.create(deviceStorages);
                 } else {
-                  
+
                     const deviceStorages = storages.map(storage => {
                         return {
                             storage_id: storage,
@@ -526,6 +526,7 @@ const controller = {
                 bodyImages?.forEach(image =>
                     fs.unlinkSync(path.join(__dirname, '../../public/images/devices/' + image.filename)) // borrar imagen en caso de que haya errors
                 );
+
             }
             return res.render("unexpectedError.ejs")
         }
