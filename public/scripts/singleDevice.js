@@ -100,8 +100,6 @@ window.addEventListener('load', () => {
                 }
             })
         })
-
-    
     }
 
 
