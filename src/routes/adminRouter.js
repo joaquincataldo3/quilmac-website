@@ -19,7 +19,7 @@ router.get('/update/:idProduct',adminController.updateOneDevice);
 
 router.post("/" , registerValidations, adminController.processAdminRegister);
 router.post("/login", loginValidations, adminController.processLogin);
-router.post("/accessory", uploadAccessoryImages.single("accessory_images"), accessoryCreationValidation,adminController.processAccessoryCreation);
+router.post("/accessory", uploadAccessoryImages.single("image"), accessoryCreationValidation,adminController.processAccessoryCreation);
 router.post("/device", uploadDeviceImages.array("device_images"), deviceCreationValidation,adminController.processDeviceCreation);
 
 router.put('/device/update/:idProduct', uploadDeviceImages.array("device_images"), adminController.processDeviceUpdate);

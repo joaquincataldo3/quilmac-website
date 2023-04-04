@@ -1,0 +1,155 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+main {
+    margin: 0;
+}
+
+.user-search-container {
+   padding-top: 1.5rem;
+   padding-left: 1rem;
+}
+
+.user-search-title {
+    font-size: 1rem;
+}
+
+.cards-container {
+    padding-top: 3rem;
+}
+
+
+.product-card-anchor {
+    width: 55%;
+    transition: transform 200ms;
+}
+
+.product-card-anchor:hover {
+    transform: translateY(-10px);
+}
+
+.product-card {
+    width: 100%;
+    height: auto;
+    margin: 1rem auto;
+    border: 1px solid #c5c4c4;
+    border-radius: 10px;
+    max-width: 350px;
+}
+
+.info-container {
+    padding: 1rem;
+    margin-bottom: 1rem;
+    text-align: center;
+}
+
+.device-model-container {
+    margin-bottom: 1rem;
+}
+
+.device-model {
+    color: black;
+}
+
+.available-colors-text {
+    color: black;
+}
+
+.img-card-container {
+    height: 250px;
+}
+
+.img-card-container img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+
+.colors-container {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 1rem;
+}
+
+.color {
+    border: 1px solid grey;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+}
+
+.more-info-form {
+    display: flex;
+    justify-content: center;
+   
+}
+
+.more-info-input {
+    border: 0;
+    cursor: pointer;
+    font-weight: 900;
+    color: white;
+    padding: 0.500rem;
+    background-color: blue;
+    margin: 2rem auto;
+    width: 55%;
+    transition: border 250ms, background-color 250ms, color 250ms;
+}
+
+.more-info-form:hover .more-info-input {
+    padding: 0.500rem;
+    border: 1px solid blue;
+    background-color: white;
+    color: black;
+}
+
+@media (min-width: 820px) {
+
+    .cards-container {
+        display: flex;
+        justify-content: space-around;
+        flex-wrap: wrap;
+    }
+
+    .product-card-anchor {
+        width: 45%;
+    }
+
+    .user-search-title {
+        font-size: 1.2rem;
+    }
+    
+
+}
+
+
+@media (min-width: 1000px) {
+
+    body {
+        background-color: pink;
+        padding: 3rem 5rem;
+    }
+
+    main {
+        background-color: white;
+        max-width: 1080px;
+        margin: 0 auto;
+    }
+
+    .user-search-title {
+        font-size: 1.5rem;
+    }
+
+    .product-card-anchor {
+        margin: 0 2rem;
+        width: 25%;
+    }
+
+
+
+
+}

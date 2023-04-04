@@ -17,6 +17,17 @@ const getInDb = {
         
     },
 
+    dbAccessoryTypes : async (req, res) => {
+        try {
+            const accessoryTypes = await db.AccessoryType.findAll()
+            return accessoryTypes;
+        } catch (error) {
+            console.log(`Fallé en getting accessory types: ${error}`)
+            return res.json(error)
+        }
+        
+    },
+
     dbColors : async (req, res) => {
         try {
             const colors = await db.Color.findAll();

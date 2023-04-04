@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <%- include ('partials/head') %>
+
+    <link rel="stylesheet" href="/css/accessoryCategory.css">
+</head>
+
+<body>
+
+    <%- include ('partials/header') %>
+
+        <main>
+            <div class="cards-container">
+                <% selectedCategory.forEach(accessory=> { %>
+                        <div class="product-card">
+                            <div class="img-card-container">
+                                <img class="main-image"
+                                    src="/images/accessories/<%= accessory.image %>"
+                                    alt="">
+                            </div>
+                            <div class="info-container">
+                                <div class="device-model-container">
+                                    <h2 class="device-model">
+                                        <%= accessory.accessory %>
+                                    </h2>
+                                </div>                   
+                            </div>
+                        </div>
+
+
+                    <% }) %>
+
+
+            </div>
+        </main>
+
+        <%- include ('partials/floatsocialmediabtn') %>
+
+        <%- include ('partials/footer') %>
+
+</body>
+
+</html>

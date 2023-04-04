@@ -212,14 +212,11 @@
                               <i class='bx bx-chevron-down'></i>
                               <div class='desktop-li-submenu' id='accesories-dropdown'>
                                    <ul type='none'>
-                                        <li class='desktop-submenu-dropdown-li'><a class="desktop-submenu-anchor"
-                                                  href="">LOREM IPSUM</a></li>
-                                        <li class='desktop-submenu-dropdown-li'><a class="desktop-submenu-anchor"
-                                                  href="">LOREM IPSUM</a></li>
-                                        <li class='desktop-submenu-dropdown-li'><a class="desktop-submenu-anchor"
-                                                  href="">LOREM IPSUM</a></li>
-                                        <li class='desktop-submenu-dropdown-li'><a class="desktop-submenu-anchor"
-                                                  href="">LOREM IPSUM</a></li>
+                                        <% dbAccessoryTypes.forEach(accessory=> { %>
+                                             <li class='desktop-submenu-dropdown-li'><a class='desktop-submenu-anchor' href="/accesorios/categoria/<%= accessory.id %>">
+                                                       <%= accessory.type %>
+                                                  </a></li>
+                                             <% }) %>
                                    </ul>
                               </div>
                          </a>

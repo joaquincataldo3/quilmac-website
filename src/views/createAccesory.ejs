@@ -13,14 +13,14 @@
     <main>
 
 
-            <form class="creation-form" id="create-device-form" action="/products/accessory" method="POST"
+            <form class="creation-form" id="create-device-form" action="/admin/accessory" method="POST"
                 enctype="multipart/form-data">
 
                 <h3>Formulario de creación de accesorio</h3>
 
                 <div class='label-input-container'>
-                    <label class="form-labels" for="accessory_type">Tipo</label>
-                    <select class="form-input" name="accessory_type">
+                    <label class="form-labels" for="type">Tipo</label>
+                    <select class="form-input" name="type">
                         <optgroup label="Tipo de accesorio">
                             <% accessoryTypes.forEach(accessory=> { %>
                                 <option value="<%= accessory.id %>">
@@ -29,37 +29,37 @@
                                 <% }) %>
                         </optgroup>
                     </select>
-                    <% if(locals.errors && errors.accessory_type) { %>
+                    <% if(locals.errors && errors.type) { %>
                         <p class="error-msg">
-                            <%= errors.accessory_type.msg %>
+                            <%= errors.type.msg %>
                         </p>
                         <% } %>
                 </div>
 
                 <div class="label-input-container">
-                    <label class="form-labels" for="model">Accesorio</label>
+                    <label class="form-labels" for="accessory">Accesorio</label>
                     <input class="form-input" type="text" name="accessory"
                         value="<%= locals.oldBody && oldBody.accessory ? oldBody.accessory : "" %> ">
-                    <% if(locals.errors && errors.name) { %>
+                    <% if(locals.errors && errors.accessory) { %>
                         <p class="error-msg">
-                            <%= errors.name.msg %>
+                            <%= errors.accessory.msg %>
                         </p>
                         <% } %>
                 </div>
 
                 <div class="label-input-container">
-                    <label class="form-labels" for="iphoneImages">Imagen</label>
-                    <input class="form-input" type="file" name="accesory_image">
-                    <% if(locals.errors && errors.device_images) {  %> 
-                        <p class = "error-msg"> <%= errors.device_images  %>  </p>
+                    <label class="form-labels" for="image">Imagen</label>
+                    <input class="form-input" type="file" name="image">
+                    <% if(locals.errors && errors.image) {  %> 
+                        <p class = "error-msg"> <%= errors.image.msg  %>  </p>
                     <% } %> 
                 </div>
 
                 <div class="label-input-container">
-                    <label class="form-labels" for="iphoneImages">Precio</label>
+                    <label class="form-labels" for="price">Precio (opcional)</label>
                     <input class="form-input" type="text" name="price">
-                    <% if(locals.errors && errors.device_images) {  %> 
-                        <p class = "error-msg"> <%= errors.device_images  %>  </p>
+                    <% if(locals.errors && errors.price) {  %> 
+                        <p class = "error-msg"> <%= errors.price  %>  </p>
                     <% } %> 
                 </div>
 

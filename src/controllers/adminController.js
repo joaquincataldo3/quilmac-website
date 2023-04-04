@@ -106,7 +106,7 @@ const controller = {
     // device form creation view
     createDevice: async (req, res) => {
         try {
-            return res.render("createDevice", { dbStorages: await getInDb.dbStorages(), dbColors: await getInDb.dbColors(), dbRams: await getInDb.dbRams(), dbSsds: await getInDb.dbSsds(), dbCores: await getInDb.dbCores(), dbDeviceTypes: await getInDb.dbDeviceTypes(), dbIphones: await getInDb.dbIphones(), dbMacbooks: await getInDb.dbMacbooks() });
+            return res.render("createDevice", { dbStorages: await getInDb.dbStorages(), dbColors: await getInDb.dbColors(), dbRams: await getInDb.dbRams(), dbSsds: await getInDb.dbSsds(), dbCores: await getInDb.dbCores(), dbDeviceTypes: await getInDb.dbDeviceTypes(), dbIphones: await getInDb.dbIphones(), dbMacbooks: await getInDb.dbMacbooks(), dbAccessoryTypes: await getInDb.dbAccessoryTypes() });
         } catch (error) {
             console.log(`Fail while rendering creation device page ${error}`)
             return res.render('unexpectedError')
@@ -493,41 +493,35 @@ const controller = {
 
             if (!errors.isEmpty()) {
 
-
+                
                 const bodyImage = req.file.filename;
                 const oldBody = req.body;
-                const accessoryTypes = await db.Accessory.findAll()
+                const accessoryTypes = await db.AccessoryType.findAll()
+                console.log(errors)
+               
+                fs.unlinkSync(path.join(__dirname, '../../public/images/accessories/' + bodyImage)) // borrar imagen en caso de que haya errors
+                  
 
-                if (bodyImage.length > 0) {
-                    bodyImage.forEach(image =>
-                        fs.unlinkSync(path.join(__dirname, '../../public/images/iphones/' + image.filename)) // borrar imagen en caso de que haya errors
-                    );
-                }
-
-                return res.render("createDevice", { errors: errors.mapped(), oldBody, accessoryTypes })
+                return res.render("createAccesory", { errors: errors.mapped(), oldBody, accessoryTypes })
             }
 
 
-            const accessoryToCreate = await db.Accessory.create({
-                accessory: accessory,
-                image: req.body.filename,
+            const accessoryToCreate = {
+                accessory: req.body.accessory,
+                image: req.file.filename,
                 price: req.body.price,
-                accessory_type_id: req.body.accessory_type
-            })
+                accessory_type_id: req.body.type
+            }
 
+           await db.Accessory.create(accessoryToCreate)
 
             return res.redirect('/')
 
 
         } catch (error) {
-            console.log(`Error while trying to process the device creation: ${error}`);
-            const bodyImages = req.files;
-            if (bodyImages) {
-                bodyImages?.forEach(image =>
-                    fs.unlinkSync(path.join(__dirname, '../../public/images/devices/' + image.filename)) // borrar imagen en caso de que haya errors
-                );
-
-            }
+            console.log(`Error while trying to process the accessory creation: ${error}`);
+            const bodyImage = req.file.filename;
+            fs.unlinkSync(path.join(__dirname, '../../public/images/accessories/' + bodyImage)) // borrar imagen en caso de que haya errors
             return res.render("unexpectedError.ejs")
         }
     },

@@ -6,6 +6,7 @@ const cookies = require('cookie-parser');
 const mainRouter = require('./routes/mainRouter');
 const adminRouter = require("./routes/adminRouter");
 const productsRouter = require("./routes/productsRouter");
+const accessoriesRouter = require("./routes/accessoriesRouter");
 const homeSearchbarRouter = require("./routes/homeSearchbarRouter");
 const methodOverride = require("method-override");
 const getInDb =  require('./utils/getInDb');
@@ -44,6 +45,7 @@ app.use(express.static(path.join(__dirname, '../public')));
 
 app.use('/', mainRouter);
 app.use("/admin", adminRouter);
+app.use("/accesorios", accessoriesRouter);
 app.use("/productos", productsRouter);
 app.use("/", homeSearchbarRouter);
 app.use(async (req, res, next) => {
