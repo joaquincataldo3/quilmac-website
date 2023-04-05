@@ -4,7 +4,7 @@
 <head>
     <%- include ('partials/head') %>
 
-    <link rel="stylesheet" href="/css/accessoryCategory.css">
+        <link rel="stylesheet" href="/css/accessoryCategory.css">
 </head>
 
 <body>
@@ -13,29 +13,35 @@
 
         <main>
             <div class="category-title-container">
-                <% dbAccessoryTypes.forEach(type => { %>
-                    <% if(type.id == idCategory) { %>
-                        <h1> Categoría: <%= type.type %> </h1>
-                    <% } %>
-                   
-               <% }) %>
+                <% dbAccessoryTypes.forEach(type=> { %>
+                    <% if(type.id==idCategory) { %>
+                        <h1> Categoría: <%= type.type %>
+                        </h1>
+                        <% } %>
+
+                            <% }) %>
             </div>
             <div class="cards-container">
                 <% selectedCategory.forEach(accessory=> { %>
-                        <div class="product-card">
-                            <div class="img-card-container">
-                                <img class="main-image"
-                                    src="/images/accessories/<%= accessory.image %>"
-                                    alt="">
-                            </div>
-                            <div class="info-container">
-                                <div class="device-model-container">
-                                    <h2 class="device-model">
-                                        <%= accessory.accessory %>
-                                    </h2>
-                                </div>                   
-                            </div>
+                    <div class="product-card">
+                        <div class="img-card-container">
+                            <img class="main-image" src="/images/accessories/<%= accessory.image %>" alt="">
                         </div>
+                        <div class="info-container">
+                            <div class="device-model-container">
+                                <h2 class="device-model">
+                                    <%= accessory.accessory %>
+                                </h2>
+                            </div>
+                            <% if(accessory.price !=0) { %>
+                                <div class="device-price-container">
+                                    <p>
+                                        <%= accessory.price %>
+                                    </p>
+                                </div>
+                                <% } %>
+                        </div>
+                    </div>
 
 
                     <% }) %>
@@ -46,7 +52,7 @@
 
         <%- include ('partials/floatsocialmediabtn') %>
 
-        <%- include ('partials/footer') %>
+            <%- include ('partials/footer') %>
 
 </body>
 
