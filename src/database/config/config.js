@@ -13,7 +13,6 @@ const devDbPassword = dotenv.DEV_DB_PASSWORD
 const devDbPort = dotenv.DEV_DB_PORT
 const devDbUser = dotenv.DEV_DB_USER
 
-<<<<<<< HEAD
 
 module.exports = {
   "development": {
@@ -22,21 +21,6 @@ module.exports = {
     "database": devDb,
     "host": devDbHost,
     "port": devDbPort,
-=======
-const devDb = dotenv.DEV_DB
-const dbHost = dotenv.DEV_DB_HOST
-const devDbPassword = dotenv.DEV_DB_PASSWORD
-const dbPort = dotenv.DEV_DB_PORT
-const dbUser = dotenv.DEV_DB_USER
-
-module.exports = {
-  "development": {
-    "username": dbUser,
-    "password": devDbPassword,
-    "database": devDb,
-    "host": dbHost,
-    'port': dbPort,
->>>>>>> d88f254b0e23dabb738320c7f7e2079d3dedfce8
     "dialect": "mysql"
   },
   "test": {
