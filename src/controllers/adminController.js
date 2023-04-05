@@ -509,7 +509,7 @@ const controller = {
             const accessoryToCreate = {
                 accessory: req.body.accessory,
                 image: req.file.filename,
-                price: req.body.price,
+                price: req.body.price ? req.body.price : null,
                 accessory_type_id: req.body.type
             }
 
