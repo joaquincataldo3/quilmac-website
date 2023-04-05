@@ -6,19 +6,19 @@ const DB_PORT = process.env.DB_PORT || 3306
 
 const dotenv = require("dotenv").config().parsed
 
-const DEV_DB = dotenv.DEV_DB
-const DEV_DB_HOST = dotenv.DEV_DB_HOST
-const DEV_DB_PASSWORD = dotenv.DEV_DB_PASSWORD
-const DEV_DB_PORT = dotenv.DEV_DB_PORT
-const DEV_DB_USER = dotenv.DEV_DB_USER
+const devDb = dotenv.DEV_DB
+const dbHost = dotenv.DEV_DB_HOST
+const devDbPassword = dotenv.DEV_DB_PASSWORD
+const dbPort = dotenv.DEV_DB_PORT
+const dbUser = dotenv.DEV_DB_USER
 
 module.exports = {
   "development": {
-    "username": DEV_DB_USER,
-    "password": DEV_DB_PASSWORD,
-    "database": DEV_DB,
-    "host": DEV_DB_HOST,
-    'port': DEV_DB_PORT,
+    "username": dbUser,
+    "password": devDbPassword,
+    "database": devDb,
+    "host": dbHost,
+    'port': dbPort,
     "dialect": "mysql"
   },
   "test": {
