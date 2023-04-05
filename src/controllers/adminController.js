@@ -509,7 +509,7 @@ const controller = {
             const accessoryToCreate = {
                 accessory: req.body.accessory,
                 image: req.file.filename,
-                price: req.body.price,
+                price: req.body.price ? req.body.price : 0,
                 accessory_type_id: req.body.type
             }
 
@@ -519,9 +519,9 @@ const controller = {
 
 
         } catch (error) {
-            console.log(`Error while trying to process the accessory creation: ${error}`);
             const bodyImage = req.file.filename;
             fs.unlinkSync(path.join(__dirname, '../../public/images/accessories/' + bodyImage)) // borrar imagen en caso de que haya errors
+            return res.send(error)
             return res.render("unexpectedError.ejs")
         }
     },

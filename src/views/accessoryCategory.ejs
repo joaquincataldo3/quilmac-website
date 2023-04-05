@@ -4,7 +4,7 @@
 <head>
     <%- include ('partials/head') %>
 
-    <link rel="stylesheet" href="/css/accessoryCategory.css">
+        <link rel="stylesheet" href="/css/accessoryCategory.css">
 </head>
 
 <body>
@@ -13,12 +13,13 @@
 
         <main>
             <div class="category-title-container">
-                <% dbAccessoryTypes.forEach(type => { %>
-                    <% if(type.id == idCategory) { %>
-                        <h1> Categoría: <%= type.type %> </h1>
-                    <% } %>
-                   
-               <% }) %>
+                <% dbAccessoryTypes.forEach(type=> { %>
+                    <% if(type.id==idCategory) { %>
+                        <h1> Categoría: <%= type.type %>
+                        </h1>
+                        <% } %>
+
+                            <% }) %>
             </div>
             <div class="cards-container">
                 <% selectedCategory.forEach(accessory=> { %>
@@ -49,6 +50,21 @@
                                 </div>
                                 <% } %>
                         </div>
+                        <div class="info-container">
+                            <div class="device-model-container">
+                                <h2 class="device-model">
+                                    <%= accessory.accessory %>
+                                </h2>
+                            </div>
+                            <% if(accessory.price !=0) { %>
+                                <div class="device-price-container">
+                                    <p>
+                                        <%= accessory.price %>
+                                    </p>
+                                </div>
+                                <% } %>
+                        </div>
+                    </div>
 
 
                     <% }) %>
@@ -59,7 +75,7 @@
 
         <%- include ('partials/floatsocialmediabtn') %>
 
-        <%- include ('partials/footer') %>
+            <%- include ('partials/footer') %>
 
 </body>
 
