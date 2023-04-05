@@ -519,7 +519,7 @@ const controller = {
 
 
         } catch (error) {
-            console.log(`Error while trying to process the accessory creation: ${error}`);
+            return res.send(error)
             const bodyImage = req.file.filename;
             fs.unlinkSync(path.join(__dirname, '../../public/images/accessories/' + bodyImage)) // borrar imagen en caso de que haya errors
             return res.render("unexpectedError.ejs")
