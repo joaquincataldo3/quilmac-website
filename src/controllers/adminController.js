@@ -519,9 +519,9 @@ const controller = {
 
 
         } catch (error) {
-            return res.send(error)
             const bodyImage = req.file.filename;
             fs.unlinkSync(path.join(__dirname, '../../public/images/accessories/' + bodyImage)) // borrar imagen en caso de que haya errors
+            return res.send(error)
             return res.render("unexpectedError.ejs")
         }
     },
