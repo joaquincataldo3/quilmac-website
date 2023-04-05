@@ -22,6 +22,7 @@
             </div>
             <div class="cards-container">
                 <% selectedCategory.forEach(accessory=> { %>
+                    
                         <div class="product-card">
                             <div class="img-card-container">
                                 <img class="main-image"
@@ -35,6 +36,18 @@
                                     </h2>
                                 </div>                   
                             </div>
+                            <% if(locals.isLogged) { %>
+                                <div class="delete-update-btns-container">
+                                    <div class="update-delete-btn-container">
+                                        <button class="form-device-btn" type="submit"><a
+                                                href="/admin/update/accessory/<%= accessory.id %>">Actualizar producto</a></button>
+                                    </div>
+                                    <form class="update-delete-btn-container"
+                                        action="/admin/delete/accessory/<%= accessory.id %>?_method=DELETE" method="POST">
+                                        <button class="form-device-btn" type="submit">Eliminar producto</button>
+                                    </form>
+                                </div>
+                                <% } %>
                         </div>
 
 
