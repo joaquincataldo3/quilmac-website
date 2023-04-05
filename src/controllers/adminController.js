@@ -527,12 +527,14 @@ const controller = {
     },
     destroyOneAccessory: async (req, res) => {
         try {
-            const accessoryToDelete = await db.Accessory.findByPk(req.params.idProduct);
-            await db.Device.destroy({
+           console.log(req.params.idAccessory)
+            const accessoryToDelete = await db.Accessory.findByPk(req.params.idAccessory)
+
+            await db.Accessory.destroy({
                 where: {
                     id: accessoryToDelete.id
                 }
-            })
+            }) 
             return res.redirect('/')
         } catch (error) {
             console.log(`Failed while trying to delete an accessory: ${error}`);

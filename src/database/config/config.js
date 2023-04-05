@@ -15,6 +15,8 @@ const devDbUser = dotenv.DEV_DB_USER
 
 
 
+console.log(devDb)
+
 module.exports = {
   "development": {
     "username": devDbUser,

@@ -26,7 +26,7 @@ router.put('/device/update/:idProduct', uploadDeviceImages.array("device_images"
 
 router.delete('/delete/:idProduct',adminController.destroyOneDevice);
 router.delete('/delete/:idProduct',adminController.destroyOneAccessory);
-router.delete('/delete/:idProduct',adminController.destroyOneAccessory);
+router.delete('/delete/:idAccessory',adminController.destroyOneAccessory);
 
 
 router.post("/" , registerValidations, adminController.processAdminRegister);
@@ -35,8 +35,8 @@ router.post("/accessory", uploadAccessoryImages.single("accessory_images"), acce
 
 router.post("/login", loginValidations, adminController.processLogin);
 
-router.delete('/delete/:idProduct', adminController.destroyOneDevice);
-router.delete('/delete/:idProduct', adminController.destroyOneAccessory);
+router.delete('/delete/device/:idProduct', adminController.destroyOneDevice);
+router.delete('/delete/accessory/:idAccessory', adminController.destroyOneAccessory);
 
 
 

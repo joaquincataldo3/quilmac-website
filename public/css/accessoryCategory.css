@@ -82,29 +82,36 @@ main {
     border-radius: 50%;
 }
 
-.more-info-form {
-    display: flex;
-    justify-content: center;
-   
+.update-delete-btn-container {
+    width: 85%;
+    margin: 0 auto;
 }
 
-.more-info-input {
+.form-device-btn {
     border: 0;
-    cursor: pointer;
-    font-weight: 900;
-    color: white;
+    border: 1px solid #F47658;
+    width: 100%;
     padding: 0.500rem;
-    background-color: blue;
-    margin: 2rem auto;
-    width: 55%;
-    transition: border 250ms, background-color 250ms, color 250ms;
+    margin: 1.5rem auto;
+    text-align: center;
+    font-weight: 700;
+    font-size: 1.1rem;
+    color: black;
+    transition: color 150ms;
+    cursor: pointer;
 }
 
-.more-info-form:hover .more-info-input {
-    padding: 0.500rem;
-    border: 1px solid blue;
-    background-color: white;
+.form-device-btn:hover {
+    color: #F47658;
+}
+
+
+.form-device-btn a {
     color: black;
+}
+
+.form-device-btn a:hover {
+    color: #F47658;
 }
 
 @media (min-width: 820px) {
