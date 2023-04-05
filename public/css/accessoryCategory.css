@@ -8,12 +8,12 @@ main {
     margin: 0;
 }
 
-.user-search-container {
-   padding-top: 1.5rem;
-   padding-left: 1rem;
+.category-title-container {
+    padding-top: 1.5rem;
+    padding-left: 1rem;
 }
 
-.user-search-title {
+.category-title-container h1 {
     font-size: 1rem;
 }
 
@@ -119,7 +119,13 @@ main {
         width: 45%;
     }
 
-    .user-search-title {
+
+    .category-title-container {
+        padding-top: 1.5rem;
+        padding-left: 1rem;
+    }
+    
+    .category-title-container h1 {
         font-size: 1.2rem;
     }
     
@@ -141,6 +147,15 @@ main {
     }
 
     .user-search-title {
+        font-size: 1.5rem;
+    }
+
+    .category-title-container {
+        padding-top: 1.5rem;
+        padding-left: 1rem;
+    }
+    
+    .category-title-container h1 {
         font-size: 1.5rem;
     }
 

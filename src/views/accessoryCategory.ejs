@@ -12,6 +12,14 @@
     <%- include ('partials/header') %>
 
         <main>
+            <div class="category-title-container">
+                <% dbAccessoryTypes.forEach(type => { %>
+                    <% if(type.id == idCategory) { %>
+                        <h1> Categoría: <%= type.type %> </h1>
+                    <% } %>
+                   
+               <% }) %>
+            </div>
             <div class="cards-container">
                 <% selectedCategory.forEach(accessory=> { %>
                         <div class="product-card">

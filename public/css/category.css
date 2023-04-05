@@ -17,6 +17,15 @@ main {
     font-size: 1rem;
 }
 
+.category-title-container {
+    padding-top: 1.5rem;
+    padding-left: 1rem;
+}
+
+.category-title-container h1 {
+    font-size: 1rem;
+}
+
 .cards-container {
     padding-top: 3rem;
 }
@@ -123,6 +132,9 @@ main {
         font-size: 1.2rem;
     }
     
+    .category-title-container h1 {
+        font-size: 1.2rem;
+    }
 
 }
 
@@ -141,6 +153,10 @@ main {
     }
 
     .user-search-title {
+        font-size: 1.5rem;
+    }
+
+    .category-title-container h1 {
         font-size: 1.5rem;
     }
 
