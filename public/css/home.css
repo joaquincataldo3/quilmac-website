@@ -36,7 +36,7 @@ main {
 }
 
 .active {
-  
+
     transform: translateX(0);
 }
 
@@ -100,7 +100,7 @@ main {
 
 .shadow {
     position: absolute;
-  
+
     left: 0;
     right: 0;
     bottom: 0;
@@ -171,6 +171,8 @@ main {
     .slider-container {
         height: 300px;
     }
+
+
 }
 
 
@@ -184,6 +186,21 @@ main {
     }
 
 
+
+    @media (min-width: 768px) {
+
+        .home-copy-row-container {
+            display: flex;
+            flex-wrap: wrap;
+            padding: 0 5%;
+        }
+
+        .home-copy-container {
+            width: 45%;
+        }
+
+
+    }
 }
 
 
@@ -207,16 +224,17 @@ main {
         margin: 3.5rem 0;
     }
 
-    .home-copy-row-container {
-        display: flex;
-        flex-wrap: wrap;
-    }
-
     .home-copy-container {
         width: 44%;
         margin: 1rem auto;
         max-width: 480px;
         transition: transform 250ms;
+       
+    }
+
+    .home-copy-img-container {
+        height: 250px;
+        position: relative;
     }
 
 
@@ -229,6 +247,6 @@ main {
         font-size: 1rem;
     }
 
- 
+
 
 }
