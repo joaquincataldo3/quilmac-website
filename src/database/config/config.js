@@ -18,7 +18,7 @@ module.exports = {
   "test": {
     "username": "root",
     "password": null,
-    "database": "quilmac_local",
+    "database": "quilmac",
     "host": "127.0.0.1",
     "dialect": "mysql"
   },
