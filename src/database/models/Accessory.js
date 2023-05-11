@@ -43,8 +43,13 @@ module.exports = (sequelize, dataTypes) => {
     Accessory.associate = (models) => {
 
         Accessory.belongsTo(models.Accessory, {
-            as: "accessory_types",
+            as: "types",
             foreignKey: "accessory_type_id"
+        })
+
+        Accessory.belongsTo(models.Brand, {
+            as: "brands",
+            foreignKey: "brand_id"
         })
 
     }

@@ -22,7 +22,7 @@
                     <label class="form-labels" for="type">Tipo</label>
                     <select class="form-input" name="type">
                         <optgroup label="Tipo de accesorio">
-                            <% accessoryTypes.forEach(accessory=> { %>
+                            <% dbAccessoryTypes.forEach(accessory=> { %>
                                 <option value="<%= accessory.id %>">
                                     <%=accessory.type%>
                                 </option>
@@ -53,6 +53,24 @@
                     <% if(locals.errors && errors.image) {  %> 
                         <p class = "error-msg"> <%= errors.image.msg  %>  </p>
                     <% } %> 
+                </div>
+
+                <div class='label-input-container'>
+                    <label class="form-labels" for="brand">Marca</label>
+                    <select class="form-input" name="brand">
+                        <optgroup label="Marca">
+                            <% dbBrands.forEach(brand=> { %>
+                                <option value="<%= brand.id %>">
+                                    <%=brand.brand%>
+                                </option>
+                                <% }) %>
+                        </optgroup>
+                    </select>
+                    <% if(locals.errors && errors.type) { %>
+                        <p class="error-msg">
+                            <%= errors.type.msg %>
+                        </p>
+                        <% } %>
                 </div>
 
                 <div class="label-input-container">

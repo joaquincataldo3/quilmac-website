@@ -4,7 +4,8 @@ const bcryptjs = require("bcryptjs");
 const fs = require("fs");
 const path = require("path");
 const getInDb = require('../utils/getInDb')
-const { Op } = require('sequelize')
+const { Op } = require('sequelize');
+const { get } = require("http");
 
 
 const controller = {
@@ -483,9 +484,9 @@ const controller = {
     },
     accessoryCreation: async (req, res) => {
 
-        const accessoryTypes = await db.AccessoryType.findAll()
 
-        return res.render('createAccesory', { accessoryTypes })
+
+        return res.render('createAccesory', { dbAccessoryTypes: await getInDb.dbAccessoryTypes(), dbBrands: await getInDb.dbBrands() })
     },
     processAccessoryCreation: async (req, res) => {
         try {
@@ -510,7 +511,9 @@ const controller = {
                 accessory: req.body.accessory,
                 image: req.file.filename,
                 price: req.body.price ? req.body.price : 0,
-                accessory_type_id: req.body.type
+                accessory_type_id: req.body.type,
+                
+                brand_id: req.body.brand
             }
 
            await db.Accessory.create(accessoryToCreate)
@@ -523,6 +526,16 @@ const controller = {
             fs.unlinkSync(path.join(__dirname, '../../public/images/accessories/' + bodyImage)) // borrar imagen en caso de que haya errors
             return res.send(error)
             return res.render("unexpectedError.ejs")
+        }
+    },
+    accessoryUpdate: async (req, res) => {
+        try {
+            const idAccessory = req.params.idAccessory;
+            const accessoryToUpdate = await db.Device.findByPk(idAccessory, { include: ['types', 'brands'] });
+            return res.render('updateAccessory', {accessoryToUpdate, dbAccessoryTypes: await getInDb.dbAccessoryTypes(), dbBrands: await getInDb.dbBrands() })
+        } catch (error) {
+            console.log(`Fail while rendering update accessory page ${error}`)
+            return res.render('unexpectedError')
         }
     },
     destroyOneAccessory: async (req, res) => {

@@ -1,43 +1,51 @@
 
-window.onload = function(){
+window.onload = function () {
 
   const slides = document.querySelectorAll('.slider-img-container');
   const dotsContainer = document.querySelector('.dots-container');
- 
+
 
   let currentImage = 0;
   let slidesLength = slides.length;
 
 
-  const carouselInterval = setInterval(handleCarouselActualImage, 5000);
-  const dotsInterval = setInterval(dotsNextSlide, 5001);
- 
+  const carouselInterval = setInterval(handleCarouselActualImage, 3000);
+  const dotsInterval = setInterval(dotsNextSlide, 3001);
+
+  handleCarouselImgClasses()
 
   function handleCarouselImgClasses() {
     slides.forEach((img, i) => { // function that adds or removes the class of an image
-        if (i == currentImage) {
-            img.classList.add('active');
-            
-        } else {
-            img.classList.remove('active');
-        }
+      if (i == currentImage) {
+        console.log(currentImage)
+        img.classList.add('active');
+        img.classList.remove('prev-slide');
+        img.classList.remove('next-slide');
+      } else if (i == currentImage - 1 || (currentImage == 0 && i == slidesLength - 1)) {
+        img.classList.remove('active');
+        img.classList.remove('next-slide');
+        img.classList.add('prev-slide');
+      } else {
+        img.classList.remove('active');
+        img.classList.remove('prev-slide');
+        img.classList.add('next-slide');
+      }
     })
   }
 
   function handleCarouselActualImage() {
-    if(currentImage < slidesLength - 1) { // function that handles the maths of the actual image. 
+    if (currentImage < slidesLength - 1) { // function that handles the maths of the actual image. 
       // this function just redeclares the image based on the condition
       // whether is the last dot or not
       currentImage += 1;
-      handleCarouselImgClasses()
     } else {
-      currentImage = 0
-      handleCarouselImgClasses()
+      currentImage = 0 
     }
+    return handleCarouselImgClasses()
   }
 
-  for(i = 0; i < slidesLength; i++) {
-    if(i == 0) {
+  for (i = 0; i < slidesLength; i++) {
+    if (i == 0) {
       dotsContainer.innerHTML += "<div class='home-slider-dot dot-active'></div>";
     } else {
       dotsContainer.innerHTML += "<div class='home-slider-dot'></div>";
@@ -51,7 +59,7 @@ window.onload = function(){
   dotsJump()
 
 
-  function dotsNextSlide () { 
+  function dotsNextSlide() {
     const activeDot = document.querySelector('.dot-active')
     activeDot.classList.remove('dot-active')
     if (activeDot.nextElementSibling) {
@@ -61,12 +69,12 @@ window.onload = function(){
       dots[0].classList.add('dot-active')
     }
   }
- 
- 
-  function dotsJump () {
-    dots.forEach((dot, i) => { 
+
+
+  function dotsJump() {
+    dots.forEach((dot, i) => {
       dot.addEventListener('click', () => {
-        if(!dot.classList.contains('dot-active')){
+        if (!dot.classList.contains('dot-active')) {
           const activeDot = document.querySelector('.dot-active')
           activeDot.classList.remove('dot-active')
           dot.classList.add('dot-active')
@@ -77,5 +85,5 @@ window.onload = function(){
         }
       })
     })
-  } 
+  }
 }
