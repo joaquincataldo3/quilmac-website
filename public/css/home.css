@@ -39,10 +39,6 @@ main {
 }
 
 .active {
-<<<<<<< HEAD
-=======
-
->>>>>>> 761055b627774fc121061ae268b08b0b546032fc
     transform: translateX(0);
     z-index: 10;
 }

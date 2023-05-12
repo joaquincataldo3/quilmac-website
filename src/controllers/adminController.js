@@ -120,7 +120,7 @@ const controller = {
             const errors = validationResult(req);
 
             if (!errors.isEmpty()) {
-                console.log('errors')
+      
                 const oldBody = req.body;
 
                 const bodyImages = req.files;
