@@ -15,6 +15,17 @@ footer {
     border-top: 1px solid rgb(195, 195, 195);
 }
 
+.footer-first-box-container {
+    display: flex;
+    justify-content: space-between;
+}
+
+.quilmac-place {
+    object-fit: cover;
+    width: 400px;
+    height: 230px;
+}
+
 .footer-icons-wrapper {
     margin: 2rem 0;
 }
@@ -26,6 +37,7 @@ footer {
 .footer-icon-container {
     display: flex;
     align-items: center;
+    margin: 2% 0;
 }
 
 
