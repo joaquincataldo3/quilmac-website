@@ -127,6 +127,18 @@ const getInDb = {
         
     },
 
+    dbBrands: async (req, res) => {
+        try {
+            const brands = await db.Brand.findAll()
+            return brands;
+        } catch (error) {
+            console.log(`Fallé en getting brands: ${error}`)
+            return res.json(error)
+        }
+        
+    }
+
+
 
 }
 

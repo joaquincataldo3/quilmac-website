@@ -19,6 +19,9 @@ main {
 
 .cards-container {
     padding-top: 3rem;
+    height: auto;
+    display: flex;
+    flex-wrap: wrap;
 }
 
 
@@ -32,7 +35,7 @@ main {
 }
 
 .product-card {
-    width: 100%;
+    width: 45%;
     height: auto;
     margin: 1rem auto;
     border: 1px solid #c5c4c4;
@@ -51,6 +54,7 @@ main {
 }
 
 .device-model {
+    font-size: 1rem;
     color: black;
 }
 
@@ -95,7 +99,7 @@ main {
     margin: 1.5rem auto;
     text-align: center;
     font-weight: 700;
-    font-size: 1.1rem;
+    font-size: 0.875rem;
     color: black;
     transition: color 150ms;
     cursor: pointer;
@@ -164,6 +168,15 @@ main {
     
     .category-title-container h1 {
         font-size: 1.5rem;
+    }
+
+    .product-card {
+        width: 32%;
+        height: auto;
+        margin: 1rem auto;
+        border: 1px solid #c5c4c4;
+        border-radius: 10px;
+        max-width: 350px;
     }
 
     .product-card-anchor {

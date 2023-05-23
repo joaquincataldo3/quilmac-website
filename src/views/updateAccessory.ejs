@@ -1,0 +1,231 @@
+<main>
+
+    <div class="form-container">
+
+        <% if(locals.accessoryToUpdate && accessoryToUpdate.device_type_id) { %> 
+        <form class="creation-form"  action="/admin/acessory/update/<%=accessoryToUpdate.id %>?_method=PUT" method="POST"
+            enctype="multipart/form-data">
+            <% } %> 
+
+            <h3>Accessory update form</h3>
+
+            <div class='label-input-container'>
+                <label class="form-labels" for="accessory_type">Device type</label>
+                <select class="form-input" name="accessory_type" id="select_accessory_type">
+                    <optgroup label="Model">
+                        <% if(locals.accessoryToUpdate && accessoryToUpdate.device_type_id) { %> 
+                        <% dbDeviceTypes.forEach(device=> { %>
+                            <option value="<%= device.id %>" <%=device.id==accessoryToUpdate.device_type_id
+                                ? 'selected' : '' %>>
+                                <%=device.type%>
+                            </option>
+                        <% }) %>
+                        <% } %> 
+                    </optgroup>
+                </select>
+                <% if(locals.errors && errors.device_type) { %>
+                    <p class="error-msg">
+                        <%= errors.device_type.msg %>
+                    </p>
+                    <% } %>
+            </div>
+
+
+            <div class="label-input-container">
+                <label class="form-labels" for="model">Model</label>
+                <% if(locals.accessoryToUpdate && accessoryToUpdate.model) { %> 
+                <input class="form-input" type="text" name="model"
+                    value="<%= accessoryToUpdate.model ? accessoryToUpdate.model : '' %>">
+                 <% } %>
+                <% if(locals.errors && errors.model) { %>
+                    <p class="error-msg">
+                        <%= errors.model.msg %>
+                    </p>
+                    <% } %>
+            </div>
+
+
+            <div class="label-input-container">
+                <label class="form-labels" for="iphone-form-input">Screen</label>
+                <% if(locals.accessoryToUpdate && accessoryToUpdate.screen) { %>
+                <input class="form-input" type="text" name="screen"
+                    value="<%= accessoryToUpdate.screen ? accessoryToUpdate.screen : '' %>">
+                <% } %>
+                <% if(locals.errors && errors.screen) { %>
+                    <p class="error-msg">
+                        <%= errors.screen.msg %>
+                    </p>
+                    <% } %>
+            </div>
+
+            <div class="label-input-container">
+                <label class="form-labels" for="technical_detail">Technical Detail</label>
+                <% if(locals.accessoryToUpdate && accessoryToUpdate.technical_detail) { %>
+                <input class="form-input" type="text" name="technical_detail"
+                    value="<%= accessoryToUpdate.technical_detail && accessoryToUpdate.technical_detail %>">
+                <% } %> 
+                <% if(locals.errors && errors.technical_detail) { %>
+                    <p class="error-msg">
+                        <%= errors.technical_detail.msg %>
+                    </p>
+                    <% } %>
+            </div>
+
+            <div class="label-input-container">
+                <label class="form-labels" for="release_date">Release Date</label>
+                <% if(locals.accessoryToUpdate && accessoryToUpdate.technical_detail) { %>
+                <input class="form-input" type="date" name="release_date"
+                    value="<%= accessoryToUpdate.release_date && accessoryToUpdate.release_date %>">
+                <% } %> 
+                <% if(locals.errors && errors.release_date) { %>
+                    <p class="error-msg">
+                        <%= errors.release_date.msg %>
+                    </p>
+                <% } %>
+            </div>
+
+            <div class="label-input-container">
+                
+                <label id='device-image' class="form-labels" for="device_images">Add images
+                <input class="form-input" type="file" name="device_images" multiple>
+
+            </div>
+            <div class="label-input-container">
+                <div class="current-img-container">
+                    <label class="form-labels">Current images</label>
+                    <% accessoryToUpdate.images.map((img, i) => { %>
+                        <% console.log(img) %>
+                        <div class="current-img-subcontainer">
+                            <input type="checkbox" id="<%= i %>" name="current_imgs" checked value="<%= img.image %>">
+                            <label for="<%= i %>">
+                                <img class="product-to-update-img"
+                                src="/images/devices/<%= img.image %>" alt="">
+                            </label>                        
+                        </div>
+                    <% }) %>
+                </div>
+            </div>
+               
+            <% if(locals.errors) { %>
+                <p class="error-msg"> Por favor, re-seleccioná las imagenes </p>
+                <% } %>
+                    <% if(locals.errors && errors.device_images) { %>
+                        <p class="error-msg">
+                            <%= errors.device_images %>
+                        </p>
+                        <% } %>
+
+
+                            <div class='gb-checkbox-global-container'>
+                                <h5>Colors</h5>
+                                <div class='gb-checkbox-container'>
+                                <% if(locals.accessoryToUpdate && accessoryToUpdate.colors) { %>
+                                    <% dbColors.forEach(color=> { %>
+                                        
+                                        <div class="single-checkbox-container">
+                                            <input type="checkbox" name="colors" value="<%= color.id %>"
+                                             <%= accessoryToUpdate.colors.find(accessoryToUpdateColor => accessoryToUpdateColor.id == color.id) && 'checked' %>>
+                                            <label class="checkbox-labels" id="colors" for="<%= color.color %>">
+                                                <%= color.color %>
+                                            </label><br>
+                                        </div>
+                                        <% }) %>
+                                <% } %>
+                                </div>
+                            </div>
+
+
+                            <% if(locals.accessoryToUpdate && accessoryToUpdate.device_type_id === 1) { %>
+                                <div class='gb-checkbox-global-container' id="storages-for-iphone">
+                                    <h5>Storages</h5>
+                                    <div class='gb-checkbox-container'>
+                                        <% dbStorages.forEach(strg=> { %>
+                                            <div class="single-checkbox-container">
+                                                <input type="checkbox" name="storages" value="<%= strg.id %>"
+                                                <%= accessoryToUpdate.storages.find(accessoryToUpdateStorage => accessoryToUpdateStorage.id == strg.id) && 'checked' %>>
+                                                <label class="checkbox-labels" for="<%= strg.storage  %>">
+                                                    <%= strg.storage==1 ? `${strg.storage} TB` : `${strg.storage}GB`
+                                                        %>
+                                                </label><br>
+                                            </div>
+                                            <% }) %>
+                                    </div>
+                                </div>
+                                <% } %>
+
+                            <% if(locals.accessoryToUpdate && accessoryToUpdate.device_type_id !== 1) { %>
+                                <div class='gb-checkbox-global-container' id="rams-container">
+                                    <h5>Rams</h5>
+                                    <div class='gb-checkbox-container'>
+                                        <% dbRams.forEach(ram=> { %>
+                                            <div class="single-checkbox-container">
+                                                <input type="checkbox" name="rams" value="<%= ram.id %>"
+                                                <%= accessoryToUpdate.rams.find(accessoryToUpdateRam => accessoryToUpdateRam.id == ram.id) && 'checked' %>>
+                                                <label class="checkbox-labels" for="<%= ram.ram %>">
+                                                    <%= ram.ram==1 ? `${ram.ram}TB`: `${ram.ram}GB` %>
+                                                 </label><br>
+                                            </div>
+                                        <% }) %>
+                                            </div>
+                                            <% if(locals.errors && errors.rams) { %>
+                                                <p class="error-msg">
+                                                    <%= errors.rams.msg %>
+                                                </p>
+                                            <% } %>
+                                    </div>
+                                    
+
+                                     
+                                    <div class='gb-checkbox-global-container' id="cores-container">
+                                        <h5>Cores</h5>
+                                        <div class='gb-checkbox-container'>
+                                                    <% dbCores.forEach(core=> { %>
+                                                        <div class="single-checkbox-container">
+                                                            <input type="checkbox" name="cores" value="<%= core.id %>" 
+                                                            <%= accessoryToUpdate.cores.find(accessoryToUpdateCore => accessoryToUpdateCore.id == core.id) && 'checked' %>>
+                                                            <label class="checkbox-labels" for="<%= core.core %>">
+                                                                <%= core.core==1 ? `${core.core}TB`:
+                                                                    `${core.core}GB` %>
+                                                            </label><br>
+                                                        </div>
+                                                        <% }) %>
+                                        </div>
+                                                <% if(locals.errors && errors.rams) { %>
+                                                    <p class="error-msg">
+                                                        <%= errors.rams.msg %>
+                                                    </p>
+                                                    <% } %>
+                                    </div>
+                               
+                                    
+                                 
+                                    <div class='gb-checkbox-global-container' id="ssds-container">
+                                                <h5>Ssds</h5>
+                                                <div class='gb-checkbox-container'>
+                                                    <% dbSsds.forEach(ssd=> { %>
+                                                        <div class="single-checkbox-container">
+                                                            <input type="checkbox" name="ssds"
+                                                                value="<%= ssd.id %>"  <%= accessoryToUpdate.ssds.find(accessoryToUpdateSsd => accessoryToUpdateSsd.id == ssd.id) && 'checked' %>>
+                                                            <label class="checkbox-labels" for="<%= ssd.ssd %>">
+                                                                <%= ssd.ssd==1 ? `${ssd.ssd}TB`: `${ssd.ssd}GB` %>
+                                                            </label><br>
+                                                            <% }) %>
+                                                        </div>
+
+                                                </div>
+                                                <% if(locals.errors && errors.ssds) { %>
+                                                    <p class="error-msg">
+                                                        <%= errors.ssds.msg %>
+                                                    </p>
+                                                    <% } %>
+                                    </div>
+                                    <% } %> 
+
+                                <button class="form-device-btn" type="submit">Actualizar</button>
+
+        </form>
+    </div>
+
+    <
+
+</main>

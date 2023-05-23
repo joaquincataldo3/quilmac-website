@@ -35,7 +35,19 @@
                                     <h2 class="device-model">
                                         <%= accessory.accessory %>
                                     </h2>
-                                </div>                   
+                                </div>   
+                                <% if(accessory.price !=0) { %>
+                                    <div class="device-price-container">
+                                        <p>
+                                            <%= accessory.price %>
+                                        </p>
+                                    </div>
+                                    <% } %>     
+                                <div class="device-price-container">
+                                    <p>
+                                        <%= accessory.brands.brand %>
+                                    </p>
+                                </div>           
                             </div>
                             <% if(locals.isLogged) { %>
                                 <div class="delete-update-btns-container">
@@ -49,25 +61,10 @@
                                     </form>
                                 </div>
                                 <% } %>
-                        </div>
-                        <div class="info-container">
-                            <div class="device-model-container">
-                                <h2 class="device-model">
-                                    <%= accessory.accessory %>
-                                </h2>
-                            </div>
-                            <% if(accessory.price !=0) { %>
-                                <div class="device-price-container">
-                                    <p>
-                                        <%= accessory.price %>
-                                    </p>
-                                </div>
-                                <% } %>
-                        </div>
-                    </div>
-
-
-                    <% }) %>
+                        </div>  
+                        
+                <% }) %>
+            </div>
 
                     <% if(locals.isLogged) { %>
                         <div class="delete-update-btns-container">
