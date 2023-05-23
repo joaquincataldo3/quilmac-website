@@ -52,7 +52,7 @@ app.use(async (req, res, next) => {
     res.status(404).render('404error', {dbAppleDevices: await getInDb.dbAppleDevices(), dbStorages: await getInDb.dbStorages(), dbColors: await getInDb.dbColors(), dbRams: await getInDb.dbRams(), dbSsds: await getInDb.dbSsds(), dbCores: await getInDb.dbCores(), dbDeviceTypes: await getInDb.dbDeviceTypes(), dbIphones: await getInDb.dbIphones(), dbMacbooks: await getInDb.dbMacbooks(), dbAccessoryTypes: await getInDb.dbAccessoryTypes()})
   })
 
-const PORT = process.env.PORT || 3095
+const PORT = process.env.PORT 
 
 app.listen(PORT, (req, res) => {
     console.log(`Server opened on port ${PORT}`)
