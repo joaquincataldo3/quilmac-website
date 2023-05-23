@@ -1,15 +1,31 @@
-# Thanks for checking out this repository
+# Quilmac project
+  - Deployed on www.quilmac.com
 
-This project was deployed on https://portfolio-five-omega-49.vercel.app/
+## Project structure
+  - The project is a monolith, built with an MVC PATTERN
 
-# Overview
+## Project features
+  - Custom responsive design
+  - CRUD of users and products
+  - Users and admin register-login functionality
 
-This project was built with HTML, CSS and Javascript for the front, and MySQl with Sequelize and Javascript for the backend. A CRUD of products/users was done, utilizing relational data with MySQL relations and validations with Express Validator
+## Technologies used
+  - HTML -EJS based template-
+  - CSS
+  - Javascript
+  - NodeJS
+  - MySQL (Sequelize ORM)
 
-## Other tools/libraries/frameworks used
+## Other tools/libraries used
 
-Sequelize, Express, Npm, NodeJS, BCryptJS, Cookie Parser, Express Session, Express Validator, Method Override, Multer, Sequelize.
+- Express
+- Npm
+- NodeJS 
+- BCryptJS 
+- Cookie Parser 
+- Express Session 
+- Express Validator 
+- Method Override 
+- Multer
 
-Joaquín Cataldo
-Full Stack Developer
 
