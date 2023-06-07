@@ -1,0 +1,16 @@
+.no-products-in-cart {
+    width: 100%;
+    height: 300px;
+}
+
+@media (min-width: 1000px) {
+    .no-products-in-cart {
+      
+            max-width: 1080px;
+            margin: 0 auto;
+            background-color: white;
+            border-bottom: 0;
+            height: 500px;
+    
+    }
+}

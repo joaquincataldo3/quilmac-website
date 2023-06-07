@@ -5,6 +5,7 @@
         <%- include ('partials/head') %>
     
         <link rel="stylesheet" href="/css/category.css">
+        <link rel="stylesheet" href="/css/userSearch.css">
     </head>
     
 </head>
@@ -15,8 +16,8 @@
     <div>
         <div>
             <% if(locals.search && search.length == 0) { %> 
-                <div>
-                    <h2>Empty....</h2>
+                <div class="no-products-in-cart">
+                    <h2>No se han encontrado resultados</h2>
                 </div>
             <% } else if (locals.devices){ %>
                 <main>
