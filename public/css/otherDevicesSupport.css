@@ -3,6 +3,19 @@ main {
    
 }
 
+.intro-title-container 
+
+.main-banner-container {
+    width: 100%;
+    height: 200px;
+}
+
+.main-banner-container img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
 
 .icons-description-container {
     display: flex;

@@ -323,7 +323,7 @@ const controller = {
 
             const deviceUpdated = await db.Device.findByPk(idProduct)
 
-            const imgsToDelete = []
+            let imgsToDelete = []
 
             const imgsToDeleteFilter = deviceToUpdate.images.filter(image => { //FILTER TO DELETE IMAGES 
                 if (!req.body.current_imgs.includes(image.image)) {
@@ -345,7 +345,7 @@ const controller = {
                         }
                     },
                     force: true
-                }) // DELETE IMGS IN DATABASE     
+                }) // DELETE IMGS IN DATABASE     prod
 
             }
             const bodyImages = req.files;
