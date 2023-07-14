@@ -1,21 +1,40 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <%- include ('partials/head') %>
-    
-        <link rel="stylesheet" href="/css/otherDevicesSupport.css">
-    </head>
-    <%- include ('partials/header') %>
+
+<head>
+    <%- include ('partials/head') %>
+
+        <link rel="stylesheet" href="/css/devicesSupport.css">
+</head>
+<%- include ('partials/header') %>
     <main>
 
-        <div class="intro-title-container">
-            <h1>Soporte Notebooks</h1>
-        </div>
-       
+        <main class="other-devices-main">
+            <div class="support-page-intro-container">
+                <h1 class="support-h1-intro">SERVICIO TÉCNICO NOTEBOOKS</h1>
+                <p class="support-p-intro">Marca Lenovo, Dell, HP, Toshiba y otras.</p>
+            </div>
+            <div class="support-img-container">
+                <img src="/images/notebook_reparacion.jpg" alt="">
+            </div>
 
-        <div class="main-banner-container">
-            <img src="/images/banner_notebooks.jpg" alt="">
-        </div>
+            <div class="support-info-container">
+                <div class="support-info-subcontainer">
+                    <h2 class="support-title">Soporte</h2>
+                    <p class="support-intro-description">
+                        Podemos solucionar problemas de encendido.
+                        Problemas de Software.
+                        Pantallas rotas o con imágen defectuosa.
+                        Teclados que no funcionan.</p>
+                </div>
+
+
+                <p class="support-disclaimer">Estos son los problemas mas comunes, pero tambien hay otros mas complejos
+                    o que no presentan un
+                    síntoma tan claro </p>
+            </div>
+        </main>
+
 
         <section class="icons-description-container">
             <div class="icon-container">
@@ -39,10 +58,11 @@
 
     <%- include ('partials/floatsocialmediabtn') %>
 
-    <%- include ('partials/footer') %>
+        <%- include ('partials/footer') %>
 
 
-<body>
-    
-</body>
+            <body>
+
+            </body>
+
 </html>
