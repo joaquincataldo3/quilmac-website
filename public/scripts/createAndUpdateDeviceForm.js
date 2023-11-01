@@ -6,39 +6,37 @@ window.addEventListener('load', () => {
     const ramsContainer = document.getElementById('rams-container');
     const storagesContainer = document.getElementById('storages-for-iphone');
 
+    const changeStyleDisplay = (containersArray, method) => {
+        const otherMethod = method == 'block' ? 'none' : 'block';
+        for (let i = 0; i < containersArray.length; i++) {
+            if (i < 4) {
+                containersArray[i].style.display = method;
+            } else {
+                containersArray[i].style.display = otherMethod;
+            }
+        }
+    }
+
     if (deviceTypeSelected.value != 1) {
-        coresContainer.style.display = 'block';
-        ssdsContainer.style.display = 'block';
-        ramsContainer.style.display = 'block';
-        coresContainer.style.display = 'block';
-        storagesContainer.style.display = 'none';      
+        const arrayToChangeStyle = [coresContainer, ssdsContainer, ramsContainer, coresContainer, storagesContainer];
+        const method = 'block';
+        changeStyleDisplay(arrayToChangeStyle, method);
 
     } else {
-        storagesContainer.style.display = 'block';
-        coresContainer.style.display = 'none';
-        ssdsContainer.style.display = 'none';
-        ramsContainer.style.display = 'none';
-        coresContainer.style.display = 'none';
-        
+        const arrayToChangeStyle = [coresContainer, ssdsContainer, ramsContainer, coresContainer, storagesContainer];
+        const method = 'none';
+        changeStyleDisplay(arrayToChangeStyle, method);
     }
 
     deviceTypeSelected.addEventListener('change', () => { // if user selects iphone, we will display iphone options. if not, other options
         if (deviceTypeSelected.selectedIndex != 0) {
-            coresContainer.style.display = 'block';
-            ssdsContainer.style.display = 'block';
-            ramsContainer.style.display = 'block';
-            coresContainer.style.display = 'block';
-            storagesContainer.style.display = 'none';
-           
-            
-
+            const arrayToChangeStyle = [coresContainer, ssdsContainer, ramsContainer, coresContainer, storagesContainer];
+            const method = 'block';
+            changeStyleDisplay(arrayToChangeStyle, method);
         } else {
-            storagesContainer.style.display = 'block';
-            coresContainer.style.display = 'none';
-            ssdsContainer.style.display = 'none';
-            ramsContainer.style.display = 'none';
-            coresContainer.style.display = 'none';
-            
+            const arrayToChangeStyle = [coresContainer, ssdsContainer, ramsContainer, coresContainer, storagesContainer];
+            const method = 'none';
+            changeStyleDisplay(arrayToChangeStyle, method); 
         }
 
     })
