@@ -129,7 +129,11 @@ const controller = {
                         fs.unlinkSync(path.join(__dirname, '../../public/images/devices/' + image.filename)) // borrar imagen en caso de que haya errors
                     );
                 }
-                return res.render("createDevice", { errors: errors.mapped(), oldBody, dbStorages: await getInDb.dbStorages(), dbColors: await getInDb.dbColors(), dbRams: await getInDb.dbRams(), dbSsds: await getInDb.dbSsds(), dbCores: await getInDb.dbCores(), dbDeviceTypes: await getInDb.dbDeviceTypes(), dbIphones: await getInDb.dbIphones(), dbMacbooks: await getInDb.dbMacbooks() })
+                return res.render("createDevice", { errors: 
+                    errors.mapped(), oldBody, dbStorages:
+                     await getInDb.dbStorages(), dbColors: await getInDb.dbColors(), dbRams: await getInDb.dbRams(), dbSsds: await getInDb.dbSsds(), 
+                     dbCores: await getInDb.dbCores(), dbDeviceTypes: await getInDb.dbDeviceTypes(), dbIphones: await getInDb.dbIphones(), dbMacbooks: 
+                     await getInDb.dbMacbooks() })
             }
 
             const newDevice = await db.Device.create({
