@@ -18,8 +18,10 @@ module.exports = (sequelize, dataTypes) => {
     }
     const config = {
         tableName: "colors",
-        timestamps: false,
-        paranoid: true
+        timestamps: true,
+        paranoid: true,
+        createdAt: false,
+        updatedAt: false,
     }
 
     const Color = sequelize.define(alias, cols, config);
@@ -30,7 +32,7 @@ module.exports = (sequelize, dataTypes) => {
             through: "device_color",
             foreignKey: "color_id",
             otherKey: "device_id",
-            timestamps: false
+            timestamps: true
         })
         
 
@@ -39,7 +41,7 @@ module.exports = (sequelize, dataTypes) => {
             through: "device_color",
             foreignKey: "color_id",
             otherKey: "device_type_id",
-            timestamps: false
+            timestamps: true
         })
 
     }
