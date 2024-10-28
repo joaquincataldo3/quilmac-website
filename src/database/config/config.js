@@ -2,27 +2,29 @@ const { env } = process;
 const dotenv = require('dotenv')
 dotenv.config()
 
-const DB_USER =  env.PROD_MYSQLUSER ?? env.DEV_MYSQLUSER;
-const DB_PASSWORD =  env.PROD_MYSQLPASSWORD ?? env.DEV_MYSQLPASSWORD;
-const DB_HOST =  env.PROD_MYSQLHOST ?? env.DEV_MYSQLHOST;
-const DB_DATABASE = env.PROD_MYSQLDATABASE ?? env.DEV_MYSQLDATABASE;
-const DB_PORT = env.PROD_MYSQLPORT ?? env.DEV_MYSQLPORT;
-
 module.exports = {
   "development": {
-    "username": DB_USER,
-    "password": DB_PASSWORD,
-    "database": DB_DATABASE,
-    "host": DB_HOST,
+    "username": env.DEV_MYSQLUSER,
+    "password": env.DEV_MYSQLPASSWORD,
+    "database": DEV_MYSQLDATABASE,
+    "host": DEV_MYSQLHOST,
     "port": 3306,
     "dialect": "mysql"
   },
+  "test": {
+    "username": env.PROD_MYSQLUSER,
+    "password": env.PROD_MYSQLPASSWORD,
+    "database": env.PROD_MYSQLDATABASE,
+    "host": env.PROD_MYSQLHOST,
+    "port": env.PROD_MYSQLPORT,
+    "dialect": "mysql"
+  },
   "production": {
-    "username": DB_USER,
-    "password": DB_PASSWORD,
-    "database": DB_DATABASE,
-    "host": DB_HOST,
-    "port": DB_PORT,
+    "username": env.PROD_MYSQLUSER,
+    "password": env.PROD_MYSQLPASSWORD,
+    "database": env.PROD_MYSQLDATABASE,
+    "host": env.PROD_MYSQLHOST,
+    "port": env.PROD_MYSQLPORT,
     "dialect": "mysql"
   }
 }
