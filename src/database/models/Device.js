@@ -19,6 +19,10 @@ module.exports = (sequelize, dataTypes) => {
             type: dataTypes.STRING(255),
             allowNull: false
         },
+        device_type_id: {
+            type: dataTypes.INTEGER,
+            allowNull: false
+        },
         release_date: {
             type: dataTypes.DATE,
             allowNull: false
@@ -27,10 +31,8 @@ module.exports = (sequelize, dataTypes) => {
 
     const config = {
         tableName :"devices",
-        timestamps: true,
+        timestamps: false,
         paranoid: true,
-        createdAt: false,
-        updatedAt: false,
     }
 
     const Device = sequelize.define(alias, cols, config);
@@ -51,7 +53,7 @@ module.exports = (sequelize, dataTypes) => {
                 through: "device_color",
                 foreignKey: "device_id",
                 otherKey: "color_id",
-                timestamps: true
+                timestamps: false
             })
 
             Device.belongsToMany(models.Ram, {
@@ -59,7 +61,7 @@ module.exports = (sequelize, dataTypes) => {
                 through: "device_ram",
                 foreignKey: "device_id",
                 otherKey: "ram_id",
-                timestamps: true
+                timestamps: false
             })
 
             Device.belongsToMany(models.Ssd, {
@@ -67,7 +69,7 @@ module.exports = (sequelize, dataTypes) => {
                 through: "device_ssd",
                 foreignKey: "device_id",
                 otherKey: "ssd_id",
-                timestamps: true
+                timestamps: false
             })
 
             Device.belongsToMany(models.Core, {
@@ -75,7 +77,7 @@ module.exports = (sequelize, dataTypes) => {
                 through: "device_core",
                 foreignKey: "device_id",
                 otherKey: "core_id",
-                timestamps: true
+                timestamps: false
             })
 
             Device.belongsToMany(models.Storage, {
@@ -83,7 +85,7 @@ module.exports = (sequelize, dataTypes) => {
                 through: "device_storage",
                 foreignKey: "device_id",
                 otherKey: "storage_id",
-                timestamps: true
+                timestamps: false
             })
             
 

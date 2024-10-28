@@ -14,10 +14,8 @@ module.exports = (sequelize, dataTypes) => {
     }
     const config = {
         tableName :"rams",
-        timestamps: true,
-        paranoid: true,
-        createdAt: false,
-        updatedAt: false,
+        timestamps: false,
+        paranoid: true
     }
 
     const Ram = sequelize.define(alias, cols, config);
