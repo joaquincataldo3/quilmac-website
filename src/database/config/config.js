@@ -10,6 +10,7 @@ const DB_PORT = env.PROD_MYSQLPORT ?? env.DEV_MYSQLPORT;
 console.log(DB_USER)
 console.log(DB_PASSWORD)
 console.log(DB_HOST)
+console.log(DB_DATABASE)
 
 module.exports = {
   "development": {
