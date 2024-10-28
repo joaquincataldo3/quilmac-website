@@ -1,12 +1,13 @@
+const { env } = process;
 const dotenv = require('dotenv')
 dotenv.config()
 
-const DB_USER =  process.env.MYSQLUSER  
-const DB_PASSWORD =  process.env.MYSQLPASSWORD 
-const DB_HOST =  process.env.MYSQLHOST  
-const DB_DATABASE = process.env.MYSQLDATABASE 
-const DB_PORT = process.env.MYSQLPORT
-
+const DB_USER =  env.PROD_MYSQLUSER ?? env.DEV_MYSQLUSER;
+const DB_PASSWORD =  env.PROD_MYSQLPASSWORD ?? env.DEV_MYSQLPASSWORD;
+const DB_HOST =  env.PROD_MYSQLHOST ?? env.DEV_MYSQLHOST;
+const DB_DATABASE = env.PROD_MYSQLDATABASE ?? env.DEV_MYSQLDATABASE;
+const DB_PORT = env.PROD_MYSQLPORT ?? env.DEV_MYSQLPORT;
+console.log(env)
 
 module.exports = {
   "development": {
@@ -14,14 +15,7 @@ module.exports = {
     "password": DB_PASSWORD,
     "database": DB_DATABASE,
     "host": DB_HOST,
-    "port": DB_PORT,
-    "dialect": "mysql"
-  },
-  "test": {
-    "username": "root",
-    "password": null,
-    "database": "quilmac",
-    "host": "127.0.0.1",
+    "port": 3306,
     "dialect": "mysql"
   },
   "production": {
