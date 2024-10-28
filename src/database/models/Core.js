@@ -14,8 +14,10 @@ module.exports = (sequelize, dataTypes) => {
     }
     const config = {
         tableName :"cores",
-        timestamps: false,
-        paranoid: true
+        timestamps: true,
+        paranoid: true,
+        createdAt: false,
+        updatedAt: false,
     }
 
     const Core = sequelize.define(alias, cols, config);
@@ -26,7 +28,7 @@ module.exports = (sequelize, dataTypes) => {
                 through: "device_core",
                 foreignKey: "core_id",
                 otherKey: "device_id",
-                timestamps: false
+                timestamps: true
             }) 
 
             Core.belongsToMany(models.DeviceType, {
@@ -34,7 +36,7 @@ module.exports = (sequelize, dataTypes) => {
                 through: "device_color",
                 foreignKey: "core_id",
                 otherKey: "device_type_id",
-                timestamps: false
+                timestamps: true
             })
     }
 

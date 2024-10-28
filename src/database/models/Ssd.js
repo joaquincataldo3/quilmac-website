@@ -14,8 +14,10 @@ module.exports = (sequelize, dataTypes) => {
     }
     const config = {
         tableName :"ssds",
-        timestamps: false,
-        paranoid: true
+        timestamps: true,
+        paranoid: true,
+        createdAt: false,
+        updatedAt: false,
     }
 
     const Ssd = sequelize.define(alias, cols, config);
