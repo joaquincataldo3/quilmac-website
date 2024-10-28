@@ -42,12 +42,14 @@ module.exports = (sequelize, dataTypes) => {
     Image.associate = (models) => {
         Image.belongsTo(models.Device, {
             as: "devices",
-            foreignKey: "device_id"
+            foreignKey: "device_id",
+            timestamps: false
         })
 
         Image.belongsTo(models.DeviceType, {
             as: "devices_types",
-            foreignKey: "device_id"
+            foreignKey: "device_id",
+            timestamps: false
         })
 
         /* Image.belongsTo(models.Color, {

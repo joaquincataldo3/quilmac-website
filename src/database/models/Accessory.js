@@ -42,12 +42,14 @@ module.exports = (sequelize, dataTypes) => {
 
         Accessory.belongsTo(models.Accessory, {
             as: "types",
-            foreignKey: "accessory_type_id"
+            foreignKey: "accessory_type_id",
+            timestamps: false
         })
 
         Accessory.belongsTo(models.Brand, {
             as: "brands",
-            foreignKey: "brand_id"
+            foreignKey: "brand_id",
+            timestamps: false
         })
 
     }

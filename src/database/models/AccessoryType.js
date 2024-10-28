@@ -26,7 +26,8 @@ module.exports = (sequelize, dataTypes) => {
 
         AccessoryType.hasMany(models.Accessory, {
             as: "accessories",
-            foreignKey: "accessory_type_id"
+            foreignKey: "accessory_type_id",
+            timestamps: false,
         })
 
     }

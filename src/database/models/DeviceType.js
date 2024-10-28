@@ -26,12 +26,14 @@ module.exports = (sequelize, dataTypes) => {
     DeviceType.associate = (models) => {
         DeviceType.hasMany(models.Image, {
             as: "images",
-            foreignKey: "device_type_id"
+            foreignKey: "device_type_id",
+            timestamps: false,
         })
 
         DeviceType.hasMany(models.Device, {
             as: "devices",
-            foreignKey: "device_type_id"
+            foreignKey: "device_type_id",
+            timestamps: false,
         })
 
         DeviceType.belongsToMany(models.Color, {
@@ -39,7 +41,6 @@ module.exports = (sequelize, dataTypes) => {
             through: "device_color",
             foreignKey: "device_type_id",
             otherKey: "color_id",
-            timestamps: true
         })
 
         DeviceType.belongsToMany(models.Ram, {
@@ -47,7 +48,6 @@ module.exports = (sequelize, dataTypes) => {
             through: "device_ram",
             foreignKey: "device_type_id",
             otherKey: "ram_id",
-            timestamps: true
         })
 
         DeviceType.belongsToMany(models.Ssd, {
@@ -55,7 +55,7 @@ module.exports = (sequelize, dataTypes) => {
             through: "device_ssd",
             foreignKey: "device_type_id",
             otherKey: "ssd_id",
-            timestamps: true
+            timestamps: false
         })
 
         DeviceType.belongsToMany(models.Core, {
@@ -63,7 +63,7 @@ module.exports = (sequelize, dataTypes) => {
             through: "device_core",
             foreignKey: "device_type_id",
             otherKey: "core_id",
-            timestamps: true
+            timestamps: false
         })
 
         DeviceType.belongsToMany(models.Storage, {
@@ -71,7 +71,7 @@ module.exports = (sequelize, dataTypes) => {
             through: "device_storage",
             foreignKey: "device_type_id",
             otherKey: "storage_id",
-            timestamps: true
+            timestamps: false
         })
         
     }
