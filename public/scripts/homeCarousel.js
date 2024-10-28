@@ -17,7 +17,6 @@ window.onload = function () {
   function handleCarouselImgClasses() {
     slides.forEach((img, i) => { // function that adds or removes the class of an image
       if (i == currentImage) {
-        console.log(currentImage)
         img.classList.add('active');
         img.classList.remove('prev-slide');
         img.classList.remove('next-slide');
