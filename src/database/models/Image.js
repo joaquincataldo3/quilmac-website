@@ -11,6 +11,10 @@ module.exports = (sequelize, dataTypes) => {
             type: dataTypes.STRING(255),
             allowNull: false
         },
+        public_id: {
+            type: dataTypes.STRING(255),
+            allowNull: false
+        },
         device_id: {
             type: dataTypes.INTEGER,
             foreignKey: true,
@@ -33,10 +37,8 @@ module.exports = (sequelize, dataTypes) => {
 
     const config = {
         tableName :"images",
-        timestamps: true,
-        paranoid: true,
-        createdAt: false,
-        updatedAt: false,
+        timestamps: false,
+        paranoid: true
     }
 
     const Image = sequelize.define(alias, cols, config);
