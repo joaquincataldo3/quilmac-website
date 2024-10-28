@@ -32,10 +32,8 @@ module.exports = (sequelize, dataTypes) => {
 
     const config = {
         tableName: "accessories",
-        timestamps: true,
+        timestamps: false,
         paranoid: true,
-        createdAt: false,
-        updatedAt: false,
     }
 
     const Accessory = sequelize.define(alias, cols, config);

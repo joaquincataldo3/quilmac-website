@@ -33,10 +33,8 @@ module.exports = (sequelize, dataTypes) => {
 
     const config = {
         tableName :"images",
-        timestamps: true,
-        paranoid: true,
-        createdAt: false,
-        updatedAt: false,
+        timestamps: false,
+        paranoid: true
     }
 
     const Image = sequelize.define(alias, cols, config);

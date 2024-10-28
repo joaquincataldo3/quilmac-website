@@ -27,10 +27,8 @@ module.exports = (sequelize, dataTypes) => {
 
     const config = {
         tableName :"devices",
-        timestamps: true,
-        paranoid: true,
-        createdAt: false,
-        updatedAt: false,
+        timestamps: false,
+        paranoid: true
     }
 
     const Device = sequelize.define(alias, cols, config);

@@ -20,10 +20,8 @@ module.exports = (sequelize, dataTypes) => {
 
     const config = {
         tableName :"admins",
-        timestamps: true,
-        paranoid: true,
-        createdAt: false,
-        updatedAt: false,
+        timestamps: false,
+        paranoid: true
     }
 
     const Admin = sequelize.define(alias, cols, config);
