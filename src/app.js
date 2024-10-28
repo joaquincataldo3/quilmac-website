@@ -55,6 +55,10 @@ app.use(async (req, res, next) => {
 
 const PORT = process.env.PORT | 4200;
 
-app.listen(PORT, (req, res) => {
-    console.log(`Server opened on port ${PORT}`)
+db.sequelize.sync().then(() => {
+    app.listen(PORT, () => {
+        console.log(`Servidor abierto en el puerto ${PORT}`);
+    });
+}).catch(err => {
+    console.error('Error al conectar con la base de datos:', err);
 })
