@@ -6,8 +6,8 @@ module.exports = {
   "development": {
     "username": env.DEV_MYSQLUSER,
     "password": env.DEV_MYSQLPASSWORD,
-    "database": DEV_MYSQLDATABASE,
-    "host": DEV_MYSQLHOST,
+    "database": env.DEV_MYSQLDATABASE,
+    "host": env.DEV_MYSQLHOST,
     "port": 3306,
     "dialect": "mysql"
   },
