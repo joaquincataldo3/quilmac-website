@@ -26,7 +26,7 @@ module.exports = (sequelize, dataTypes) => {
                 through: "device_storage",
                 foreignKey: "storage_id",
                 otherKey: "device_id",
-                timestamps: true
+                timestamps: false
             }) 
 
             Storage.belongsToMany(models.Device, {
@@ -34,7 +34,7 @@ module.exports = (sequelize, dataTypes) => {
                 through: "device_storage",
                 foreignKey: "storage_id",
                 otherKey: "device_type_id",
-                timestamps: true
+                timestamps: false
             }) 
 
     }
