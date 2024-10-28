@@ -10,6 +10,7 @@ const accessoriesRouter = require("./routes/accessoriesRouter");
 const homeSearchbarRouter = require("./routes/homeSearchbarRouter");
 const methodOverride = require("method-override");
 const getInDb =  require('./utils/getInDb');
+const db = require('./database/models');
 
 
 const app = express();
