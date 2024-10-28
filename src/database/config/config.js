@@ -7,6 +7,7 @@ const DB_PASSWORD =  env.PROD_MYSQLPASSWORD ?? env.DEV_MYSQLPASSWORD;
 const DB_HOST =  env.PROD_MYSQLHOST ?? env.DEV_MYSQLHOST;
 const DB_DATABASE = env.PROD_MYSQLDATABASE ?? env.DEV_MYSQLDATABASE;
 const DB_PORT = env.PROD_MYSQLPORT ?? env.DEV_MYSQLPORT;
+console.log(env)
 
 module.exports = {
   "development": {
@@ -15,13 +16,6 @@ module.exports = {
     "database": DB_DATABASE,
     "host": DB_HOST,
     "port": 3306,
-    "dialect": "mysql"
-  },
-  "test": {
-    "username": "root",
-    "password": null,
-    "database": "quilmac",
-    "host": "127.0.0.1",
     "dialect": "mysql"
   },
   "production": {
