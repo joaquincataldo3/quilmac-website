@@ -7,10 +7,6 @@ const DB_PASSWORD =  env.PROD_MYSQLPASSWORD ?? env.DEV_MYSQLPASSWORD;
 const DB_HOST =  env.PROD_MYSQLHOST ?? env.DEV_MYSQLHOST;
 const DB_DATABASE = env.PROD_MYSQLDATABASE ?? env.DEV_MYSQLDATABASE;
 const DB_PORT = env.PROD_MYSQLPORT ?? env.DEV_MYSQLPORT;
-console.log(DB_USER)
-console.log(DB_PASSWORD)
-console.log(DB_HOST)
-console.log(DB_DATABASE)
 
 module.exports = {
   "development": {
