@@ -131,7 +131,6 @@ const controller = {
             })
 
             const bodyImages = req.files;
-            console.log(req.body)
             const { colors, storages = null, rams = null, cores = null, ssds = null } = req.body
             const { id, device_type_id } = newDevice;
 
@@ -149,7 +148,8 @@ const controller = {
                     });
                 }
             }
-            const deviceColors = colors.map(color => {
+            let checkedColors = colors.length > 0 ? colors : Array.from(String(colors));
+            const deviceColors = checkedColors.map(color => {
                 return {
                     color_id: color,
                     device_id: id,
@@ -254,8 +254,7 @@ const controller = {
                 }
             })
 
-            const deviceUpdated = await db.Device.findByPk(idProduct);
-            const {device_type_id, id} = deviceUpdated;
+            const {device_type_id, id} = deviceToUpdate;
             let imgIdsToDelete = [];
 
             
@@ -286,7 +285,6 @@ const controller = {
                 })
                 for(let i = 0; i < deviceImages.length; i++){
                     const deviceImage = deviceImages[i];
-                    console.log(deviceImage)
                     await handleDeleteImage(deviceImage.pubic_id);
                 }
                 await db.Image.destroy({
@@ -296,9 +294,7 @@ const controller = {
                     force: true
                 }) 
             }
-            
-
-           
+        
             const bodyImages = req.files;
             const { colors, storages, rams, cores, ssds } = req.body
           

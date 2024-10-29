@@ -23,9 +23,9 @@
                                 <% deviceToFetch.images.forEach((img, i)=> { %>
                                     <% if(i==0) {%>
                                         <img class="single-product-img active-img"
-                                            src="/images/devices/<%= img.image %>" alt="">
+                                            src="<%= img.dataValues.image %>" alt="">
                                         <% } else { %>
-                                            <img class="single-product-img" src="/images/devices/<%= img.image %>"
+                                            <img class="single-product-img" src="<%= img.dataValues.image %>"
                                                 alt="">
                                             <% } %>
                                                 <% }) %>
