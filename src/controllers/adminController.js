@@ -109,12 +109,12 @@ const controller = {
 
             if (!errors.isEmpty()) {
                 const oldBody = req.body;
-                const bodyImages = req.files;
-                if (bodyImages) {
-                    bodyImages.forEach(image =>
-                        fs.unlinkSync(path.join(__dirname, '../../public/images/devices/' + image.filename)) // borrar imagen en caso de que haya errors
-                    );
-                }
+                // const bodyImages = req.files;
+                // if (bodyImages) {
+                //     bodyImages.forEach(image =>
+                //         fs.unlinkSync(path.join(__dirname, '../../public/images/devices/' + image.filename)) // borrar imagen en caso de que haya errors
+                //     );
+                // }
                 return res.render("createDevice", { errors: 
                     errors.mapped(), oldBody, dbStorages:
                      await getInDb.dbStorages(), dbColors: await getInDb.dbColors(), dbRams: await getInDb.dbRams(), dbSsds: await getInDb.dbSsds(), 
@@ -138,7 +138,6 @@ const controller = {
                 for(let i = 0; i < bodyImages.length; i++){
                     const image = bodyImages[i];
                     const result = await handleUploadImage(image, 'devices');
-                    console.log(result)
                     const { public_id, secure_url } = result;
                     await db.Image.create({
                         image: secure_url,
@@ -418,6 +417,8 @@ const controller = {
                 }
             })
             for(let i = 0; i < deviceImages.length; i++){
+                console.log('device images')
+                console.log(deviceImages[i])
                 await handleDeleteImage(deviceImages[i].public_id)
             }
             let isIphone = deviceToDelete.device_type_id !== 1;
@@ -457,10 +458,14 @@ const controller = {
                 }
             })
             
-            return res.redirect('/')
+            return res.status(200).json({
+                success: true,
+            })
         } catch (error) {
             console.log(`Failed while trying to delete a device: ${error}`);
-            return res.render('unexpectedError')
+            return res.status(500).json({
+                success: false,
+            })
         }
     },
     accessoryCreation: async (req, res) => {
@@ -480,7 +485,7 @@ const controller = {
                 const accessoryTypes = await db.AccessoryType.findAll()
                 console.log(errors)
                
-                fs.unlinkSync(path.join(__dirname, '../../public/images/accessories/' + bodyImage)) // borrar imagen en caso de que haya errors
+                // fs.unlinkSync(path.join(__dirname, '../../public/images/accessories/' + bodyImage)) // borrar imagen en caso de que haya errors
                   
 
                 return res.render("createAccesory", { errors: errors.mapped(), oldBody, accessoryTypes })

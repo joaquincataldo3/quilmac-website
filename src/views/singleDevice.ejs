@@ -133,13 +133,13 @@
                         <button class="form-device-btn" type="submit"><a
                                 href="/admin/update/<%= deviceToFetch.id %> ">Actualizar producto</a></button>
                     </div>
-                    <form class="update-delete-btn-container"
-                        action="/admin/delete/device/<%= deviceToFetch.id %>?_method=DELETE" method="POST">
-                        <button class="form-device-btn" type="submit">Eliminar producto</button>
-                    </form>
+                    <div class="update-delete-btn-container"
+                        >
+                        <button class="form-device-btn delete-btn" data-deviceId="<%= deviceToFetch.id %>">Eliminar producto</button>
+                    </div>
                 </div>
                 <% } %>
-
+<!-- action="/admin/delete/device/ deviceToFetch.id %>?_method=DELETE" method="POST" -->
         </main>
         <script src="/scripts/singleDevice.js"></script>
         <%- include ('partials/floatsocialmediabtn') %>

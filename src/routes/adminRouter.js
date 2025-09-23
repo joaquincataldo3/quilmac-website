@@ -7,10 +7,11 @@ const deviceCreationValidation = require('../middlewares/deviceCreationValidatio
 const adminRoutesMiddleware = require('../middlewares/rejectRoute');
 const uploadDeviceImages = require("../middlewares/multerForDeviceCreation");
 const uploadAccessoryImages = require("../middlewares/multerForAccessoryCreation");
+const rejectRoute = require('../middlewares/rejectRoute')
 
 const router = express.Router();
 
-router.get("/register", adminController.register);
+router.get("/register", rejectRoute, adminController.register);
 router.get("/login", adminController.loginForm);
 router.get('/logout', adminController.logout)
 router.get('/device/create', adminRoutesMiddleware,adminController.createDevice);

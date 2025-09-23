@@ -11,6 +11,10 @@ module.exports = (sequelize, dataTypes) => {
             type: dataTypes.STRING(255),
             allowNull: false
         },
+        public_id: {
+            type: dataTypes.STRING(255),
+            allowNull: false
+        },
         device_id: {
             type: dataTypes.INTEGER,
             foreignKey: true,

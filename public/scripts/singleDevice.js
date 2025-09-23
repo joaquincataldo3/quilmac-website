@@ -102,6 +102,19 @@ window.addEventListener('load', () => {
         })
     }
 
+    const deleteBtn = document.querySelector('.delete-btn');
+    deleteBtn.addEventListener('click', async (e) => {
+        e.preventDefault()
+        const deviceId = deleteBtn.dataset.deviceid; 
+        const baseUrl = window.location.origin;
+        fetch(`${baseUrl}/admin/delete/device/${deviceId}`, {
+            method: 'DELETE'
+        }).then(res => res.json())
+            .then(data => {
+                console.log(data)
+                window.location.href = '/'
+             });
+    })
 
 
 
