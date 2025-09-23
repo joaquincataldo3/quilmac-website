@@ -242,6 +242,8 @@ const controller = {
             const idProduct = req.params.idProduct;
             const deviceToUpdate = await db.Device.findByPk(idProduct, { include: ['images', 'colors', 'storages', 'rams', 'ssds', 'cores'] })
 
+
+
             await db.Device.update({
                 model: req.body.model,
                 screen: req.body.screen,
@@ -250,7 +252,7 @@ const controller = {
                 device_type_id: req.body.device_type
             }, {
                 where: {
-                    id: deviceToUpdate.id
+                    id: idProduct
                 }
             })
 
