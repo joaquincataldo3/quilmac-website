@@ -9,10 +9,11 @@ const controller = {
             where: {
                 accessory_type_id: idCategory
             },
-            include: ['brands'] 
+            include: ['brands', 'accessory_images'] 
         })
  
-
+        console.log('selected')
+        console.log(selectedCategory)
     return res.render('accessoryCategory', { selectedCategory, 
         idCategory, dbStorages: await getInDb.dbStorages(), 
         dbColors: await getInDb.dbColors(), dbRams: await getInDb.dbRams(), 

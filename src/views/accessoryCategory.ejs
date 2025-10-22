@@ -27,7 +27,7 @@
                         <div class="product-card">
                             <div class="img-card-container">
                                 <img class="main-image"
-                                    src="/images/accessories/<%= accessory.image %>"
+                                    src="<%=accessory.accessory_images[0].image%>"
                                     alt="">
                             </div>
                             <div class="info-container">
@@ -51,10 +51,6 @@
                             </div>
                             <% if(locals.isLogged) { %>
                                 <div class="delete-update-btns-container">
-                                    <div class="update-delete-btn-container">
-                                        <button class="form-device-btn" type="submit"><a
-                                                href="/admin/update/accessory/<%= accessory.id %>">Actualizar producto</a></button>
-                                    </div>
                                     <form class="update-delete-btn-container"
                                         action="/admin/delete/accessory/<%= accessory.id %>?_method=DELETE" method="POST">
                                         <button class="form-device-btn" type="submit">Eliminar producto</button>
@@ -66,18 +62,7 @@
                 <% }) %>
             </div>
 
-                    <% if(locals.isLogged) { %>
-                        <div class="delete-update-btns-container">
-                            <div class="update-delete-btn-container">
-                                <button class="form-device-btn" type="submit"><a
-                                        href="/admin/update/<%= deviceToFetch.id %> ">Actualizar producto</a></button>
-                            </div>
-                            <form class="update-delete-btn-container"
-                                action="/admin/delete/<%= deviceToFetch.id %>?_method=DELETE" method="POST">
-                                <button class="form-device-btn" type="submit">Eliminar producto</button>
-                            </form>
-                        </div>
-                        <% } %>
+        
 
             </div>
         </main>

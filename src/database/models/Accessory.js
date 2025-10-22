@@ -11,12 +11,11 @@ module.exports = (sequelize, dataTypes) => {
             type: dataTypes.STRING(45),
             allowNull: false
         },
-        image: {
-            type: dataTypes.STRING(45),
-            allowNull: false
-        },
         price: {
             type: dataTypes.INTEGER,
+        },
+        brand_id: {
+            type: dataTypes.STRING(100)
         },
         accessory_type_id: {
             type: dataTypes.INTEGER,
@@ -39,6 +38,11 @@ module.exports = (sequelize, dataTypes) => {
     const Accessory = sequelize.define(alias, cols, config);
 
     Accessory.associate = (models) => {
+        
+        Accessory.hasMany(models.AccessoryImage, {
+               as: "accessory_images",
+               foreignKey: "accessory_id"
+           })
 
         Accessory.belongsTo(models.Accessory, {
             as: "types",
