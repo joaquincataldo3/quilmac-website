@@ -1,5 +1,6 @@
 const { v2: cloudinary } = require('cloudinary');
 const dotenv = require('dotenv');
+const streamifier = require('streamifier');
 dotenv.config()
 const { env } = process;
 
@@ -12,10 +13,27 @@ cloudinary.config({
 module.exports = {
     handleUploadImage: async (file, folder) => {
         try {
-            const result = await cloudinary.uploader.upload(file.path, {
-                folder
-            });
-            return result;
+                 console.log('Uploading file:', file.originalname);
+
+      const result = await new Promise((resolve, reject) => {
+        const stream = cloudinary.uploader.upload_stream(
+          { folder },
+          (error, result) => {
+            if (error) {
+              console.error('Cloudinary upload error:', error);
+              reject(error);
+            } else {
+              resolve(result);
+            }
+          }
+        );
+
+
+        streamifier.createReadStream(file.buffer).pipe(stream);
+      });
+
+      console.log('Upload successful:', result.secure_url);
+      return result;
         } catch (error) {
             console.log('error in handle upload image')
             console.log(error)

@@ -106,21 +106,20 @@ const controller = {
 
         try {
             const errors = validationResult(req);
+            console.log('err')
+            console.log(errors)
 
             if (!errors.isEmpty()) {
                 const oldBody = req.body;
-                // const bodyImages = req.files;
-                // if (bodyImages) {
-                //     bodyImages.forEach(image =>
-                //         fs.unlinkSync(path.join(__dirname, '../../public/images/devices/' + image.filename)) // borrar imagen en caso de que haya errors
-                //     );
-                // }
                 return res.render("createDevice", { errors: 
                     errors.mapped(), oldBody, dbStorages:
                      await getInDb.dbStorages(), dbColors: await getInDb.dbColors(), dbRams: await getInDb.dbRams(), dbSsds: await getInDb.dbSsds(), 
                      dbCores: await getInDb.dbCores(), dbDeviceTypes: await getInDb.dbDeviceTypes(), dbIphones: await getInDb.dbIphones(), dbMacbooks: 
                      await getInDb.dbMacbooks() })
             }
+
+            console.log('llego')
+            console.log('-------')
 
             const newDevice = await db.Device.create({
                 model: req.body.model,
@@ -216,12 +215,7 @@ const controller = {
 
         } catch (error) {
             console.log(`Error while processing the device creation: ${error}`)
-            const bodyImages = req.files;
-            if (bodyImages) {
-                bodyImages?.forEach(image =>
-                    fs.unlinkSync(path.join(__dirname, '../../public/images/devices/' + image.filename)) // borrar imagen en caso de que haya errors
-                );
-            }
+
             return res.render('unexpectedError');
         }
 
@@ -241,8 +235,6 @@ const controller = {
             const idProduct = req.params.idProduct;
             const deviceToUpdate = await db.Device.findByPk(idProduct, { include: ['images', 'colors', 'storages', 'rams', 'ssds', 'cores'] })
 
-
-
             await db.Device.update({
                 model: req.body.model,
                 screen: req.body.screen,
@@ -256,62 +248,10 @@ const controller = {
             })
 
             const {device_type_id, id} = deviceToUpdate;
-            let imgIdsToDelete = [];
-
-            
-            if(deviceToUpdate.images.length > 0 && req.body.current_imgs?.length > 0){
-                deviceToUpdate.images.filter(image => { 
-                    if (!req.body.current_imgs.includes(image)) {
-                        return imgIdsToDelete.push(image)
-                    }
-                })
-                if (imgIdsToDelete.length > 0) {
-                    for(let i = 0; i < imgIdsToDelete.length; i++){
-                        const {id, public_id} = imgIdsToDelete;
-                        await db.Image.destroy({
-                            where: {
-                                id
-                            },
-                            force: true
-                        }) 
-                        await handleDeleteImage(public_id);
-                    }
-                }
-            } else if(deviceToUpdate.images.length > 0 && !req.body.current_imgs){
-                
-                const deviceImages = await db.Image.findAll({
-                    where: {
-                        device_id: id
-                    }
-                })
-                for(let i = 0; i < deviceImages.length; i++){
-                    const deviceImage = deviceImages[i];
-                    await handleDeleteImage(deviceImage.pubic_id);
-                }
-                await db.Image.destroy({
-                    where: {
-                        device_id: id
-                    },
-                    force: true
-                }) 
-            }
         
             const bodyImages = req.files;
             const { colors, storages, rams, cores, ssds } = req.body
           
-            if (bodyImages.length > 0) {
-                for(let i = 0; i < bodyImages.length; i++){
-                    const image = bodyImages[i];
-                    const result = await handleUploadImage(image, 'devices');
-                    const { public_id, secure_url } = result;
-                    await db.Image.create({
-                        image: secure_url,
-                        device_id: id,
-                        device_type_id,
-                        public_id
-                    });
-                }
-            }
 
             if (colors.length > 0) {
                 let arrayConverted = colors.length === 1 ? Array.from(String(colors)) : colors;
@@ -470,8 +410,6 @@ const controller = {
     },
     accessoryCreation: async (req, res) => {
 
-
-
         return res.render('createAccesory', { dbAccessoryTypes: await getInDb.dbAccessoryTypes(), dbBrands: await getInDb.dbBrands() })
     },
     processAccessoryCreation: async (req, res) => {
@@ -479,37 +417,39 @@ const controller = {
             const errors = validationResult(req);
 
             if (!errors.isEmpty()) {
-                
-                const bodyImage = req.file.filename;
                 const oldBody = req.body;
                 const accessoryTypes = await db.AccessoryType.findAll()
-                console.log(errors)
-               
-                // fs.unlinkSync(path.join(__dirname, '../../public/images/accessories/' + bodyImage)) // borrar imagen en caso de que haya errors
-                  
-
                 return res.render("createAccesory", { errors: errors.mapped(), oldBody, accessoryTypes })
             }
 
 
             const accessoryToCreate = {
                 accessory: req.body.accessory,
-                image: req.file.filename,
                 price: req.body.price ? req.body.price : 0,
                 accessory_type_id: req.body.type,
-                
                 brand_id: req.body.brand
             }
 
-           await db.Accessory.create(accessoryToCreate)
+            const accessory = await db.Accessory.create(accessoryToCreate)
+            const bodyImage = req.file;
+             if (bodyImage) {
+                    const image = bodyImage;
+                    const result = await handleUploadImage(image, 'accesories');
+                    const { public_id, secure_url } = result;
+                    await db.AccessoryImage.create({
+                        image: secure_url,
+                        accessory_id: accessory.id,
+                        public_id
+                    });
+            }
+
 
             return res.redirect('/')
 
 
         } catch (error) {
-            const bodyImage = req.file.filename;
-            fs.unlinkSync(path.join(__dirname, '../../public/images/accessories/' + bodyImage)) // borrar imagen en caso de que haya errors
-            return res.send(error)
+            console.log('error in processing accesory')
+            console.log(error)
             return res.render("unexpectedError.ejs")
         }
     },

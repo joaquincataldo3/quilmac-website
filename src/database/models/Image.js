@@ -44,6 +44,13 @@ module.exports = (sequelize, dataTypes) => {
     const Image = sequelize.define(alias, cols, config);
 
     Image.associate = (models) => {
+        
+        Image.belongsTo(models.Accessory, {
+            as: "accessories",
+            foreignKey: "device_id",
+            timestamps: false
+        })
+
         Image.belongsTo(models.Device, {
             as: "devices",
             foreignKey: "device_id",
